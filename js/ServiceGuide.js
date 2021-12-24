@@ -514,31 +514,6 @@ function ShowLegend(){
     $(".eleclegend").slideToggle(200);
 }
 
-
-/* function CheckChromeBrowser() {
-	
-	var browserName = (function (agent) {
-        switch (true) {
-            case agent.indexOf("edge") > -1: return false; //"MS Edge"; 
-            case agent.indexOf("edg/") > -1: return true; //"Edge ( chromium based)";
-            case agent.indexOf("opr") > -1 && !!window.opr: return false;//"Opera";
-            case agent.indexOf("chrome") > -1 && !!window.chrome: return true;//"Chrome";
-            case agent.indexOf("trident") > -1: return false;//"MS IE";
-            case agent.indexOf("firefox") > -1: return false;//"Mozilla Firefox";
-            case agent.indexOf("safari") > -1: return false;//"Safari";
-            default: return "other";
-        }
-    })(window.navigator.userAgent.toLowerCase());
-	
-	if (browserName == true) {
-		$(".chromebrowser").hide();
-		return true;
-	}
-	else{
-		$(".chromebrowser").show();
-		return false;
-	}
-} */
 function CheckChromeBrowser() {
     // Opera 8.0+
     var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
@@ -576,7 +551,30 @@ function CheckChromeBrowser() {
     }
 }
 
-
+function CheckChromeBrowser() {
+	
+	var browserName = (function (agent) {
+        switch (true) {
+            case agent.indexOf("edge") > -1: return false; //"MS Edge"; 
+            case agent.indexOf("edg/") > -1: return true; //"Edge ( chromium based)";
+            case agent.indexOf("opr") > -1 && !!window.opr: return false;//"Opera";
+            case agent.indexOf("chrome") > -1 && !!window.chrome: return true;//"Chrome";
+            case agent.indexOf("trident") > -1: return false;//"MS IE";
+            case agent.indexOf("firefox") > -1: return false;//"Mozilla Firefox";
+            case agent.indexOf("safari") > -1: return false;//"Safari";
+            default: return "other";
+        }
+    })(window.navigator.userAgent.toLowerCase());
+	
+	if (browserName == true) {
+		$(".chromebrowser").hide();
+		return true;
+	}
+	else{
+		$(".chromebrowser").show();
+		return false;
+	}
+}
 
 function FullScreen() {
     /* Get the documentElement (<html>) to display the page in fullscreen */
