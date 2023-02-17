@@ -17,7 +17,7 @@
     <script type="text/javascript" src='js/jquery-3.4.1.min.js'></script>
     <script type="text/javascript" src='js/darktooltip.js'></script>
 	<script type="text/javascript" src='js/ServiceGuide.js'></script>
-    <script type="text/javascript" src='js/pace.js'></script>
+    <!-- <script type="text/javascript" src='js/pace.js'></script> -->
     <script type="text/javascript" src='js/slick.js'></script>
     <title>ServiceGuide</title>
 
@@ -75,10 +75,38 @@
 
         $(document).ready(function () {
             if(CheckChromeBrowser()){
-                InitPresentation();}
+                InitPresentation();
+
+
+                
+                $('.diagram_menu').slick({autoplay: true, arrows: false});
+
+
+            }
         });
 
+
+        function test(){
+            window.top.postMessage('mframe_goto_docpage', '*')
+        }
+
+        // paceOptions = {
+        //         elements: {
+        //             target: "#pp"
+        //         }
+        //     }
+
+        function ShowDiagramProductMenu(){
+            $('.DIAGRAM_PRODUCT_LIST').slideToggle("fast");
+        }
+
+        
+
 </script>
+
+<!-- <script>window.paceOptions = { target: ".DOCUMENTATION" };</script>
+
+<script type="text/javascript" src='js/pace.js'></script> -->
 
 
 </head>
@@ -93,7 +121,7 @@
         </a>
         <img class="icolabel_menu disabled" src="media/search.png"/><a class="disabled" href="#" onclick="">Search</a>
         <img class="icolabel_menu disabled" src="media/print.png"/><a href="#" class="disabled" onclick="">Print</a>
-        <img class="icolabel_menu" src="media/email.png"/><a href="mailto:serviceguide@csdental.com?subject=CS 9600 Service Guide" onclick="">Feedback</a>
+        <img class="icolabel_menu" src="media/email.png"/><a href="mailto:serviceguide@csdental.com?subject=CS 8x00 Service Guide" onclick="">Feedback</a>
         <img class="icolabel_menu" src="media/fullscreen.png"/><a href="#" onclick="FullScreen()">Fullscreen</a>
     </div>
 </div>
@@ -113,13 +141,16 @@
 
     <div class="tab">
         <a onclick="OpenHtmlPage('Presentation.html')" class="PRESENTATION tabuttonhome tabselected uistyle2">
-            <img class="icon" src="media/home.png"/>
+            <img id="pp" class="icon" src="media/home.png"/>
         </a>
-        <a onclick="OpenHtmlPage('Documentation.html')" class="DOCUMENTATION tabutton uistyle2">
+        <a  onclick="OpenHtmlPage('Documentation.html')" class="DOCUMENTATION tabutton uistyle2">
             <img class="icon" src="media/documentation48.png"/>
         </a>
+        <!-- <a  onclick="test()" class="DOCUMENTATION tabutton uistyle2">
+            <img class="icon" src="media/documentation48.png"/>
+        </a> -->
         <a onclick="OpenHtmlPage('SearchText.html')" class="TEXTIMAGE tabutton uistyle2">
-            <img class="icon" src="media/searchtext.png"/>
+            <img id="cc" class="icon" src="media/searchtext.png"/>
         </a>
         <a href="#" class="ELECDIAGRAM tabutton uistyle2" onclick="ShowDiagramProductChoice()">
             <div class="dropicon"></div>
@@ -143,7 +174,7 @@
         <a href="#" class="PRINT tabuttonsmall uistyle2 disabled" onclick="PrintDoc()">
             <img class="icon" src="media/print.png"/>
         </a>
-        <a href="mailto:serviceguide@csdental.com?subject=CS 9600 Service Guide" class="FEEDBACK tabuttonsmall uistyle2">
+        <a href="mailto:serviceguide@csdental.com?subject=CS 8x00 Service Guide" class="FEEDBACK tabuttonsmall uistyle2">
             <img class="icon" src="media/email.png"/>
         </a>
         <a href="#" class="FULLSCREEN tabuttonsmall tabuttonright uistyle2" onclick="FullScreen()">
@@ -164,16 +195,13 @@
 
 <div class="information">
     <div class="card">
-        <h1 class="infotext"><b class="infotext title">CS 9600 Family </b> Service Guide </h1>
-        <p class="infotext">             GPCD-0023 rev01</p>
+        <h1 class="infotext"><b class="infotext title">CS 8x00 Family </b> Service Guide version 03-2022</h1>
+        <p class="infotext">For troubleshooting and training</p>
     </div>
     <div class="card">
-        <h1 class="infotext title" >Service Guide CS 9600 Family v1<br/>Copyright (c) Carestream Dental 2019-2021</h1>
+        <h1 class="infotext title" >Service Guide CS 8x00 Family v2<br/>Copyright (c) Carestream Dental 2019-2022</h1>
     </div>
     <!--USER INFORMATION HERE-->
-	<div class="card"><h4 class="carousels"><h2><span style="color: #808080;">Full interactive Service guide</span></h2><h2><span style="color: #808080;">Application or web base</span></h2></h4></div>
-	<div class="card"><h4 class="carousels"><h2><span style="color: #808080;">Parts replacement have been updated with ECN8 and ECN9 driver features</span></h2></h4></div>
-	<div class="card"><h4 class="carousels"><h2><span style="color: #808080;">Chapter 25 has been updated with the new DC motor for sensor Flip</span></h2></h4></div>
 
 </div>
 

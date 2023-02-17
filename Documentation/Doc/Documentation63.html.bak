@@ -1,0 +1,28 @@
+<div id="pf3f" class="pf w0 h0" data-page-no="3f">
+	<div class="pc pc3f w0 h0"><img class="bi x0 y0 w1 h1" alt="" src="Documentation/Doc/bg3f.png" />
+		
+		<!--HTML LINK HERE ...-->
+		<a class="l" href="#pf17" data-dest-detail='[23,"XYZ",0,595,null]'>
+			<div class="d" style="position:absolute;left:300px;bottom:468px;width:48px;height:16px;"></div>
+		</a>
+		<a class="l" href="#pf23" data-dest-detail='[35,"XYZ",0,595,null]'>
+			<div class="d" style="position:absolute;left:586px;bottom:468px;width:48px;height:16px;"></div>
+		</a>
+		<a class="l" href="#pf19" data-dest-detail='[25,"XYZ",0,595,null]'>
+			<div class="d" style="position:absolute;left:729px;bottom:468px;width:48px;height:16px;"></div>
+		</a>
+		<a class="l" href="#pf23" data-dest-detail='[35,"XYZ",0,595,null]'>
+			<div class="d" style="position:absolute;left:314px;bottom:50px;width:48px;height:16px;"></div>
+		</a>
+		<a class="l" href="#pf11" data-dest-detail='[17,"XYZ",0,595,null]'>
+			<div class="d" style="position:absolute;left:443px;bottom:68px;width:48px;height:16px;"></div>
+		</a>
+		<a class="l" href="#pf12" data-dest-detail='[18,"XYZ",0,595,null]'>
+			<div class="d" style="position:absolute;left:556px;bottom:68px;width:48px;height:16px;"></div>
+		</a>
+		<a class="l" href="#pf1e" data-dest-detail='[30,"XYZ",0,595,null]'>
+			<div class="d" style="position:absolute;left:599px;bottom:324px;width:48px;height:16px;"></div>
+		</a>
+	</div>
+	<div class="pi" data-data='{"ctm":[1.000000,0.000000,0.000000,1.000000,0.000000,0.000000]}'></div>
+</div>

@@ -5,6 +5,28 @@
   src: url("../fonts/Roboto/Roboto-Regular.ttf");
 }
 
+/* width */
+::-webkit-scrollbar {
+    width: 12px;
+    background: #ECECEC;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #ECECEC;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 8px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
 body {
     background: rgb(236, 236, 236);
 }
@@ -787,4 +809,6 @@ form.search button:hover {
     .search {
         padding: 0px;
     }
+
+    
 }

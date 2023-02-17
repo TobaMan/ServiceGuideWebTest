@@ -1,1 +1,55 @@
-<div id="pf9e" class="pf w0 h0" data-page-no="9e"><div class="pc pc9e w0 h0"><img class="bi x0 y0 w1 h1" alt="" src="Documentation/Doc/bg9e.png"/><div class="c x0 y0 w2 h0"><div class="t m0 x1 h6 y101 ff27 fs3 fc3 sc0 ls0 ws0">Chapter 9 CS 9600 C<span class="_ _0"></span>able kits details.<span class="_ _0"></span> - Scanning <span class="_ _0"></span>ceph </div><div class="t m0 x1 h2 yed ff28 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x6 h5 y93 ff27 fs2 fc1 sc0 ls0 ws0">|||60| <span class="_ _c"> </span>SPCGT29 CABLE KIT FOR SCAN CEPH ARM: CPC13 CJ898 TO CJ895 <span class="ff2f">–</span> CS 9600 CEPH ETHERNET </div><div class="t m0 x1 h2 y22e ff28 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x1 h2 y302 ff28 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x71 h2 y352 ff28 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x1 h2 y685 ff28 fs0 fc0 sc0 ls0 ws0"> <span class="_ _3"> </span> </div></div><div class="c x104 y44f w25 h30"><div class="t m0 x62 h1e y18f ff28 fsc fc0 sc0 ls0 ws0">CS 9600 with SC </div></div></div><div class="pi" data-data='{"ctm":[1.000000,0.000000,0.000000,1.000000,0.000000,0.000000]}'></div></div>
+<div id="pf9e" class="pf w0 h0" data-page-no="9e">
+	<div class="pc pc9e w0 h0"><img class="bi x0 y0 w1 h1" alt="" src="Documentation/Doc/bg9e.png" />
+		<div class="c x0 y0 w2 h0">
+			<div class="t m0 x1 h1c ydb ff71 fs0 fc0 sc0 ls0 ws0"> </div>
+			<div class="t m0 x1 h32 y512 ff71 fs3 fc3 sc0 ls0 ws0">Chapter 15 Motion <span class="_ _0"></span><span
+					class="ff72">Assembly<span class="_ _0"></span> - Calibrations, tests and <span
+						class="_ _0"></span>troubleshooting:<span class="_ _0"></span> </span></div>
+			<div class="t m0 x1 h1c y513 ff71 fs0 fc0 sc0 ls0 ws0"> </div>
+			<div class="t m0 x23 h82 y118 ff71 fs2 fc0 sc0 ls0 ws0"> </div>
+			<div class="t m0 x130 h5 y119 ff72 fs2 fc0 sc0 ls1b ws0">a.<span class="ff73 ls0"> <span class="_ _1">
+					</span><span class="ff72">Input/output Tests </span></span></div>
+			<div class="t m0 xd8 h4 y563 ff74 fs2 fc5 sc0 ls0 ws0">- <span class="_ _d"> </span><span class="ff72">J6
+					from CJ856 to CJ858 Y Resistiv<span class="_ _0"></span>e track <span class="fc4">(see
+						Troubleshooting video)</span> </span></div>
+			<div class="t m0 xbc h4 y564 ff75 fs2 fc0 sc0 ls0 ws0">➢<span class="ff74"> <span class="_ _1a">
+					</span><span class="ff71">Pin 1 and 4 <span class="ff76">–</span> GND </span></span></div>
+			<div class="t m0 xbc h4 y565 ff75 fs2 fc0 sc0 ls0 ws0">➢<span class="ff74"> <span class="_ _1a">
+					</span><span class="ff71">Pin 2 <span class="ff76">–</span> Y Level (Ranges from 1.7 to 3.8 Vdc when
+						manually moving Y axis) </span></span></div>
+			<div class="t m0 xbc h4 y5c3 ff75 fs2 fc0 sc0 ls0 ws0">➢<span class="ff74"> <span class="_ _1a">
+					</span><span class="ff71">Pin 3 <span class="ff76">–</span> +4.1 Vref </span></span></div>
+			<div class="t m0 x1 h82 y1a ff71 fs2 fc0 sc0 ls0 ws0"> </div>
+			<div class="t m0 x1 h82 y7cc ff71 fs2 fc0 sc0 ls0 ws0"> </div>
+			<div class="t m0 x1 h82 y7cd ff71 fs2 fc0 sc0 ls0 ws0"> </div>
+			<div class="t m0 x4b h1c y7ce ff71 fs0 fc0 sc0 ls0 ws0"> <span class="_ _23"> </span> <span class="_ _24">
+				</span> <span class="_ _24"> </span> <span class="_ _25"> </span> <span class="_ _23"> </span> <span
+					class="_ _24"> </span> <span class="_ _24"> </span> <span class="_ _25"> </span> </div>
+			<div class="t m0 x130 hec y7cf ff77 fs7 fca sc0 ls0 ws0">Resistive-track-y-4.1vdc-test <span class="_ _26">
+				</span> <span class="_ _27"> </span> <span class="_ _27"> </span> <span class="_ _27">
+				</span>Resistive-track-y-voltage-consitency-test <span class="_ _28"> </span> <span class="_ _27">
+				</span> <span class="_ _27"> </span>Resistive-track-y-resistance-test </div>
+			<div class="t m0 x1 h82 y7d0 ff71 fs2 fc0 sc0 ls0 ws0"> </div>
+			<div class="t m0 x11 h1c y7d1 ff71 fs0 fc0 sc0 ls0 ws0"> </div>
+			<div class="t m0 x1 h82 y7d2 ff71 fs2 fc0 sc0 ls0 ws0"> <span class="_ _a"> </span> </div>
+		</div>
+		<!--HTML LINK HERE ...-->
+		<a target="_blank" rel="noopener noreferrer" class="l"
+			href="https://infotec.carestreamdental.com/videos/tv003-cs-8100-resistive-track-y/index.html">
+			<div class="d" style="position:absolute;left:388px;bottom:511px;width:165px;height:15px;"></div>
+		</a>
+		<a target="_blank" rel="noopener noreferrer" class="l"
+			href="media/tv003-01-cs8100-resistive-track-y-4.1vdc-test.mp4">
+			<div class="d" style="position:absolute;left:108px;bottom:261px;width:138px;height:123px;"></div>
+		</a>
+		<a target="_blank" rel="noopener noreferrer" class="l"
+			href="media/tv003-02-cs8100-resistive-track-y-voltage-consitency-test.mp4">
+			<div class="d" style="position:absolute;left:360px;bottom:261px;width:138px;height:123px;"></div>
+		</a>
+		<a target="_blank" rel="noopener noreferrer" class="l"
+			onclick="OpenMediaFile('tv003-03-cs8100-resistive-track-y-resistance-test.mp4', false);">
+			<div class="d" style="position:absolute;left:612px;bottom:261px;width:138px;height:123px;"></div>
+		</a>
+	</div>
+	<div class="pi" data-data='{"ctm":[1.000000,0.000000,0.000000,1.000000,0.000000,0.000000]}'></div>
+</div>

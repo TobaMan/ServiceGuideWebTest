@@ -2,11 +2,21 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8" />
-  <title>Swiper demo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
-  <!-- Link Swiper's CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <meta charset="UTF-8">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" /> -->
+  <!-- <link rel="stylesheet" type="text/css" href='css/pace.css' /> -->
+  <script type="text/javascript" src='js/jquery-3.4.1.min.js'></script>
+  <!-- <script type="text/javascript" src='js/pace.js'></script> -->
+  <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script> -->
+  <link rel="stylesheet" type="text/css" href='css/ServiceGuide.css'/>
+  <script type="text/javascript" src='js/ServiceGuide.js'></script>
+  <link rel="stylesheet" type="text/css" href="css/animations.css" />
+  <script src="js/modernizr.custom.js"></script>
+
+
 
   <!-- Demo styles -->
   <style>
@@ -14,8 +24,9 @@
     body {
       position: relative;
       height: 100%;
+      overflow: hidden;
     }
-
+  
     body {
       background: #eee;
       font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
@@ -24,102 +35,575 @@
       margin: 0;
       padding: 0;
     }
-
-    .swiper {
+  
+    .pt-main {
+      left: 0px;
+      top: 0px;
+      margin: 0px;
+      padding: 0px;
+      width: 100%;
+      /* /* height: 100%; */
+    }
+  
+    .pt-perspective {
+      position: relative;
       width: 100%;
       height: 100%;
+      -webkit-perspective: 1200px;
+      -moz-perspective: 1200px;
+      perspective: 1200px;
     }
-
-    .swiper-slide {
-      background-position: center;
-      background-size: cover;
-    }
-
-    .swiper-slide img {
-      display: block;
+  
+    .pt-page {
       width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      visibility: hidden;
+      overflow: hidden;
+      -webkit-backface-visibility: hidden;
+      -moz-backface-visibility: hidden;
+      backface-visibility: hidden;
+      -webkit-transform: translate3d(0, 0, 0);
+      -moz-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+      -webkit-transform-style: preserve-3d;
+      -moz-transform-style: preserve-3d;
+      transform-style: preserve-3d;
     }
-
+  
+    .pt-page-current,
+    .no-js .pt-page {
+      visibility: visible;
+      z-index: 1;
+    }
+  
+    /* .pt-page-1 {
+        visibility: visible;
+      } */
+  
+  
     iframe {
       display: block;
+      left: 0px;
+      top: 0px;
+      margin: 0px;
+      padding: 0px;
       width: 100%;
       height: 100%;
       border: none;
     }
+  
+  
+  
+  
+  
+  
+  
+  
+    .window {
+      display: none;
+      position: fixed;
+      width: 30%;
+      height: 25%;
+    }
+  
+    .window-content {
+      background: #ECECEC;
+      color: #333;
+      border: 1px solid #a7a7a7;
+      height: 100%;
+      height:98%;
+      padding: 5px;
+    }
+
+    .window-bigsize {
+      top: 10%;
+        left: 10%;
+        width: 80%;
+        height: 80%;
+        transform: translate(-70%, -70%);
+    }
+
+    .window-smallsize {
+      left : 10%;
+      top : 10%;
+      /* margin-top: -20%;
+      margin-left: -50%; */
+      width : 90%;
+      height : 90%;
+    }
+  
+    .window-top,
+    .window-top-no-bind {
+      cursor: move;
+      text-align: right;
+      height: 20px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+      border-top-right-radius: 5px;
+      border-top-left-radius: 5px;
+      padding: 5px;
+      background-color: #ddd;
+    }
+  
+    .window-top-no-bind {
+      cursor: inherit;
+    }
+  
+    .round {
+      height: 16px;
+      width: 16px;
+      border-radius: 50%;
+      margin-right: 6px;
+    }
+  
+    .green {
+      background-color: limegreen;
+    }
+  
+    .yellow {
+      background-color: yellow;
+    }
+  
+    .red {
+      cursor: pointer;
+      background-color: rgba(255, 0, 0, 0.5);
+    }
+  
+    #myWindow {
+      left: 0px;
+      top: 0px;
+      z-index: 99999;
+    }
   </style>
 
 
-  <!-- <script>
-    var doc = $("#iframe_Presentation").contents().find(".DOCUMENTATION");
-    console.log(doc);
-
-    // $("#iframe_Presentation").contents().find(".DOCUMENTATION").click(function (event) {
-
-    //   alert($(this).html());
-    //   console.log(event.target);
-
-    // });
-  </script> -->
-
+  
 </head>
 
 <body>
-  <!-- Swiper -->
-  <div class="swiper mySwiper">
-    <div class="swiper-wrapper">
-      <div id="iframe_Presentation" class="swiper-slide"><iframe src="Presentation.html" seamless></iframe></div>
-      <div class="swiper-slide"><iframe loading="lazy" src="Documentation.html" seamless></iframe></div>
-      <div class="swiper-slide"><iframe loading="lazy" src="SearchText.html" seamless></iframe></div>
-      <div class="swiper-slide"><iframe loading="lazy" src="ElectricalDiagram_CS 9600.html" seamless></iframe></div>
-      <div class="swiper-slide"><iframe loading="lazy" src="eParts_CS 9600.html" seamless></iframe></div>
-      <div class="swiper-slide"><iframe loading="lazy" src="ErrorCode.html" seamless></iframe></div>
-    </div>
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-pagination"></div>
+
+ 
+<!-- <div id="toto" style="height:30px">Next transition</div> -->
+<div id="pt-main" class="pt-perspective">
+  <div class="pt-page pt-page-1"><iframe id="pg1" src="Presentation.html"></iframe></div>
+  <div class="pt-page pt-page-2"><iframe id="pg2" src="Documentation.html"></iframe></div>
+  <div class="pt-page pt-page-3"><iframe src="SearchText.html"></iframe></div>
+  <div class="pt-page pt-page-4"><iframe src="ElectricalDiagram_CS 8100.html"></iframe></div>
+  <div class="pt-page pt-page-5"><iframe src="ElectricalDiagram_CS 8100 3D.html"></iframe></div>
+  <div class="pt-page pt-page-6"><iframe src="ElectricalDiagram_CS 8100SC.html"></iframe></div>
+  <div class="pt-page pt-page-7"><iframe src="ElectricalDiagram_CS 8100SC 3D.html"></iframe></div>
+  <div class="pt-page pt-page-8"><iframe src="ElectricalDiagram_CS 8200 3D.html"></iframe></div>
+  <div class="pt-page pt-page-9"><iframe src="ElectricalDiagram_CS 8200 3D with SC.html"></iframe></div>
+  <div class="pt-page pt-page-10"><iframe src="eParts_CS 8100 3D.html"></iframe></div>
+  <div class="pt-page pt-page-11"><iframe src="ErrorCode.html"></iframe></div>
+</div>
+
+
+
+<div id="myWindow" class="window">
+  <div class="window-top uistyle2">
+    <button class="round green uistyle2"></button><button class="round yellow uistyle2"></button><button class="round red uistyle2"></button>
   </div>
+  <div class="window-content">
+    <!-- <iframe id="window-src" src="media/GRN-0116_SPCJ894_Temple_Support_Driver_Board_Rev_1.pdf"></iframe> -->
+    <iframe id="window-src" src=""></iframe>
+  </div>
+</div>
 
-  <!-- Swiper JS -->
-  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-  <script type="text/javascript" src='js/jquery-3.4.1.min.js'></script>
 
-  <!-- Initialize Swiper -->
+<script src="js/pagetransitions.js"></script>
+
+ 
   <script>
-    var swiper = new Swiper(".mySwiper", {
-      spaceBetween: 30,
-      // effect: "fade",
-      effect: "cube",
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-      },
+
+
+  var ANIM_PRESENTATION = 40;
+  var ANIM_EDIAG_EPARTS = 4;
+  var ANIM_OTHER = 1;//67;//54;//36;//51;//36;//16;                                                                                                                                                                                                                                                                                                                                                   ;
+
+
+    window.onmessage = function (event) {
+
+      if (event.data == 'media_src') {
+        if (sessionStorage.length) {
+          let src = sessionStorage.getItem('_media_src_');
+          SetMediaWindowSrc(src);
+          ShowMediaWindow(true);
+        }
+    }
+
+    if (event.data == 'mframe_goto_Presentation.html') {
+      PageTransitions.setPage(0, ANIM_PRESENTATION);
+    }
+    if (event.data == 'mframe_goto_Documentation.html') {
+      SendCustomEvent("pg2", "shown");
+      PageTransitions.setPage(1, ANIM_OTHER);
+    }
+    if (event.data == 'mframe_goto_SearchText.html') {
+      PageTransitions.setPage(2, ANIM_OTHER);
+    }
+    if (event.data == 'mframe_goto_ErrorCode.html') {
+      PageTransitions.setPage(10, ANIM_OTHER);
+    }
+    if (event.data == 'mframe_goto_ElectricalDiagram_CS 8100.html') {
+      PageTransitions.setPage(3, ANIM_EDIAG_EPARTS);
+    }
+    if (event.data == 'mframe_goto_ElectricalDiagram_CS 8100 3D.html') {
+      PageTransitions.setPage(4, ANIM_EDIAG_EPARTS);
+    }
+    if (event.data == 'mframe_goto_ElectricalDiagram_CS 8100SC.html') {
+      PageTransitions.setPage(5, ANIM_EDIAG_EPARTS);
+    }
+    if (event.data == 'mframe_goto_ElectricalDiagram_CS 8100SC 3D.html') {
+      PageTransitions.setPage(6, ANIM_EDIAG_EPARTS);
+    }
+    if (event.data == 'mframe_goto_eParts_CS 8100 3D.html') {
+      PageTransitions.setPage(9, ANIM_EDIAG_EPARTS);
+    }
+  };
+
+
+ 
+
+
+  function makeDraggable (elmnt) {
+    // Make an element draggable (or if it has a .window-top class, drag based on the .window-top element)
+    let currentPosX = 0, currentPosY = 0, previousPosX = 0, previousPosY = 0;
+
+		// If there is a window-top classed element, attach to that element instead of full window
+    if (elmnt.querySelector('.window-top')) {
+        // If present, the window-top element is where you move the parent element from
+        elmnt.querySelector('.window-top').onmousedown = dragMouseDown;
+    } 
+    else {
+        // Otherwise, move the element itself
+        elmnt.onmousedown = dragMouseDown;
+    }
+
+    function dragMouseDown (e) {
+        // Prevent any default action on this element (you can remove if you need this element to perform its default action)
+        e.preventDefault();
+        // Get the mouse cursor position and set the initial previous positions to begin
+        previousPosX = e.clientX;
+        previousPosY = e.clientY;
+        // When the mouse is let go, call the closing event
+        document.onmouseup = closeDragElement;
+        // call a function whenever the cursor moves
+        document.onmousemove = elementDrag;
+    }
+
+    function elementDrag (e) {
+        // Prevent any default action on this element (you can remove if you need this element to perform its default action)
+        e.preventDefault();
+        // Calculate the new cursor position by using the previous x and y positions of the mouse
+        currentPosX = previousPosX - e.clientX;
+        currentPosY = previousPosY - e.clientY;
+        // Replace the previous positions with the new x and y positions of the mouse
+        previousPosX = e.clientX;
+        previousPosY = e.clientY;
+        // Set the element's new position
+        elmnt.style.top = (elmnt.offsetTop - currentPosY) + 'px';
+        elmnt.style.left = (elmnt.offsetLeft - currentPosX) + 'px';
+    }
+
+    function closeDragElement () {
+        // Stop moving when mouse button is released and release events
+        document.onmouseup = null;
+        document.onmousemove = null;
+    }
+}
+
+  function InitMediaWindow(posx, posy) {
+    var mywindow = document.querySelector('#myWindow')
+    makeDraggable(mywindow);
+    mywindow.style.left = posx;
+    mywindow.style.top = posy;
+    for (const item of document.querySelectorAll('.round.red')) {
+      item.addEventListener('click', function () {
+        $('#myWindow').fadeOut();
+      });
+    }
+    for (const item of document.querySelectorAll('.round.yellow')) {
+      item.addEventListener('click', function () {
+        mywindow.classList.toggle("window-bigsize");
+      });
+    }
+  }
+
+  function ShowMediaWindow(state) {
+    if(state){
+      $('#myWindow').fadeIn();
+    }
+    else{
+      $('#myWindow').fadeOut();
+    }
+    
+  }
+
+  function SetMediaWindowSrc(src) {
+    document.getElementById('window-src').src = src;
+  }
+
+
+  
+
+
+  $(document).ready(function () {
+    $('iframe').on('load', function () {
+      var src = $(this).attr('src');
+      console.log(src, 'loaded!');
     });
+    //$('#i2').attr('src', 'https://example.com');
+    InitMediaWindow("65%", "65%");
 
-    // var iframe = document.getElementById('iframe_Presentation');
-    // iframe.contentWindow.body.addEventListener('mouseup', Handler);
-
-    // $(window)
-
-    // $("#iframe_Presentation").contents().find(".navbar").removeClass("hidden");
-    // $("#iframe_Presentation").contents().find(".navbar").removeClass("hidden");
+  })
 
 
-    // var doc = $("#iframe_Presentation").contents().find(".DOCUMENTATION");
-    // console.log(doc);
+  
 
-    $("#iframe_Presentation").contents().find(".DOCUMENTATION").click(function (event) {
+    
 
-      alert($(this).html());
-      console.log(event.target);
+  // function loading() {
+  //   var elmnt = $("#pg1").contents().find('.DOCUMENTATION');
+  //   elmnt.css('opacity', '0.15');
+  //   elmnt.css('pointer-events', 'none');
+  // }
 
-    });
 
+  // function loaded() {
+
+  //   var elmnt = $("#pg1").contents().find('.DOCUMENTATION');
+  //   elmnt.css('opacity', '1');
+  //   //elmnt.css('pointer-events', 'none');
+  // }
+
+
+//   var elmnt = $("#pg1").contents().find('.DOCUMENTATION');
+//   $("#pg1").load(function() {
+//     alert("Ready!");
+
+//     loading();
+// });
+
+  
+
+// document.getElementById('pg1').addEventListener('onload', function () {
+//   document.getElementById("pg3").src="SearchText.html";
+// })
+
+  // document.getElementById('pg1').onload = function () {
+  //   document.getElementById("pg3").src = "ErrorCode.html";
+  //   document.getElementById('pg3').onload = function () {
+  //     MainSwiper.slideTo(1, 1000, false);
+  //   };
+  // };
+
+//  document.getElementById('pg1').ready = function() {
+//       alert("Ready!");
+//     };
+
+    // // document.getElementById('pg1').onload = function() {
+    // document.getElementById('pg1').ready = function() {
+    //   loading();
+    //   // document.getElementById("pg2").src="Documentation.html";
+
+    //   // var target = document.getElementsByClassName('lazzy-iframe');
+    //   // for (var i = 0; i < target.length; i++) {
+    //   //   var src = target[i].getAttribute('data-src');
+    //   //   target[i].setAttribute('src', src);
+    //   // }
+
+      
+
+    // };
+    // document.getElementById('pg1').ready = function() {
+    //   //Blurring("#pg1", 20);
+    //   console.log('Presentat(ion) is loaded');
+    // };
+    // document.getElementById('pg2').onload = function() {
+    //   //Blurring("#pg2", 0);
+    //   console.log('Documentation is loaded');
+    // };
+    // document.getElementById('pg3').onload = function() {
+    //   console.log('SearchText is loaded');
+    // };
+    // document.getElementById('pg4').onload = function() {
+    //   console.log('ElecDiag1 is loaded');
+    // };
+    // document.getElementById('pg5').onload = function() {
+    //   console.log('ElecDiag2is loaded');
+    // };
+    // document.getElementById('pg6').onload = function() {
+    //   console.log('ElecDiag3 is loaded');
+    // };
+    // document.getElementById('pg7').onload = function() {
+    //   console.log('ElecDiag4 is loaded');
+    // };
+    // document.getElementById('pg8').onload = function() {
+    //   console.log('ElecDiag5 is loaded');
+    // };
+    // document.getElementById('pg9').onload = function() {
+    //   console.log('ElecDiag6 is loaded');
+    // };
+
+
+  // $("#pg1").on("load", function () {
+  //   console.log('Presentation is loaded');
+  // });
+  // $("#pg2").on("load", function () {
+  //   console.log('Documentation is loaded');
+  // });
+  // $("#pg11").on("load", function () {
+  //   console.log('ErrorCode is loaded');
+  // });
+
+  //  $(iframe).on("load", function () {
+  //   console.log('iframe is loaded');
+  // });
+
+  // $(document).ready(function () {
+  //   $("iframe").each(function () {
+  //     var src = $(this).attr('src');
+  //     console.log(src);
+  //     //$(this).attr('src', src);
+  //   });
+  // });
+
+  // $(document).ready(function () {
+  //   $("iframe").each(function () {
+  //     var src = $(this).attr('src');
+  //     var body = $(this).contents().find("body");
+  //     $(body).ready(function () {
+  //       console.log(src);
+  //     });
+  //   });
+  // });
+
+  
+
+
+    // document.getElementById('pg1').ready = function() {
+    //   //Blurring("#pg1", 20);
+    //   console.log('Presentation is loaded');
+    // };
+    // document.getElementById('pg2').onload = function() {
+    //   //Blurring("#pg2", 0);
+    //   console.log('Documentation is loaded');
+    // };
+    // document.getElementById('pg3').onload = function() {
+    //   console.log('SearchText is loaded');
+    // };
+    // document.getElementById('pg4').onload = function() {
+    //   console.log('ElecDiag1 is loaded');
+    // };
+    // document.getElementById('pg5').onload = function() {
+    //   console.log('ElecDiag2is loaded');
+    // };
+    // document.getElementById('pg6').onload = function() {
+    //   console.log('ElecDiag3 is loaded');
+    // };
+    // document.getElementById('pg7').onload = function() {
+    //   console.log('ElecDiag4 is loaded');
+    // };
+    // document.getElementById('pg8').onload = function() {
+    //   console.log('ElecDiag5 is loaded');
+    // };
+    // document.getElementById('pg9').onload = function() {
+    //   console.log('ElecDiag6 is loaded');
+    // };
+
+
+
+
+    // paceOptions = {
+    //   elements: {
+    //     //selectors: ['#pg1', '#pg2', '#pg3']
+    //     selectors: ['#pg2'],
+    //     target:$("#pg1").contents().find('.DOCUMENTATION')
+    //   }
+    // }
+
+    // paceOptions = {
+    //     // Configuration goes here. Example:
+    //     // elements: false,
+    //     // restartOnPushState: false,
+    //     // restartOnRequestAfter: false
+    //     startOnPageLoad: false
+    //   }
+
+    // function pageloaded(evt){
+    //   Pace.restart();
+    // }
+
+  // $("#pg1").ready = function () {
+  //   // var elmnt = $("#pg1").contents().find('.DOCUMENTATION');
+  //   // elmnt.click(function () {
+  //   //   alert("Start loading documentation");
+  //   //   // $("#test1").html('<iframe id="iframedoc" data="Documentation.html"></iframe>');
+  //   //   //document.getElementById('pg2').src = "Documentation.html";
+  //   //   // $("#pg2").src = "Documentation.html";
+  //   // });
+    
+  //   alert("Start loading documentation");
+
+  // };
+
+  // var elmnt = $("#pg1").contents().find('.DOCUMENTATION');
+  // elmnt.click(function () {
+  //     alert("Start loading documentation");
+  //     // $("#test1").html('<iframe id="iframedoc" data="Documentation.html"></iframe>');
+  //     //document.getElementById('pg2').src = "Documentation.html";
+  //     // $("#pg2").src = "Documentation.html";
+  //   });
+
+  // elmnt.click(function () {
+  //   alert("Start loading documentation");
+  //   // $("#test1").html('<iframe id="iframedoc" data="Documentation.html"></iframe>');
+  //   //document.getElementById('pg2').src = "Documentation.html";
+  //   // $("#pg2").src = "Documentation.html";
+  // });
+
+  // ("#pg2").load = function () {
+
+  //   MainSwiper.slideTo(1, 1000, false);
+  //   //alert("Ready!");
+  // }
+
+//-------------------------------------------------------------
+//INSIDE SERVICEGUIDE.JS
+//-------------------------------------------------------------
+// var winRef;
+// var opentab = false;
+// var iframe = true;
+// function OpenHtmlPage(page) {
+//     if(iframe == true){
+//         window.top.postMessage('mframe_goto_'+page, '*')
+//         return false;
+//     }
+//     if (opentab == false) {
+//         window.open(page, "_self");}
+//     else {
+//         var params = [
+//             'height=' + screen.height,
+//             'width=' + screen.width
+//         ].join(',');
+//         if (typeof(winRef) == 'undefined' || winRef.closed) {
+//             var winref = window.open("", page);
+//             if (winRef == null) {
+//                 SetVariable("test",false);
+//                  //win.moveTo(0,0);
+//                 var win = window.open(page, page, params);}}
+//         else {winRef.focus();}}
+//     return false;}
+//-------------------------------------------------------------
 
   </script>
+
+
+
+
 </body>
 
 </html>

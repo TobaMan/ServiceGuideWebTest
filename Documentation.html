@@ -26,19 +26,20 @@
     <link rel="stylesheet" type="text/css" href='css/ServiceGuide.css'/>
     <link rel="stylesheet" type="text/css" href='css/darktooltip.css'/>
     <link rel="stylesheet" type="text/css" href='css/tail.select.css'/>
-    <link rel="stylesheet" type="text/css" href='css/pace.css'/>
+    <!-- <link rel="stylesheet" type="text/css" href='css/pace.css'/> -->
     <script type="text/javascript" src='js/jquery-3.4.1.min.js'></script>
     <script type="text/javascript" src='js/darktooltip.js'></script>
     <script type="text/javascript" src='js/ServiceGuide.js'></script>
     <script type="text/javascript" src='js/tail.select.js'></script>
-    <script type="text/javascript" src='js/pace.js'></script>
+    <!-- <script type="text/javascript" src='js/pace.js'></script> -->
     <script type="text/javascript" src='js/print.js'></script>
 
     <style>
         #page-container {
-            overflow-y: hidden; /* Hide vertical scrollbar */
+            overflow-y: hidden;
+            /* Hide vertical scrollbar */
         }
-
+    
         .thumbnail {
             z-index: 2;
             overflow: auto;
@@ -52,27 +53,31 @@
             border: 1px solid #a7a7a7;
             border-top: 1px #ECECEC;
         }
-
+    
+        /* .loading-indicator {
+                    background-color: #FBD603;
+                } */
+    
         .selected {
             border: 2px solid rgba(33, 183, 255, 0.5);
         }
-
+    
         .gallery {
             margin-bottom: 4px;
         }
-
+    
         .responsivethumb {
             padding: 0 6px;
             float: left;
             width: 100%;
             box-sizing: border-box;
         }
-
+    
         .containerthumb {
             position: relative;
             width: 100%;
         }
-
+    
         .thumb {
             padding: 6px;
             display: block;
@@ -81,7 +86,7 @@
             border-radius: 2px;
             box-sizing: border-box;
         }
-
+    
         .toolthumb {
             position: absolute;
             top: 4px;
@@ -90,7 +95,7 @@
             height: 20px;
             opacity: 0.55;
         }
-
+    
         .textthumb {
             position: absolute;
             bottom: 3%;
@@ -100,7 +105,7 @@
             font-size: 16px;
             opacity: 0.45;
         }
-
+    
         .desc {
             position: absolute;
             top: 0;
@@ -111,59 +116,262 @@
             background: rgba(33, 183, 255, 0.5);
             padding: 20px;
         }
-
+    
         .containerthumb:hover .desc {
             opacity: 1;
         }
-
-
-       @media screen and (max-width: 850px) , (max-height: 600px){
-
+    
+    
+        @media screen and (max-width: 850px),
+        (max-height: 600px) {
+    
             .thumbnail {
                 top: 51px;
                 width: 90px;
-                height:84vh;
+                height: 84vh;
             }
-
+    
             .gallery {
                 width: 74px;
             }
-
+    
             .responsivethumb {
                 width: 74px;
             }
-
+    
             .containerthumb {
                 width: 74px;
             }
-
+    
             .thumb {
                 width: 74px;
             }
-
+    
             .toolthumb {
                 width: 10px;
                 height: 10px;
             }
-
+    
             .textthumb {
                 bottom: 3%;
                 right: 20%;
                 font-size: 8px;
             }
-
+    
             .desc {
                 width: 57%;
                 height: 8%;
                 padding: 20%;
             }
-
+    
+        }
+    
+    
+        .LOCALIZATION {
+            animation: LOCALIZATION_blink 3s ease infinite;
+        }
+    
+        @keyframes LOCALIZATION_blink {
+            0% {
+                background-color: #ECECEC;
+            }
+            50% {
+                background-color: rgba(28, 155, 140, 0.2);
+            }
+            100% {
+                background-color: #ECECEC;
+            }
         }
 
+        .TROUBLESHOOTING {
+            animation: TROUBLESHOOTING_blink 3s ease infinite;
+        }
+    
+        @keyframes TROUBLESHOOTING_blink {
+            0% {
+                background-color: #ECECEC;
+            }
+            50% {
+                background-color: rgba(255,0,0,0.2);
+            }
+            100% {
+                background-color: #ECECEC;
+            }
+        }
+
+        .REPLACEMENT {
+            animation: REPLACEMENT_blink 3s ease infinite;
+        }
+    
+        @keyframes REPLACEMENT_blink {
+            0% {
+                background-color: #ECECEC;
+            }
+            50% {
+                background-color: rgba(55,155,0,0.2);
+            }
+            100% {
+                background-color: #ECECEC;
+            }
+        }
+
+        .DEPENDENCIES {
+            animation: DEPENDENCIES_blink 3s ease infinite;
+        }
+    
+        @keyframes DEPENDENCIES_blink {
+            0% {
+                background-color: #ECECEC;
+            }
+            50% {
+                background-color: rgba(255,126,0,0.2);
+            }
+            100% {
+                background-color: #ECECEC;
+            }
+        }
+
+        .FUNCTIONS {
+            animation: FUNCTIONS_blink 3s ease infinite;
+        }
+    
+        @keyframes FUNCTIONS_blink {
+            0% {
+                background-color: #ECECEC;
+            }
+            50% {
+                background-color: rgba(55,0,200,0.2);
+            }
+            100% {
+                background-color: #ECECEC;
+            }
+        }
+
+        .VIDEO {
+            animation: VIDEO_blink 3s ease infinite;
+        }
+    
+        @keyframes VIDEO_blink {
+            0% {
+                background-color: #ECECEC;
+            }
+            50% {
+                background-color: rgba(23, 23, 23, 0.2);
+            }
+            100% {
+                background-color: #ECECEC;
+            }
+        }
+
+    
+    
+        /* 
+    .blob {
+    	background: black;
+    	border-radius: 50%;
+    	margin: 0px 0px 0px 8px;
+    	height: 10px;
+    	width: 10px;
+    	box-shadow: 0 0 0 0 rgba(0, 0, 0, 1);
+    	transform: scale(1);
+    	animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+    	0% {
+    		transform: scale(0.95);
+    		box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+    	}
+    
+    	70% {
+    		transform: scale(1);
+    		box-shadow: 0 0 0 4px rgba(0, 0, 0, 0);
+    	}
+    
+    	100% {
+    		transform: scale(0.95);
+    		box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    	}
+    } */
+    
+    
+    
+        /* 
+    
+            #local {
+      border-radius: 50%;
+      box-shadow: 0 0 0 rgba(204,169,44, 0.6);
+      animation: pulse 2s infinite;
+    }
+    .pulse:hover {
+      animation: none;
+    }
+    
+    @-webkit-keyframes pulse {
+      0% {
+        -webkit-box-shadow: 0 0 0 0 rgba(204,169,44, 0.8);
+      }
+      70% {
+          -webkit-box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+      }
+      100% {
+          -webkit-box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+      }
+    }
+    @keyframes pulse {
+      0% {
+        -moz-box-shadow: 0 0 0 0 rgba(204,169,44, 0.8);
+        box-shadow: 0 0 0 0 rgba(204,169,44, 0.4);
+      }
+      70% {
+          -moz-box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+          box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+      }
+      100% {
+          -moz-box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+          box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+      }
+    }
+         */
+    
+    
+    
+    
+        /*     
+            @keyframes glow {
+                from {
+    
+                    /* -webkit-filter: drop-shadow(0px 0px 0px #fff);
+                    filter: drop-shadow(0px 0px 0px #fff); */
+    
+        /* color: #fff; */
+    
+        /* border-bottom: 0px solid rgba(28,155,140,0.8) */
+    
+        /* -webkit-filter: drop-shadow(-4px -4px -4px rgba(69, 181, 255, 1));
+                    filter: drop-shadow(-4px -4px -4px rgba(69, 181, 255, 1)); */
+        /* }
+        
+                to { */
+    
+        /* -webkit-filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.267));
+                    filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.267)); */
+    
+        /* color: rgba(28,155,140,0.8); */
+    
+        /* border-bottom: 8px solid rgba(28,155,140,0.8) */
+    
+        /* -webkit-filter: drop-shadow(4px 4px 4px rgba(69, 181, 255, 1));
+                    filter: drop-shadow(4px 4px 4px rgba(69, 181, 255, 18)); */
+        /* }
+            }  */
     </style>
 
 
     <script>
+
+
+        var infullscr = false;
         var find = 0;
         var oldpage = 0;
         var usehitory = false;
@@ -178,31 +386,25 @@
         var function_navigation = [
             //[START,STOP,LOCAL,TROUB,REPL,DEPEN,FUNC]
             //CHAPTER FUNCTION NAVIGATION HERE ...
-			[164, 185, 165, 166, 171, 182, 184],
-			[185, 193, 186, 187, 189, 191, 192],
-			[193, 206, 194, 195, 199, 202, 203],
-			[206, 215, 207, 208, 210, 213, 214],
-			[215, 239, 216, 220, 226, 236, 238],
-			[239, 251, 240, 241, 247, 249, 250],
-			[251, 264, 252, 253, 259, 260, 263],
-			[264, 272, 265, 266, 268, 270, 271],
-			[272, 280, 273, 274, 276, 278, 279],
-			[280, 297, 281, 282, 287, 295, 296],
-			[297, 329, 298, 299, 301, 327, 328],
-			[329, 339, 330, 331, 334, 337, 338],
-			[339, 348, 341, 342, 344, 346, 347],
-			[348, 356, 349, 350, 352, 354, 355],
-			[356, 364, 357, 358, 360, 362, 363],
-			[364, 388, 365, 366, 371, 386, 387]
+			[60, 74, 61, 62, 67, 68, 73],
+			[74, 83, 75, 76, 80, 81, 82],
+			[83, 90, 84, 85, 87, 88, 89],
+			[90, 102, 91, 92, 96, 99, 101],
+			[102, 111, 103, 104, 107, 108, 110],
+			[111, 118, 112, 113, 115, 116, 117],
+			[118, 125, 119, 120, 122, 123, 124],
+			[125, 132, 126, 127, 129, 130, 131],
+			[132, 143, 133, 134, 140, 141, 142],
+			[143, 154, 144, 145, 150, 151, 153],
+			[154, 163, 155, 156, 160, 161, 162],
+			[168, 175, 169, 170, 172, 173, 174],
+			[175, 184, 176, 177, 179, 180, 183]
 
 
         ];
 
         //VIDEO NAVIGATION HERE ...
 		var video_navigation = {
-			'303' : ['CS9600_Motion_Assembly_Replacement(very_light).mp4', 'CS_9600_Motion_Assembly_Replacement'],
-			'388' : ['CS_9600_Installation(very_light)_V2.mp4', 'CS_9600_Installation_v2_light'],
-			'389' : ['CS_9600_with_SC_installation(very_light).mp4', 'CS_9600_with_SC_installation(very_light)']
 		};
 
 
@@ -228,7 +430,7 @@
                 opacity = "opacity:0.75;";}
             return opacity;}
 
-        function IsInsideNavigation(page, pstart, pstop) {
+            function IsInsideNavigation(page, pstart, pstop) {
             var curchapter = -1;
             var inside = false;
             if (pstop == -1) {pstop = 1;}
@@ -237,6 +439,7 @@
             for (var i = 0; i < function_navigation.length; i++) {
                 var start = function_navigation[i][pstart];
                 var stop = function_navigation[i][pstop];
+				if(start == -1){return false;}
                 if ((page >= start) && (page < stop)) {
                     inside = true;
                     curchapter = i;
@@ -244,7 +447,12 @@
             return inside;
         }
 
-        function InsideLocalization(page){
+        /**
+         * The current page has a Localization title (according to the navigation button target).
+         * @param {page} A page inside the documentation.
+         * @return {number} True or False.
+         */
+         function InsideLocalization(page){
            return IsInsideNavigation(page,2,3);}
 
         function InsideTroubleshooting(page){
@@ -263,10 +471,34 @@
             return (page in video_navigation);
         }
 
+        /**
+         * The current chapter has a localization title to go.
+         * @param {idx} index of the navigation param list inside function_navigation.
+         * @return {number} True or False.
+         */
+        function LocalizationExist(idx){
+            return function_navigation[idx][2]>-1;}
+
+        function TroubleshootingExist(idx){
+            return function_navigation[idx][3]>-1;}
+
+        function ReplacementExist(idx){
+            return function_navigation[idx][4]>-1;}
+
+        function DependenciesExist(idx){
+            return function_navigation[idx][5]>-1;}
+
+        function FunctionsExist(idx){
+            return function_navigation[idx][6]>-1;}
+
+         /**
+         * Display or not the navigation buttons every 300ms.
+         */
         setInterval(
             function () {
                 var speedin = 300;
                 var speedout = 200;
+                var oldcur_content = cur_content;
                 cur_content = -1;
                 var pagenum = pdf2htmlEX.defaultViewer.cur_page_idx;
                 for (var i = 0; i < function_navigation.length; i++) {
@@ -275,13 +507,31 @@
                     if ((pagenum >= start) && (pagenum < stop)){
                         cur_content = i;
                         break;}}
+
+                //new chapter
+                if (oldcur_content != cur_content) {
+                    navshown = false;
+                }
+                //hide button outside navigation chapter
+                if (cur_content == -1) {
+                    navshown = true;
+                }
+                
+                //Show or not the navigation button
                 if((cur_content > -1) && (navshown == false)){
                     navshown = true;
-                    $(".LOCALIZATION").fadeTo(speedin,1, function () {
-                        $(".TROUBLESHOOTING").fadeTo(speedin,1, function () {
-                            $(".REPLACEMENT").fadeTo(speedin,1, function () {
-                                $(".DEPENDENCIES").fadeTo(speedin,1, function () {
-                                    $(".FUNCTIONS").fadeTo(speedin,1);});});});});}
+                    var alpha = [0.15, 1];
+                    //Hide button with transparency if there is no title flag
+                    var alphalocal = alpha[Number(LocalizationExist(cur_content))];
+                    var alphatroub = alpha[Number(TroubleshootingExist(cur_content))];
+                    var alpharepla = alpha[Number(ReplacementExist(cur_content))];
+                    var alphadepen = alpha[Number(DependenciesExist(cur_content))];
+                    var alphafuncs = alpha[Number(FunctionsExist(cur_content))];
+                    $(".LOCALIZATION").fadeTo(speedin, alphalocal, function () {
+                        $(".TROUBLESHOOTING").fadeTo(speedin, alphatroub, function () {
+                            $(".REPLACEMENT").fadeTo(speedin, alpharepla, function () {
+                                $(".DEPENDENCIES").fadeTo(speedin, alphadepen, function () {
+                                    $(".FUNCTIONS").fadeTo(speedin, alphafuncs);});});});});}
                 if((cur_content == -1) && (navshown == true)){
                     navshown = false;
                     $(".LOCALIZATION").fadeTo(speedout,0.15, function () {
@@ -330,15 +580,18 @@
             return chapters_beginpg[chapterid] + pagenum;
         }
 
-        function GoToDocLocation(){
-            let chapter = JSON.parse(localStorage.getItem("_doc_chapter_"));
-            let page = JSON.parse(localStorage.getItem("_doc_page_"));
-            if(chapter !== "undefined") {
-                localStorage.setItem("_doc_chapter_","undefined");
-                localStorage.setItem("_doc_page_","undefined");
-                var pagenum = GetPageNumber(chapter, page);
-                GoToPage(pagenum);
-                GoToThumnailPage(pagenum);
+        function GoToDocLocation() {
+            if (sessionStorage.length) {
+                let chapter = JSON.parse(sessionStorage.getItem("_doc_chapter_"));
+                let page = JSON.parse(sessionStorage.getItem("_doc_page_"));
+                //console.log(chapter, page)
+                if (chapter !== "undefined") {
+                    sessionStorage.setItem("_doc_chapter_", "undefined");
+                    sessionStorage.setItem("_doc_page_", "undefined");
+                    var pagenum = GetPageNumber(chapter, page);
+                    GoToPage(pagenum);
+                    GoToThumnailPage(pagenum);
+                }
             }
         }
 
@@ -521,8 +774,53 @@
 
         $(document).ready(function () {
             if (CheckChromeBrowser()) {
-                InitDocumentation();}
+                InitDocumentation();
+            }
         });
+
+        
+        // window.addEventListener("wheel", event => {
+        //     const delta = Math.sign(event.deltaY);
+        //     console.info(delta);
+        // });
+
+        // $('.pf w0 h0').bind('mousewheel', function(e){
+        //     // if(e.originalEvent.wheelDelta /120 > 0) {
+        //     //     console.log('scrolling up !');
+        //     // }
+        //     // else{
+        //     //     console.log('scrolling down !');
+        //     // }
+        //     const delta = Math.sign(e.originalEvent.wheelDelta);
+        //     console.info(delta);
+
+        // });
+
+        // $("#page-container").bind('mousewheel DOMMouseScroll', function (event) {
+        //     // if (event.originalEvent.wheelDelta > 0 || event.originalEvent.detail < 0) {
+        //     //     // scroll up
+        //     // }
+        //     // else {
+        //     //     // scroll down
+        //     // }
+        //     const delta = Math.sign(event.originalEvent.wheelDelta);
+        //     console.info(delta);
+
+        // });
+
+//         $("#pf1").on( 'scroll', function(){
+//    console.log('Event Fired');
+// });
+
+// function myFunction(){
+//     console.log("scrolling !");
+// }
+
+
+        //Outside page wants to navigate inside documentation
+        ReceiveCustomEvent('shown', GoToDocLocation);
+
+        
 
     </script>
 
@@ -540,7 +838,7 @@
         <img class="icolabel_menu" src="media/label.png"/><a href="#" class="dropdown_separator" onclick="ShowDocPreview()">Preview</a>
         <img class="icolabel_menu" src="media/search.png"/><a href="#" onclick="ShowSearchForm()">Search</a>
         <img class="icolabel_menu" src="media/print.png"/><a href="#" onclick="PrintDoc()">Print</a>
-        <img class="icolabel_menu" src="media/email.png"/><a href="mailto:serviceguide@csdental.com?subject=CS 9600 Service Guide" onclick="">Feedback</a>
+        <img class="icolabel_menu" src="media/email.png"/><a href="mailto:serviceguide@csdental.com?subject=CS 8x00 Service Guide" onclick="">Feedback</a>
         <img class="icolabel_menu" src="media/fullscreen.png"/><a href="#" onclick="FullScreen()">Fullscreen</a>
     </div>
 </div>
@@ -789,172 +1087,65 @@
 <div id="pfe3" class="pf w0 h0" data-page-no="e3" data-page-url="Documentation/Doc/Documentation227.page"></div>
 <div id="pfe4" class="pf w0 h0" data-page-no="e4" data-page-url="Documentation/Doc/Documentation228.page"></div>
 <div id="pfe5" class="pf w0 h0" data-page-no="e5" data-page-url="Documentation/Doc/Documentation229.page"></div>
-<div id="pfe6" class="pf w0 h0" data-page-no="e6" data-page-url="Documentation/Doc/Documentation230.page"></div>
-<div id="pfe7" class="pf w0 h0" data-page-no="e7" data-page-url="Documentation/Doc/Documentation231.page"></div>
-<div id="pfe8" class="pf w0 h0" data-page-no="e8" data-page-url="Documentation/Doc/Documentation232.page"></div>
-<div id="pfe9" class="pf w0 h0" data-page-no="e9" data-page-url="Documentation/Doc/Documentation233.page"></div>
-<div id="pfea" class="pf w0 h0" data-page-no="ea" data-page-url="Documentation/Doc/Documentation234.page"></div>
-<div id="pfeb" class="pf w0 h0" data-page-no="eb" data-page-url="Documentation/Doc/Documentation235.page"></div>
-<div id="pfec" class="pf w0 h0" data-page-no="ec" data-page-url="Documentation/Doc/Documentation236.page"></div>
-<div id="pfed" class="pf w0 h0" data-page-no="ed" data-page-url="Documentation/Doc/Documentation237.page"></div>
-<div id="pfee" class="pf w0 h0" data-page-no="ee" data-page-url="Documentation/Doc/Documentation238.page"></div>
-<div id="pfef" class="pf w0 h0" data-page-no="ef" data-page-url="Documentation/Doc/Documentation239.page"></div>
-<div id="pff0" class="pf w0 h0" data-page-no="f0" data-page-url="Documentation/Doc/Documentation240.page"></div>
-<div id="pff1" class="pf w0 h0" data-page-no="f1" data-page-url="Documentation/Doc/Documentation241.page"></div>
-<div id="pff2" class="pf w0 h0" data-page-no="f2" data-page-url="Documentation/Doc/Documentation242.page"></div>
-<div id="pff3" class="pf w0 h0" data-page-no="f3" data-page-url="Documentation/Doc/Documentation243.page"></div>
-<div id="pff4" class="pf w0 h0" data-page-no="f4" data-page-url="Documentation/Doc/Documentation244.page"></div>
-<div id="pff5" class="pf w0 h0" data-page-no="f5" data-page-url="Documentation/Doc/Documentation245.page"></div>
-<div id="pff6" class="pf w0 h0" data-page-no="f6" data-page-url="Documentation/Doc/Documentation246.page"></div>
-<div id="pff7" class="pf w0 h0" data-page-no="f7" data-page-url="Documentation/Doc/Documentation247.page"></div>
-<div id="pff8" class="pf w0 h0" data-page-no="f8" data-page-url="Documentation/Doc/Documentation248.page"></div>
-<div id="pff9" class="pf w0 h0" data-page-no="f9" data-page-url="Documentation/Doc/Documentation249.page"></div>
-<div id="pffa" class="pf w0 h0" data-page-no="fa" data-page-url="Documentation/Doc/Documentation250.page"></div>
-<div id="pffb" class="pf w0 h0" data-page-no="fb" data-page-url="Documentation/Doc/Documentation251.page"></div>
-<div id="pffc" class="pf w0 h0" data-page-no="fc" data-page-url="Documentation/Doc/Documentation252.page"></div>
-<div id="pffd" class="pf w0 h0" data-page-no="fd" data-page-url="Documentation/Doc/Documentation253.page"></div>
-<div id="pffe" class="pf w0 h0" data-page-no="fe" data-page-url="Documentation/Doc/Documentation254.page"></div>
-<div id="pfff" class="pf w0 h0" data-page-no="ff" data-page-url="Documentation/Doc/Documentation255.page"></div>
-<div id="pf100" class="pf w0 h0" data-page-no="100" data-page-url="Documentation/Doc/Documentation256.page"></div>
-<div id="pf101" class="pf w0 h0" data-page-no="101" data-page-url="Documentation/Doc/Documentation257.page"></div>
-<div id="pf102" class="pf w0 h0" data-page-no="102" data-page-url="Documentation/Doc/Documentation258.page"></div>
-<div id="pf103" class="pf w0 h0" data-page-no="103" data-page-url="Documentation/Doc/Documentation259.page"></div>
-<div id="pf104" class="pf w0 h0" data-page-no="104" data-page-url="Documentation/Doc/Documentation260.page"></div>
-<div id="pf105" class="pf w0 h0" data-page-no="105" data-page-url="Documentation/Doc/Documentation261.page"></div>
-<div id="pf106" class="pf w0 h0" data-page-no="106" data-page-url="Documentation/Doc/Documentation262.page"></div>
-<div id="pf107" class="pf w0 h0" data-page-no="107" data-page-url="Documentation/Doc/Documentation263.page"></div>
-<div id="pf108" class="pf w0 h0" data-page-no="108" data-page-url="Documentation/Doc/Documentation264.page"></div>
-<div id="pf109" class="pf w0 h0" data-page-no="109" data-page-url="Documentation/Doc/Documentation265.page"></div>
-<div id="pf10a" class="pf w0 h0" data-page-no="10a" data-page-url="Documentation/Doc/Documentation266.page"></div>
-<div id="pf10b" class="pf w0 h0" data-page-no="10b" data-page-url="Documentation/Doc/Documentation267.page"></div>
-<div id="pf10c" class="pf w0 h0" data-page-no="10c" data-page-url="Documentation/Doc/Documentation268.page"></div>
-<div id="pf10d" class="pf w0 h0" data-page-no="10d" data-page-url="Documentation/Doc/Documentation269.page"></div>
-<div id="pf10e" class="pf w0 h0" data-page-no="10e" data-page-url="Documentation/Doc/Documentation270.page"></div>
-<div id="pf10f" class="pf w0 h0" data-page-no="10f" data-page-url="Documentation/Doc/Documentation271.page"></div>
-<div id="pf110" class="pf w0 h0" data-page-no="110" data-page-url="Documentation/Doc/Documentation272.page"></div>
-<div id="pf111" class="pf w0 h0" data-page-no="111" data-page-url="Documentation/Doc/Documentation273.page"></div>
-<div id="pf112" class="pf w0 h0" data-page-no="112" data-page-url="Documentation/Doc/Documentation274.page"></div>
-<div id="pf113" class="pf w0 h0" data-page-no="113" data-page-url="Documentation/Doc/Documentation275.page"></div>
-<div id="pf114" class="pf w0 h0" data-page-no="114" data-page-url="Documentation/Doc/Documentation276.page"></div>
-<div id="pf115" class="pf w0 h0" data-page-no="115" data-page-url="Documentation/Doc/Documentation277.page"></div>
-<div id="pf116" class="pf w0 h0" data-page-no="116" data-page-url="Documentation/Doc/Documentation278.page"></div>
-<div id="pf117" class="pf w0 h0" data-page-no="117" data-page-url="Documentation/Doc/Documentation279.page"></div>
-<div id="pf118" class="pf w0 h0" data-page-no="118" data-page-url="Documentation/Doc/Documentation280.page"></div>
-<div id="pf119" class="pf w0 h0" data-page-no="119" data-page-url="Documentation/Doc/Documentation281.page"></div>
-<div id="pf11a" class="pf w0 h0" data-page-no="11a" data-page-url="Documentation/Doc/Documentation282.page"></div>
-<div id="pf11b" class="pf w0 h0" data-page-no="11b" data-page-url="Documentation/Doc/Documentation283.page"></div>
-<div id="pf11c" class="pf w0 h0" data-page-no="11c" data-page-url="Documentation/Doc/Documentation284.page"></div>
-<div id="pf11d" class="pf w0 h0" data-page-no="11d" data-page-url="Documentation/Doc/Documentation285.page"></div>
-<div id="pf11e" class="pf w0 h0" data-page-no="11e" data-page-url="Documentation/Doc/Documentation286.page"></div>
-<div id="pf11f" class="pf w0 h0" data-page-no="11f" data-page-url="Documentation/Doc/Documentation287.page"></div>
-<div id="pf120" class="pf w0 h0" data-page-no="120" data-page-url="Documentation/Doc/Documentation288.page"></div>
-<div id="pf121" class="pf w0 h0" data-page-no="121" data-page-url="Documentation/Doc/Documentation289.page"></div>
-<div id="pf122" class="pf w0 h0" data-page-no="122" data-page-url="Documentation/Doc/Documentation290.page"></div>
-<div id="pf123" class="pf w0 h0" data-page-no="123" data-page-url="Documentation/Doc/Documentation291.page"></div>
-<div id="pf124" class="pf w0 h0" data-page-no="124" data-page-url="Documentation/Doc/Documentation292.page"></div>
-<div id="pf125" class="pf w0 h0" data-page-no="125" data-page-url="Documentation/Doc/Documentation293.page"></div>
-<div id="pf126" class="pf w0 h0" data-page-no="126" data-page-url="Documentation/Doc/Documentation294.page"></div>
-<div id="pf127" class="pf w0 h0" data-page-no="127" data-page-url="Documentation/Doc/Documentation295.page"></div>
-<div id="pf128" class="pf w0 h0" data-page-no="128" data-page-url="Documentation/Doc/Documentation296.page"></div>
-<div id="pf129" class="pf w0 h0" data-page-no="129" data-page-url="Documentation/Doc/Documentation297.page"></div>
-<div id="pf12a" class="pf w0 h0" data-page-no="12a" data-page-url="Documentation/Doc/Documentation298.page"></div>
-<div id="pf12b" class="pf w0 h0" data-page-no="12b" data-page-url="Documentation/Doc/Documentation299.page"></div>
-<div id="pf12c" class="pf w0 h0" data-page-no="12c" data-page-url="Documentation/Doc/Documentation300.page"></div>
-<div id="pf12d" class="pf w0 h0" data-page-no="12d" data-page-url="Documentation/Doc/Documentation301.page"></div>
-<div id="pf12e" class="pf w0 h0" data-page-no="12e" data-page-url="Documentation/Doc/Documentation302.page"></div>
-<div id="pf12f" class="pf w0 h0" data-page-no="12f" data-page-url="Documentation/Doc/Documentation303.page"></div>
-<div id="pf130" class="pf w0 h0" data-page-no="130" data-page-url="Documentation/Doc/Documentation304.page"></div>
-<div id="pf131" class="pf w0 h0" data-page-no="131" data-page-url="Documentation/Doc/Documentation305.page"></div>
-<div id="pf132" class="pf w0 h0" data-page-no="132" data-page-url="Documentation/Doc/Documentation306.page"></div>
-<div id="pf133" class="pf w0 h0" data-page-no="133" data-page-url="Documentation/Doc/Documentation307.page"></div>
-<div id="pf134" class="pf w0 h0" data-page-no="134" data-page-url="Documentation/Doc/Documentation308.page"></div>
-<div id="pf135" class="pf w0 h0" data-page-no="135" data-page-url="Documentation/Doc/Documentation309.page"></div>
-<div id="pf136" class="pf w0 h0" data-page-no="136" data-page-url="Documentation/Doc/Documentation310.page"></div>
-<div id="pf137" class="pf w0 h0" data-page-no="137" data-page-url="Documentation/Doc/Documentation311.page"></div>
-<div id="pf138" class="pf w0 h0" data-page-no="138" data-page-url="Documentation/Doc/Documentation312.page"></div>
-<div id="pf139" class="pf w0 h0" data-page-no="139" data-page-url="Documentation/Doc/Documentation313.page"></div>
-<div id="pf13a" class="pf w0 h0" data-page-no="13a" data-page-url="Documentation/Doc/Documentation314.page"></div>
-<div id="pf13b" class="pf w0 h0" data-page-no="13b" data-page-url="Documentation/Doc/Documentation315.page"></div>
-<div id="pf13c" class="pf w0 h0" data-page-no="13c" data-page-url="Documentation/Doc/Documentation316.page"></div>
-<div id="pf13d" class="pf w0 h0" data-page-no="13d" data-page-url="Documentation/Doc/Documentation317.page"></div>
-<div id="pf13e" class="pf w0 h0" data-page-no="13e" data-page-url="Documentation/Doc/Documentation318.page"></div>
-<div id="pf13f" class="pf w0 h0" data-page-no="13f" data-page-url="Documentation/Doc/Documentation319.page"></div>
-<div id="pf140" class="pf w0 h0" data-page-no="140" data-page-url="Documentation/Doc/Documentation320.page"></div>
-<div id="pf141" class="pf w0 h0" data-page-no="141" data-page-url="Documentation/Doc/Documentation321.page"></div>
-<div id="pf142" class="pf w0 h0" data-page-no="142" data-page-url="Documentation/Doc/Documentation322.page"></div>
-<div id="pf143" class="pf w0 h0" data-page-no="143" data-page-url="Documentation/Doc/Documentation323.page"></div>
-<div id="pf144" class="pf w0 h0" data-page-no="144" data-page-url="Documentation/Doc/Documentation324.page"></div>
-<div id="pf145" class="pf w0 h0" data-page-no="145" data-page-url="Documentation/Doc/Documentation325.page"></div>
-<div id="pf146" class="pf w0 h0" data-page-no="146" data-page-url="Documentation/Doc/Documentation326.page"></div>
-<div id="pf147" class="pf w0 h0" data-page-no="147" data-page-url="Documentation/Doc/Documentation327.page"></div>
-<div id="pf148" class="pf w0 h0" data-page-no="148" data-page-url="Documentation/Doc/Documentation328.page"></div>
-<div id="pf149" class="pf w0 h0" data-page-no="149" data-page-url="Documentation/Doc/Documentation329.page"></div>
-<div id="pf14a" class="pf w0 h0" data-page-no="14a" data-page-url="Documentation/Doc/Documentation330.page"></div>
-<div id="pf14b" class="pf w0 h0" data-page-no="14b" data-page-url="Documentation/Doc/Documentation331.page"></div>
-<div id="pf14c" class="pf w0 h0" data-page-no="14c" data-page-url="Documentation/Doc/Documentation332.page"></div>
-<div id="pf14d" class="pf w0 h0" data-page-no="14d" data-page-url="Documentation/Doc/Documentation333.page"></div>
-<div id="pf14e" class="pf w0 h0" data-page-no="14e" data-page-url="Documentation/Doc/Documentation334.page"></div>
-<div id="pf14f" class="pf w0 h0" data-page-no="14f" data-page-url="Documentation/Doc/Documentation335.page"></div>
-<div id="pf150" class="pf w0 h0" data-page-no="150" data-page-url="Documentation/Doc/Documentation336.page"></div>
-<div id="pf151" class="pf w0 h0" data-page-no="151" data-page-url="Documentation/Doc/Documentation337.page"></div>
-<div id="pf152" class="pf w0 h0" data-page-no="152" data-page-url="Documentation/Doc/Documentation338.page"></div>
-<div id="pf153" class="pf w0 h0" data-page-no="153" data-page-url="Documentation/Doc/Documentation339.page"></div>
-<div id="pf154" class="pf w0 h0" data-page-no="154" data-page-url="Documentation/Doc/Documentation340.page"></div>
-<div id="pf155" class="pf w0 h0" data-page-no="155" data-page-url="Documentation/Doc/Documentation341.page"></div>
-<div id="pf156" class="pf w0 h0" data-page-no="156" data-page-url="Documentation/Doc/Documentation342.page"></div>
-<div id="pf157" class="pf w0 h0" data-page-no="157" data-page-url="Documentation/Doc/Documentation343.page"></div>
-<div id="pf158" class="pf w0 h0" data-page-no="158" data-page-url="Documentation/Doc/Documentation344.page"></div>
-<div id="pf159" class="pf w0 h0" data-page-no="159" data-page-url="Documentation/Doc/Documentation345.page"></div>
-<div id="pf15a" class="pf w0 h0" data-page-no="15a" data-page-url="Documentation/Doc/Documentation346.page"></div>
-<div id="pf15b" class="pf w0 h0" data-page-no="15b" data-page-url="Documentation/Doc/Documentation347.page"></div>
-<div id="pf15c" class="pf w0 h0" data-page-no="15c" data-page-url="Documentation/Doc/Documentation348.page"></div>
-<div id="pf15d" class="pf w0 h0" data-page-no="15d" data-page-url="Documentation/Doc/Documentation349.page"></div>
-<div id="pf15e" class="pf w0 h0" data-page-no="15e" data-page-url="Documentation/Doc/Documentation350.page"></div>
-<div id="pf15f" class="pf w0 h0" data-page-no="15f" data-page-url="Documentation/Doc/Documentation351.page"></div>
-<div id="pf160" class="pf w0 h0" data-page-no="160" data-page-url="Documentation/Doc/Documentation352.page"></div>
-<div id="pf161" class="pf w0 h0" data-page-no="161" data-page-url="Documentation/Doc/Documentation353.page"></div>
-<div id="pf162" class="pf w0 h0" data-page-no="162" data-page-url="Documentation/Doc/Documentation354.page"></div>
-<div id="pf163" class="pf w0 h0" data-page-no="163" data-page-url="Documentation/Doc/Documentation355.page"></div>
-<div id="pf164" class="pf w0 h0" data-page-no="164" data-page-url="Documentation/Doc/Documentation356.page"></div>
-<div id="pf165" class="pf w0 h0" data-page-no="165" data-page-url="Documentation/Doc/Documentation357.page"></div>
-<div id="pf166" class="pf w0 h0" data-page-no="166" data-page-url="Documentation/Doc/Documentation358.page"></div>
-<div id="pf167" class="pf w0 h0" data-page-no="167" data-page-url="Documentation/Doc/Documentation359.page"></div>
-<div id="pf168" class="pf w0 h0" data-page-no="168" data-page-url="Documentation/Doc/Documentation360.page"></div>
-<div id="pf169" class="pf w0 h0" data-page-no="169" data-page-url="Documentation/Doc/Documentation361.page"></div>
-<div id="pf16a" class="pf w0 h0" data-page-no="16a" data-page-url="Documentation/Doc/Documentation362.page"></div>
-<div id="pf16b" class="pf w0 h0" data-page-no="16b" data-page-url="Documentation/Doc/Documentation363.page"></div>
-<div id="pf16c" class="pf w0 h0" data-page-no="16c" data-page-url="Documentation/Doc/Documentation364.page"></div>
-<div id="pf16d" class="pf w0 h0" data-page-no="16d" data-page-url="Documentation/Doc/Documentation365.page"></div>
-<div id="pf16e" class="pf w0 h0" data-page-no="16e" data-page-url="Documentation/Doc/Documentation366.page"></div>
-<div id="pf16f" class="pf w0 h0" data-page-no="16f" data-page-url="Documentation/Doc/Documentation367.page"></div>
-<div id="pf170" class="pf w0 h0" data-page-no="170" data-page-url="Documentation/Doc/Documentation368.page"></div>
-<div id="pf171" class="pf w0 h0" data-page-no="171" data-page-url="Documentation/Doc/Documentation369.page"></div>
-<div id="pf172" class="pf w0 h0" data-page-no="172" data-page-url="Documentation/Doc/Documentation370.page"></div>
-<div id="pf173" class="pf w0 h0" data-page-no="173" data-page-url="Documentation/Doc/Documentation371.page"></div>
-<div id="pf174" class="pf w0 h0" data-page-no="174" data-page-url="Documentation/Doc/Documentation372.page"></div>
-<div id="pf175" class="pf w0 h0" data-page-no="175" data-page-url="Documentation/Doc/Documentation373.page"></div>
-<div id="pf176" class="pf w0 h0" data-page-no="176" data-page-url="Documentation/Doc/Documentation374.page"></div>
-<div id="pf177" class="pf w0 h0" data-page-no="177" data-page-url="Documentation/Doc/Documentation375.page"></div>
-<div id="pf178" class="pf w0 h0" data-page-no="178" data-page-url="Documentation/Doc/Documentation376.page"></div>
-<div id="pf179" class="pf w0 h0" data-page-no="179" data-page-url="Documentation/Doc/Documentation377.page"></div>
-<div id="pf17a" class="pf w0 h0" data-page-no="17a" data-page-url="Documentation/Doc/Documentation378.page"></div>
-<div id="pf17b" class="pf w0 h0" data-page-no="17b" data-page-url="Documentation/Doc/Documentation379.page"></div>
-<div id="pf17c" class="pf w0 h0" data-page-no="17c" data-page-url="Documentation/Doc/Documentation380.page"></div>
-<div id="pf17d" class="pf w0 h0" data-page-no="17d" data-page-url="Documentation/Doc/Documentation381.page"></div>
-<div id="pf17e" class="pf w0 h0" data-page-no="17e" data-page-url="Documentation/Doc/Documentation382.page"></div>
-<div id="pf17f" class="pf w0 h0" data-page-no="17f" data-page-url="Documentation/Doc/Documentation383.page"></div>
-<div id="pf180" class="pf w0 h0" data-page-no="180" data-page-url="Documentation/Doc/Documentation384.page"></div>
-<div id="pf181" class="pf w0 h0" data-page-no="181" data-page-url="Documentation/Doc/Documentation385.page"></div>
-<div id="pf182" class="pf w0 h0" data-page-no="182" data-page-url="Documentation/Doc/Documentation386.page"></div>
-<div id="pf183" class="pf w0 h0" data-page-no="183" data-page-url="Documentation/Doc/Documentation387.page"></div>
-<div id="pf184" class="pf w0 h0" data-page-no="184" data-page-url="Documentation/Doc/Documentation388.page"></div>
-<div id="pf185" class="pf w0 h0" data-page-no="185" data-page-url="Documentation/Doc/Documentation389.page"></div>
-<div id="pf186" class="pf w0 h0" data-page-no="186" data-page-url="Documentation/Doc/Documentation390.page"></div>
-<div id="pf187" class="pf w0 h0" data-page-no="187" data-page-url="Documentation/Doc/Documentation391.page"></div>
 </div>
 <div class="loading-indicator">
-<img alt="" src="pdf2htmlEX-64x64.png"/>
+<!-- <img alt="" src="pdf2htmlEX-64x64.png"/> -->
 </div>
+
+
+<script>
+    
+    var page_container = document.getElementById("page-container");
+    page_container.addEventListener("wheel", event => {
+        if(event.deltaY > 0){
+            ButtonNextPage();
+        }
+        else{
+            ButtonLastPage();
+        }
+    });
+
+
+    function DocFullScreen() {
+        /* Get the documentElement (<html>) to display the page in fullscreen */
+        var elem = page_container;
+        //var elem = document.getElementsByTagName("html")[0];
+        /* View in fullscreen */
+        function openFullscreen() {
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen();
+            } else if (elem.mozRequestFullScreen) { /* Firefox */
+                elem.mozRequestFullScreen();
+            } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+                elem.webkitRequestFullscreen();
+            } else if (elem.msRequestFullscreen) { /* IE/Edge */
+                elem.msRequestFullscreen();}}
+        /* Close fullscreen */
+        function closeFullscreen() {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.mozCancelFullScreen) { /* Firefox */
+                document.mozCancelFullScreen();
+            } else if (document.webkitExitFullscreen) { /* Chrome, Safari and Opera */
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) { /* IE/Edge */
+                document.msExitFullscreen();}}
+        if ((window.fullScreen) ||
+            (window.innerWidth == screen.width && window.innerHeight == screen.height)) {
+                document.getElementById("imgfscreen").src = "media/fullscreen.png";
+                closeFullscreen();}
+        else{
+            document.getElementById("imgfscreen").src = "media/exitfullscreen.png";
+            openFullscreen();
+        }
+    }
+
+    page_container.addEventListener("dblclick", event => {
+        DocFullScreen();
+    });
+
+
+</script>
 
 
 
@@ -989,31 +1180,26 @@
                     <!--ADD SEARCH LIST HERE ...-->
 			<option>Chapter 1 Table of contents and Notice</option>
 			<option>Chapter 2 About this guide</option>
-			<option>Chapter 3 CS 9600 Unit Overview</option>
-			<option>Chapter 4 Connectors conventions</option>
-			<option>Chapter 5 CS 9600 Covers installation guide</option>
-			<option>Chapter 6 CS 9600 Workstation.</option>
-			<option>Chapter 7 Tools Requirements.</option>
-			<option>Chapter 8 CS 9600 Calibrations and tools.</option>
-			<option>Chapter 9 CS 9600 Cable kits details.</option>
-			<option>Chapter 10 SPCGL98 Column motor board (CJ922 + CJ925)</option>
-			<option>Chapter 11 SPCGP58 Touch screen assembly</option>
-			<option>Chapter 12 SPCGL96 XRAY SOURCE BOARDS (CJ939 + CJ925)</option>
-			<option>Chapter 13 SPCGN34 14x12 Sensor Assembly</option>
-			<option>Chapter 14 SPCGR88_ XRAY SOURCE ASSEMBLY + COLLIMATOR</option>
-			<option>Chapter 15 SPCGP39 CARRIER BOARDS (CJ948 + CJ954).</option>
-			<option>Chapter 16 SPCJ898 Ethernet Switch Board</option>
-			<option>Chapter 17 SPJZ036 POWER FACTOR CORRECTION BOARD (400V DC)</option>
-			<option>Chapter 18 SPJZ038 POWER SUPPLY 225W AC/DC 5.25V</option>
-			<option>Chapter 19 SPCGL97 (CJ921 + CJ925) Arm motor boards</option>
-			<option>Chapter 20 SPCGM96 Motion assembly</option>
-			<option>Chapter 21 SPCJ943 Column Mains connection board</option>
-			<option>Chapter 22 SPCJ31C Head clamp assembly and SPCJ951 Chin rest LED board</option>
-			<option>Chapter 23 SPCGJ47 Ceph motor board (CJ901+CJ848)</option>
-			<option>Chapter 24 SPCGJ74 (CJ895 + CJ896) Ceph sensor board</option>
-			<option>Chapter 25 SPCGT32 Sensor Rotation system</option>
-			<option>Chapter 26 Installation video</option>
-			<option>Chapter 27 Contact Information</option>
+			<option>Chapter 3 CS 8x00 Cable kits details.</option>
+			<option>Chapter 4 CS 8x00 Connectors conventions:</option>
+			<option>Chapter 5 SPCGD82 Generator power board (CJ855+CJ848)</option>
+			<option>Chapter 6 SPCGJ47 Ceph motor board (CJ901+CJ848)</option>
+			<option>Chapter 7 SPCGJ74 (CJ895 + CJ896) Ceph sensor board</option>
+			<option>Chapter 8 SPCGL92 Head and chin rest</option>
+			<option>Chapter 9 SPCGK61 Sliding boards (CJ902+CJ848)</option>
+			<option>Chapter 10 SPJZ036 POWER FACTOR CORRECTION BOARD</option>
+			<option>Chapter 11 SPJZ038 POWER SUPPLY 225W AC/DC 5.25V</option>
+			<option>Chapter 12 SPCJ889 Secondary collimator driver</option>
+			<option>Chapter 13 SPCJ898 Ethernet Switch Board</option>
+			<option>Chapter 14 SPCGD83B Motor Board (CJ856+CJ848)</option>
+			<option>Chapter 15 Motion Assembly</option>
+			<option>Chapter 16 CAN BUS.</option>
+			<option>Chapter 17 SPCGC95 2D Panoramic sensor board</option>
+			<option>Chapter 18 SPCGF81 and SPCGM44 3D sensor assembly</option>
+			<option>Chapter 19 CS 8x00 Acquisition computer</option>
+			<option>Chapter 22 Contact Information</option>
+			<option>Chapter 21 CS 8200 Neo Edition</option>
+			<option>Chapter 22 Contact Information</option>
 
                 </select>
             </form>
@@ -1027,7 +1213,7 @@
         <a href="#" class="PRINT tabuttonsmall uistyle2" onclick="PrintDoc()">
             <img class="icon" src="media/print.png"/>
         </a>
-        <a href="mailto:serviceguide@csdental.com?subject=CS 9600 Service Guide" class="FEEDBACK tabuttonsmall uistyle2">
+        <a href="mailto:serviceguide@csdental.com?subject=CS 8x00 Service Guide" class="FEEDBACK tabuttonsmall uistyle2">
             <img class="icon" src="media/email.png"/>
         </a>
         <a href="#" class="FULLSCREEN tabuttonsmall tabuttonright uistyle2" onclick="FullScreen()">
@@ -1043,8 +1229,8 @@
 
 <div class="sidebar">
     <div class="LOCALIZATION sidebutton firstsidebutton uistyle2"
-         style="opacity: 0.15;border-bottom: 4px solid rgba(28,155,140,0.3);" onclick="FNavigationLink(this)">
-        <img class="icon" src="media/Localization.png"/>
+         style="border-bottom: 4px solid rgba(28,155,140,0.3);" onclick="FNavigationLink(this)">
+        <img id="local" class="icon" src="media/Localization.png"/>
     </div>
     <div class="TROUBLESHOOTING sidebutton uistyle2"
          style="opacity: 0.15;border-bottom: 4px solid rgba(255,0,0,0.3);" onclick="FNavigationLink(this)">

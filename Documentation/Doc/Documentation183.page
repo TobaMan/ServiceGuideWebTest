@@ -1,26 +1,8 @@
-<div id="pfb7" class="pf w0 h0" data-page-no="b7"><div class="pc pcb7 w0 h0"><img class="bi x0 y0 w1 h1" alt="" src="Documentation/Doc/bgb7.png"/><div class="c x0 y0 w2 h0"><div class="t m0 x1 h2 y1 ff31 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x1 h6 y101 ff31 fs3 fc3 sc0 ls0 ws0">Chapter 10 SPCGL9<span class="_ _0"></span>8 Column motor board (CJ<span class="_ _0"></span>922 + CJ<span class="_ _0"></span>925)<span class="ff32"> - </span>P<span class="_ _0"></span>arts<span class="ff32"> dependencies:<span class="_ _0"></span> </span></div><div class="t m0 x1 h2 yed ff31 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x6 h8 y27 ff32 fs4 fc1 sc0 ls0 ws0">||05| <span class="_ _4"> </span>Parts dependencie<span class="_ _0"></span>s:  </div><div class="t m0 x1 h2 y28 ff31 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x6 h5 y108 ff32 fs2 fc1 sc0 ls0 ws0">|||01| <span class="_ _c"> </span>CS 9600 </div><div class="t m0 x1 h2 y1a9 ff31 fs0 fc0 sc0 ls0 ws0"> <span class="_ _3"> </span> </div></div><div class="c x0 ya57 w26 h106"><div class="t m0 x5d h1e y32f ff31 fsc fc0 sc0 ls0 ws0">CS 9600 </div></div>
+<div id="pfb7" class="pf w0 h0" data-page-no="b7"><div class="pc pcb7 w0 h0"><img class="bi x0 y0 w1 h1" alt="" src="Documentation/Doc/bgb7.png"/><div class="c x0 y0 w2 h0"><div class="t m0 x1 h1c ydb ff89 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x1 h32 y512 ff89 fs3 fc3 sc0 ls0 ws0">Chapter 18 SPCGF81 <span class="_ _0"></span><span class="ff8a">and SPCG<span class="_ _0"></span>M44 3D sensor assemb<span class="_ _0"></span>ly -<span class="_ _0"></span> Parts dependencies<span class="_ _0"></span>: </span></div><div class="t m0 x1 h1c y513 ff89 fs0 fc0 sc0 ls0 ws0"> </div><div class="t m0 x1 h1c y4ed ff89 fs0 fc0 sc0 ls0 ws0">CS 8100SC 3D <span class="ff8c">–</span> C<span class="_ _3"></span>S 8200 3D wit<span class="_ _3"></span>h SC </div><div class="t m0 x1 h1c y640 ff89 fs0 fc0 sc0 ls0 ws0"> <span class="_ _13"> </span> </div></div>
 <!--HTML LINK HERE ...-->
-		<a  class="l" href="#pf109" data-dest-detail='[265,"XYZ",0,595,null]' >
-			<div class="d" style="position:absolute;left:42px;bottom:192px;width:69px;height:52px;" ></div>		</a>
-		<a  class="l" href="#pf71" data-dest-detail='[113,"XYZ",0,595,null]' >
-			<div class="d" style="position:absolute;left:206px;bottom:307px;width:25px;height:12px;" ></div>		</a>
+		<a  class="l" href="#pf90" data-dest-detail='[144,"XYZ",0,595,null]' >
+			<div class="d" style="position:absolute;left:101px;bottom:140px;width:63px;height:90px;" ></div>		</a>
+		<a  class="l" href="#pf3d" data-dest-detail='[61,"XYZ",0,595,null]' >
+			<div class="d" style="position:absolute;left:340px;bottom:98px;width:56px;height:63px;" ></div>		</a>
 		<a  class="l" href="#pf85" data-dest-detail='[133,"XYZ",0,595,null]' >
-			<div class="d" style="position:absolute;left:395px;bottom:337px;width:25px;height:10px;" ></div>		</a>
-		<a  class="l" href="#pf88" data-dest-detail='[136,"XYZ",0,595,null]' >
-			<div class="d" style="position:absolute;left:395px;bottom:315px;width:25px;height:9px;" ></div>		</a>
-		<a  class="l" href="#pf8f" data-dest-detail='[143,"XYZ",0,595,null]' >
-			<div class="d" style="position:absolute;left:395px;bottom:290px;width:25px;height:10px;" ></div>		</a>
-		<a  class="l" href="#pf83" data-dest-detail='[131,"XYZ",0,595,null]' >
-			<div class="d" style="position:absolute;left:395px;bottom:265px;width:25px;height:10px;" ></div>		</a>
-		<a  class="l" href="#pff0" data-dest-detail='[240,"XYZ",0,595,null]' >
-			<div class="d" style="position:absolute;left:600px;bottom:324px;width:61px;height:130px;" ></div>		</a>
-		<a  class="l" href="#pf70" data-dest-detail='[112,"XYZ",0,595,null]' >
-			<div class="d" style="position:absolute;left:218px;bottom:437px;width:25px;height:12px;" ></div>		</a>
-		<a  class="l" href="#pf119" data-dest-detail='[281,"XYZ",0,595,null]' >
-			<div class="d" style="position:absolute;left:41px;bottom:253px;width:70px;height:212px;" ></div>		</a>
-		<a  class="l" href="#pf89" data-dest-detail='[137,"XYZ",0,595,null]' >
-			<div class="d" style="position:absolute;left:232px;bottom:244px;width:25px;height:9px;" ></div>		</a>
-		<a  class="l" href="#pf83" data-dest-detail='[131,"XYZ",0,595,null]' >
-			<div class="d" style="position:absolute;left:433px;bottom:212px;width:25px;height:10px;" ></div>		</a>
-		<a  class="l" href="#pf88" data-dest-detail='[136,"XYZ",0,595,null]' >
-			<div class="d" style="position:absolute;left:529px;bottom:213px;width:25px;height:9px;" ></div>		</a></div><div class="pi" data-data='{"ctm":[1.000000,0.000000,0.000000,1.000000,0.000000,0.000000]}'></div></div>
+			<div class="d" style="position:absolute;left:599px;bottom:278px;width:106px;height:192px;" ></div>		</a></div><div class="pi" data-data='{"ctm":[1.000000,0.000000,0.000000,1.000000,0.000000,0.000000]}'></div></div>
