@@ -315,6 +315,20 @@ function ErrCodeActivity(){
     }
 }
 
+// function BuildEpartsProductChoice(product) {
+//     var link = 'OpenHtmlPage("eParts_' + product + '.html")';
+//     var thumb = "<div class='submenu_responsivethumb'>";
+//     thumb += "<div class='submenu_gallery uistyle2' id=resp" + product + ">";
+//     thumb += "<div class='submenu_containerthumb'>";
+//     //thumb += "<a href='eParts_" + product + ".html'>";
+//     thumb += "<a onclick='"+link+"'>";
+//     thumb += "<img class='submenu_thumb' id=" + product + " src='media/prdpreview_" + product + ".png'/>";
+//     thumb += "<div class='submenu_desc' id=desc" + product + ">";
+//     thumb += "<div class='submenu_textthumb'  >" + product + "</div>";
+//     thumb += "</a></div></div></div></div>"
+//     $(".EPARTS_PRODUCT_LIST").append(thumb);
+// }
+
 function BuildEpartsProductChoice(product) {
     var link = 'OpenHtmlPage("eParts_' + product + '.html")';
     var thumb = "<div class='submenu_responsivethumb'>";
@@ -470,8 +484,12 @@ function copyToClipboard(text) {
     document.body.removeChild(dummy);
 }
 
-function SendCustomEvent(id, msgevent){
+function SendCustomEventToIframe(id, msgevent){
     document.getElementById(id).contentWindow.postMessage(msgevent);
+}
+
+function SendCustomEventFromIframe(msgevent){
+    window.top.postMessage(msgevent, '*');
 }
 
 function ReceiveCustomEvent(msgevent, runfunc){
@@ -596,10 +614,50 @@ function CheckChromeBrowser() {
 	}
 }
 
+function SendFullScreen(){
+    SendCustomEventFromIframe("_fullscreen_");
+}
+
+// function FullScreen() {
+//     /* Get the documentElement (<html>) to display the page in fullscreen */
+//     // var elem = document.getElementById("page-container");
+//     var elem = document.getElementsByTagName("html")[0];
+//     // var elem = window.parent.document.getElementsByTagName("html")[0];
+//     /* View in fullscreen */
+//     function openFullscreen() {
+//         if (elem.requestFullscreen) {
+//             elem.requestFullscreen();
+//         } else if (elem.mozRequestFullScreen) { /* Firefox */
+//             elem.mozRequestFullScreen();
+//         } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+//             elem.webkitRequestFullscreen();
+//         } else if (elem.msRequestFullscreen) { /* IE/Edge */
+//             elem.msRequestFullscreen();}}
+//     /* Close fullscreen */
+//     function closeFullscreen() {
+//         if (document.exitFullscreen) {
+//             document.exitFullscreen();
+//         } else if (document.mozCancelFullScreen) { /* Firefox */
+//             document.mozCancelFullScreen();
+//         } else if (document.webkitExitFullscreen) { /* Chrome, Safari and Opera */
+//             document.webkitExitFullscreen();
+//         } else if (document.msExitFullscreen) { /* IE/Edge */
+//             document.msExitFullscreen();}}
+//     if ((window.fullScreen) ||
+//         (window.innerWidth == screen.width && window.innerHeight == screen.height)) {
+//             document.getElementById("imgfscreen").src = "media/fullscreen.png";
+//             closeFullscreen();}
+//     else{
+//         document.getElementById("imgfscreen").src = "media/exitfullscreen.png";
+//         openFullscreen();
+//     }
+// }
+
 function FullScreen() {
     /* Get the documentElement (<html>) to display the page in fullscreen */
-    //var elem = document.getElementById("page-container");
+    // var elem = document.getElementById("page-container");
     var elem = document.getElementsByTagName("html")[0];
+    // var elem = window.parent.document.getElementsByTagName("html")[0];
     /* View in fullscreen */
     function openFullscreen() {
         if (elem.requestFullscreen) {
@@ -622,13 +680,14 @@ function FullScreen() {
             document.msExitFullscreen();}}
     if ((window.fullScreen) ||
         (window.innerWidth == screen.width && window.innerHeight == screen.height)) {
-            document.getElementById("imgfscreen").src = "media/fullscreen.png";
+            // document.getElementById("imgfscreen").src = "media/fullscreen.png";
             closeFullscreen();}
     else{
-        document.getElementById("imgfscreen").src = "media/exitfullscreen.png";
+        // document.getElementById("imgfscreen").src = "media/exitfullscreen.png";
         openFullscreen();
     }
 }
+
 
 function IsIOS() {
   var iDevices = [

@@ -226,42 +226,46 @@
 
     window.onmessage = function (event) {
 
+      if (event.data == '_fullscreen_') {
+        FullScreen();
+      }
+
       if (event.data == 'media_src') {
         if (sessionStorage.length) {
           let src = sessionStorage.getItem('_media_src_');
           SetMediaWindowSrc(src);
           ShowMediaWindow(true);
         }
-    }
+      }
 
-    if (event.data == 'mframe_goto_Presentation.html') {
-      PageTransitions.setPage(0, ANIM_PRESENTATION);
-    }
-    if (event.data == 'mframe_goto_Documentation.html') {
-      SendCustomEvent("pg2", "shown");
-      PageTransitions.setPage(1, ANIM_OTHER);
-    }
-    if (event.data == 'mframe_goto_SearchText.html') {
-      PageTransitions.setPage(2, ANIM_OTHER);
-    }
-    if (event.data == 'mframe_goto_ErrorCode.html') {
-      PageTransitions.setPage(10, ANIM_OTHER);
-    }
-    if (event.data == 'mframe_goto_ElectricalDiagram_CS 8100.html') {
-      PageTransitions.setPage(3, ANIM_EDIAG_EPARTS);
-    }
-    if (event.data == 'mframe_goto_ElectricalDiagram_CS 8100 3D.html') {
-      PageTransitions.setPage(4, ANIM_EDIAG_EPARTS);
-    }
-    if (event.data == 'mframe_goto_ElectricalDiagram_CS 8100SC.html') {
-      PageTransitions.setPage(5, ANIM_EDIAG_EPARTS);
-    }
-    if (event.data == 'mframe_goto_ElectricalDiagram_CS 8100SC 3D.html') {
-      PageTransitions.setPage(6, ANIM_EDIAG_EPARTS);
-    }
-    if (event.data == 'mframe_goto_eParts_CS 8100 3D.html') {
-      PageTransitions.setPage(9, ANIM_EDIAG_EPARTS);
-    }
+      if (event.data == 'mframe_goto_Presentation.html') {
+        PageTransitions.setPage(0, ANIM_PRESENTATION);
+      }
+      if (event.data == 'mframe_goto_Documentation.html') {
+        SendCustomEventToIframe("pg2", "shown");
+        PageTransitions.setPage(1, ANIM_OTHER);
+      }
+      if (event.data == 'mframe_goto_SearchText.html') {
+        PageTransitions.setPage(2, ANIM_OTHER);
+      }
+      if (event.data == 'mframe_goto_ErrorCode.html') {
+        PageTransitions.setPage(10, ANIM_OTHER);
+      }
+      if (event.data == 'mframe_goto_ElectricalDiagram_CS 8100.html') {
+        PageTransitions.setPage(3, ANIM_EDIAG_EPARTS);
+      }
+      if (event.data == 'mframe_goto_ElectricalDiagram_CS 8100 3D.html') {
+        PageTransitions.setPage(4, ANIM_EDIAG_EPARTS);
+      }
+      if (event.data == 'mframe_goto_ElectricalDiagram_CS 8100SC.html') {
+        PageTransitions.setPage(5, ANIM_EDIAG_EPARTS);
+      }
+      if (event.data == 'mframe_goto_ElectricalDiagram_CS 8100SC 3D.html') {
+        PageTransitions.setPage(6, ANIM_EDIAG_EPARTS);
+      }
+      if (event.data == 'mframe_goto_eParts_CS 8100 3D.html') {
+        PageTransitions.setPage(9, ANIM_EDIAG_EPARTS);
+      }
   };
 
 
