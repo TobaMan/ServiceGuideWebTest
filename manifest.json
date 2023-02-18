@@ -3,7 +3,7 @@
     "background_color": "#f69435",
     "display": "fullscreen",
     "scope": "/",
-    "start_url": "/",
+    "start_url": "/index.html",
     "name": "ServiceGuideWebApp",
     "short_name": "ServiceGuideWeb",
     "description": "Service Engenering helpful application",
