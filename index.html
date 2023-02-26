@@ -15,8 +15,8 @@
   <script type="text/javascript" src='js/ServiceGuide.js'></script>
   <link rel="stylesheet" type="text/css" href="css/animations.css" />
   <script src="js/modernizr.custom.js"></script>
-
-
+  <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+  <!-- <script type="text/javascript" src='js/resizedrag.js'></script> -->
 
   <!-- Demo styles -->
   <style>
@@ -202,9 +202,10 @@
 
 
 
-<div id="myWindow" class="window">
+<div id="myWindow" class="window drag-widget-container">
   <div class="window-top uistyle2">
-    <button class="round green uistyle2"></button><button class="round yellow uistyle2"></button><button class="round red uistyle2"></button>
+    <button class="round green uistyle2"></button><button class="round yellow uistyle2"></button><button
+      class="round red uistyle2"></button>
   </div>
   <div class="window-content">
     <!-- <iframe id="window-src" src="media/GRN-0116_SPCJ894_Temple_Support_Driver_Board_Rev_1.pdf"></iframe> -->
@@ -214,6 +215,7 @@
 
 
 <script src="js/pagetransitions.js"></script>
+<!-- <script type="text/javascript" src='js/resizedrag.js'></script> -->
 
  
   <script>
@@ -272,56 +274,131 @@
  
 
 
-  function makeDraggable (elmnt) {
-    // Make an element draggable (or if it has a .window-top class, drag based on the .window-top element)
-    let currentPosX = 0, currentPosY = 0, previousPosX = 0, previousPosY = 0;
+//   function makeDraggable (elmnt) {
+//     // Make an element draggable (or if it has a .window-top class, drag based on the .window-top element)
+//     let currentPosX = 0, currentPosY = 0, previousPosX = 0, previousPosY = 0;
 
-		// If there is a window-top classed element, attach to that element instead of full window
-    if (elmnt.querySelector('.window-top')) {
-        // If present, the window-top element is where you move the parent element from
-        elmnt.querySelector('.window-top').onmousedown = dragMouseDown;
-    } 
-    else {
-        // Otherwise, move the element itself
-        elmnt.onmousedown = dragMouseDown;
-    }
+// 		// If there is a window-top classed element, attach to that element instead of full window
+//     if (elmnt.querySelector('.window-top')) {
+//         // If present, the window-top element is where you move the parent element from
+//         elmnt.querySelector('.window-top').onmousedown = dragMouseDown;
+//     } 
+//     else {
+//         // Otherwise, move the element itself
+//         elmnt.onmousedown = dragMouseDown;
+//     }
 
-    function dragMouseDown (e) {
-        // Prevent any default action on this element (you can remove if you need this element to perform its default action)
-        e.preventDefault();
-        // Get the mouse cursor position and set the initial previous positions to begin
-        previousPosX = e.clientX;
-        previousPosY = e.clientY;
-        // When the mouse is let go, call the closing event
-        document.onmouseup = closeDragElement;
-        // call a function whenever the cursor moves
-        document.onmousemove = elementDrag;
-    }
+//     function dragMouseDown (e) {
+//         // Prevent any default action on this element (you can remove if you need this element to perform its default action)
+//         e.preventDefault();
+//         // Get the mouse cursor position and set the initial previous positions to begin
+//         previousPosX = e.clientX;
+//         previousPosY = e.clientY;
+//         // When the mouse is let go, call the closing event
+//         document.onmouseup = closeDragElement;
+//         // call a function whenever the cursor moves
+//         document.onmousemove = elementDrag;
+//     }
 
-    function elementDrag (e) {
-        // Prevent any default action on this element (you can remove if you need this element to perform its default action)
-        e.preventDefault();
-        // Calculate the new cursor position by using the previous x and y positions of the mouse
-        currentPosX = previousPosX - e.clientX;
-        currentPosY = previousPosY - e.clientY;
-        // Replace the previous positions with the new x and y positions of the mouse
-        previousPosX = e.clientX;
-        previousPosY = e.clientY;
-        // Set the element's new position
-        elmnt.style.top = (elmnt.offsetTop - currentPosY) + 'px';
-        elmnt.style.left = (elmnt.offsetLeft - currentPosX) + 'px';
-    }
+//     function elementDrag (e) {
+//         // Prevent any default action on this element (you can remove if you need this element to perform its default action)
+//         e.preventDefault();
+//         // Calculate the new cursor position by using the previous x and y positions of the mouse
+//         currentPosX = previousPosX - e.clientX;
+//         currentPosY = previousPosY - e.clientY;
+//         // Replace the previous positions with the new x and y positions of the mouse
+//         previousPosX = e.clientX;
+//         previousPosY = e.clientY;
+//         // Set the element's new position
+//         elmnt.style.top = (elmnt.offsetTop - currentPosY) + 'px';
+//         elmnt.style.left = (elmnt.offsetLeft - currentPosX) + 'px';
+//     }
 
-    function closeDragElement () {
-        // Stop moving when mouse button is released and release events
-        document.onmouseup = null;
-        document.onmousemove = null;
-    }
-}
+//     function closeDragElement () {
+//         // Stop moving when mouse button is released and release events
+//         document.onmouseup = null;
+//         document.onmousemove = null;
+//     }
+
+    
+// }
+
+  function makeDraggable() {
+    // interact('#myWindow')
+    const position = { x: 0, y: 0 }
+
+    interact('#myWindow')
+
+      .draggable({
+        listeners: {
+          start(event) {
+            // console.log(event.type, event.target)
+          },
+          move(event) {
+            position.x += event.dx
+            position.y += event.dy
+
+            event.target.style.transform =
+              `translate(${position.x}px, ${position.y}px)`
+          },
+        }
+      })
+      // .resizable({
+      //   edges: { top: true, left: true, bottom: true, right: true },
+      //   listeners: {
+      //     move: function (event) {
+      //       let { x, y } = event.target.dataset
+
+      //       x = (parseFloat(x) || 0) + event.deltaRect.left
+      //       y = (parseFloat(y) || 0) + event.deltaRect.top
+
+      //       Object.assign(event.target.style, {
+      //         width: `${event.rect.width}px`,
+      //         height: `${event.rect.height}px`,
+      //         transform: `translate(${x}px, ${y}px)`
+      //       })
+
+      //       Object.assign(event.target.dataset, { x, y })
+      //     }
+      //   }
+      // })
+  }
+
+// // Use the start/end events to simulate "snap to edge" behaviour.
+// const snapThreshold = 50;
+//   function onStart(el, x, y) {
+//     // On drag start, remove the fixed bottom style to prevent the bottom
+//     // from sticking on the screen.
+//     el.style.top = el.offsetTop + "px"
+//     el.style.bottom = "auto"
+//   }
+//   function onEnd(el, x, y) {
+//     console.log('end');
+//     // Automatically snap to corners.
+//     if (window.innerHeight - (el.offsetTop + el.offsetHeight) < snapThreshold) {
+//       el.style.top = "auto"
+//       el.style.bottom = "0px"
+//     }
+//     if (window.innerWidth - (el.offsetLeft + el.offsetWidth) < snapThreshold) {
+//       el.style.left = "auto"
+//       el.style.right = "0px"
+//     }
+//     if (el.offsetTop < snapThreshold) {
+//       el.style.top = "0px"
+//     }
+//     if (el.offsetLeft < snapThreshold) {
+//       el.style.left = "0px"
+//     }
+//   }
+
+
 
   function InitMediaWindow(posx, posy) {
     var mywindow = document.querySelector('#myWindow')
-    makeDraggable(mywindow);
+    // makeDraggable(mywindow);
+    makeDraggable();
+    // resizedrag(mywindow,mywindow, onStart, onEnd);
+
     mywindow.style.left = posx;
     mywindow.style.top = posy;
     for (const item of document.querySelectorAll('.round.red')) {

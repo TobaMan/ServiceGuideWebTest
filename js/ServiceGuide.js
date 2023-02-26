@@ -183,7 +183,13 @@ var eparts_link = {
 
 
 
+// Register service worker to control making site work offline
 
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker
+      .register('/ServiceWorker.js')
+      .then(() => { console.log('Service Worker Registered'); });
+  }
 
 
 var winRef;
@@ -315,19 +321,7 @@ function ErrCodeActivity(){
     }
 }
 
-// function BuildEpartsProductChoice(product) {
-//     var link = 'OpenHtmlPage("eParts_' + product + '.html")';
-//     var thumb = "<div class='submenu_responsivethumb'>";
-//     thumb += "<div class='submenu_gallery uistyle2' id=resp" + product + ">";
-//     thumb += "<div class='submenu_containerthumb'>";
-//     //thumb += "<a href='eParts_" + product + ".html'>";
-//     thumb += "<a onclick='"+link+"'>";
-//     thumb += "<img class='submenu_thumb' id=" + product + " src='media/prdpreview_" + product + ".png'/>";
-//     thumb += "<div class='submenu_desc' id=desc" + product + ">";
-//     thumb += "<div class='submenu_textthumb'  >" + product + "</div>";
-//     thumb += "</a></div></div></div></div>"
-//     $(".EPARTS_PRODUCT_LIST").append(thumb);
-// }
+
 
 function BuildEpartsProductChoice(product) {
     var link = 'OpenHtmlPage("eParts_' + product + '.html")';
