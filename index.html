@@ -84,7 +84,7 @@
       } */
   
   
-    iframe {
+    .app-page {
       display: block;
       left: 0px;
       top: 0px;
@@ -95,18 +95,21 @@
       border: none;
     }
   
-  
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
     .window {
       display: none;
       position: fixed;
       width: 30%;
       height: 25%;
+      -ms-touch-action: none;
+      touch-action: none;
+      box-sizing: border-box;
+      border-radius: 10px;
       box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
     }
   
@@ -121,6 +124,12 @@
     }
 
     #window-src{
+      left: 0px;
+      top: 0px;
+      margin: 0px;
+      padding: 0px;
+      width: 100%;
+      height: 100%;
       border: 1px solid #a7a7a7;
       -webkit-border-bottom-right-radius: 10px;
       -moz-border-bottom-right-radius: 10px;
@@ -146,18 +155,12 @@
       height : 90%;
     }
   
-    .window-top{
-      /* position:relative; */
-      right:20%;
-      height: 20px;
-      width:40px;
-      touch-action: none;
-      box-sizing: border-box;
-    }
-  
     .round {
-      height: 16px;
-      width: 16px;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      height: 20px;
+      width: 20px;
       border-radius: 50%;
       margin-right: 6px;
     }
@@ -191,22 +194,23 @@
  
 <!-- <div id="toto" style="height:30px">Next transition</div> -->
 <div id="pt-main" class="pt-perspective">
-  <div class="pt-page pt-page-1"><iframe id="pg1" src="Presentation.html"></iframe></div>
-  <div class="pt-page pt-page-2"><iframe id="pg2" src="Documentation.html"></iframe></div>
-  <div class="pt-page pt-page-3"><iframe src="SearchText.html"></iframe></div>
-  <div class="pt-page pt-page-4"><iframe src="ElectricalDiagram_CS 8100.html"></iframe></div>
-  <div class="pt-page pt-page-5"><iframe src="ElectricalDiagram_CS 8100 3D.html"></iframe></div>
-  <div class="pt-page pt-page-6"><iframe src="ElectricalDiagram_CS 8100SC.html"></iframe></div>
-  <div class="pt-page pt-page-7"><iframe src="ElectricalDiagram_CS 8100SC 3D.html"></iframe></div>
-  <div class="pt-page pt-page-8"><iframe src="ElectricalDiagram_CS 8200 3D.html"></iframe></div>
-  <div class="pt-page pt-page-9"><iframe src="ElectricalDiagram_CS 8200 3D with SC.html"></iframe></div>
-  <div class="pt-page pt-page-10"><iframe src="eParts_CS 8100 3D.html"></iframe></div>
-  <div class="pt-page pt-page-11"><iframe src="ErrorCode.html"></iframe></div>
+  <div class="pt-page pt-page-1"><iframe class="app-page" id="pg1" src="Presentation.html"></iframe></div>
+  <div class="pt-page pt-page-2"><iframe class="app-page" id="pg2" src="Documentation.html"></iframe></div>
+  <div class="pt-page pt-page-3"><iframe class="app-page" src="SearchText.html"></iframe></div>
+  <div class="pt-page pt-page-4"><iframe class="app-page" src="ElectricalDiagram_CS 8100.html"></iframe></div>
+  <div class="pt-page pt-page-5"><iframe class="app-page" src="ElectricalDiagram_CS 8100 3D.html"></iframe></div>
+  <div class="pt-page pt-page-6"><iframe class="app-page" src="ElectricalDiagram_CS 8100SC.html"></iframe></div>
+  <div class="pt-page pt-page-7"><iframe class="app-page" src="ElectricalDiagram_CS 8100SC 3D.html"></iframe></div>
+  <div class="pt-page pt-page-8"><iframe class="app-page" src="ElectricalDiagram_CS 8200 3D.html"></iframe></div>
+  <div class="pt-page pt-page-9"><iframe class="app-page" src="ElectricalDiagram_CS 8200 3D with SC.html"></iframe></div>
+  <div class="pt-page pt-page-10"><iframe class="app-page" src="eParts_CS 8100 3D.html"></iframe></div>
+  <div class="pt-page pt-page-11"><iframe class="app-page" src="ErrorCode.html"></iframe></div>
 </div>
 
 
 
 <div id="myWindow" class="window">
+  <button class="round red uistyle2"></button>
   <!-- <div class="window-top">
     <button class="round green uistyle2"></button>
     <button class="round yellow uistyle2"></button>
@@ -350,7 +354,7 @@ function dragMoveListener (event) {
           onmove: window.dragMoveListener
         })
         .resizable({
-          edges: { left: true, right: true, bottom: true, top: true }
+          edges: { left: false, right: true, bottom: true, top: false }
         })
         .on('resizemove', function (event) {
           var target = event.target;
