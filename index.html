@@ -15,7 +15,7 @@
   <script type="text/javascript" src='js/ServiceGuide.js'></script>
   <link rel="stylesheet" type="text/css" href="css/animations.css" />
   <script src="js/modernizr.custom.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+  <script src="js/interact.min.js"></script>
   <!-- <script type="text/javascript" src='js/resizedrag.js'></script> -->
 
   <!-- Demo styles -->
@@ -107,15 +107,26 @@
       position: fixed;
       width: 30%;
       height: 25%;
+      box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
     }
   
     .window-content {
       background: #ECECEC;
       color: #333;
       border: 1px solid #a7a7a7;
-      height: 100%;
-      height:98%;
+      height: 98%;
       padding: 5px;
+      padding-top: 46px; 
+      padding-bottom: 10px;
+    }
+
+    #window-src{
+      border: 1px solid #a7a7a7;
+      -webkit-border-bottom-right-radius: 10px;
+      -moz-border-bottom-right-radius: 10px;
+      border-bottom-right-radius: 10px;
+      margin-bottom: 4px;
+      
     }
 
     .window-bigsize {
@@ -135,20 +146,13 @@
       height : 90%;
     }
   
-    .window-top,
-    .window-top-no-bind {
-      cursor: move;
-      text-align: right;
+    .window-top{
+      /* position:relative; */
+      right:20%;
       height: 20px;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-      border-top-right-radius: 5px;
-      border-top-left-radius: 5px;
-      padding: 5px;
-      background-color: #ddd;
-    }
-  
-    .window-top-no-bind {
-      cursor: inherit;
+      width:40px;
+      touch-action: none;
+      box-sizing: border-box;
     }
   
     .round {
@@ -202,14 +206,14 @@
 
 
 
-<div id="myWindow" class="window drag-widget-container">
-  <div class="window-top uistyle2">
-    <button class="round green uistyle2"></button><button class="round yellow uistyle2"></button><button
-      class="round red uistyle2"></button>
-  </div>
+<div id="myWindow" class="window">
+  <!-- <div class="window-top">
+    <button class="round green uistyle2"></button>
+    <button class="round yellow uistyle2"></button>
+    <button class="round red uistyle2"></button>
+  </div> -->
   <div class="window-content">
-    <!-- <iframe id="window-src" src="media/GRN-0116_SPCJ894_Temple_Support_Driver_Board_Rev_1.pdf"></iframe> -->
-    <iframe id="window-src" src=""></iframe>
+    <iframe id="window-src" src="" ></iframe>
   </div>
 </div>
 
@@ -323,46 +327,53 @@
     
 // }
 
-  function makeDraggable() {
-    // interact('#myWindow')
-    const position = { x: 0, y: 0 }
 
-    interact('#myWindow')
+function dragMoveListener (event) {
+    var target = event.target,
+        // keep the dragged position in the data-x/data-y attributes
+        x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
+        y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
 
-      .draggable({
-        listeners: {
-          start(event) {
-            // console.log(event.type, event.target)
-          },
-          move(event) {
-            position.x += event.dx
-            position.y += event.dy
+    // translate the element
+    target.style.webkitTransform =
+    target.style.transform =
+      'translate(' + x + 'px, ' + y + 'px)';
 
-            event.target.style.transform =
-              `translate(${position.x}px, ${position.y}px)`
-          },
-        }
-      })
-      // .resizable({
-      //   edges: { top: true, left: true, bottom: true, right: true },
-      //   listeners: {
-      //     move: function (event) {
-      //       let { x, y } = event.target.dataset
-
-      //       x = (parseFloat(x) || 0) + event.deltaRect.left
-      //       y = (parseFloat(y) || 0) + event.deltaRect.top
-
-      //       Object.assign(event.target.style, {
-      //         width: `${event.rect.width}px`,
-      //         height: `${event.rect.height}px`,
-      //         transform: `translate(${x}px, ${y}px)`
-      //       })
-
-      //       Object.assign(event.target.dataset, { x, y })
-      //     }
-      //   }
-      // })
+    // update the posiion attributes
+    target.setAttribute('data-x', x);
+    target.setAttribute('data-y', y);
   }
+
+  function makeDraggable() {
+      interact('.window')
+        .draggable({
+          onmove: window.dragMoveListener
+        })
+        .resizable({
+          edges: { left: true, right: true, bottom: true, top: true }
+        })
+        .on('resizemove', function (event) {
+          var target = event.target;
+          x = (parseFloat(target.getAttribute('data-x')) || 0),
+            y = (parseFloat(target.getAttribute('data-y')) || 0);
+
+          // update the element's style
+          target.style.width = event.rect.width + 'px';
+          target.style.height = event.rect.height + 'px';
+
+          // translate when resizing from top or left edges
+          x += event.deltaRect.left;
+          y += event.deltaRect.top;
+
+          target.style.webkitTransform = target.style.transform =
+            'translate(' + x + 'px,' + y + 'px)';
+
+          target.setAttribute('data-x', x);
+          target.setAttribute('data-y', y);
+          // target.textContent = event.rect.width + '×' + event.rect.height;
+        });
+
+    }
 
 // // Use the start/end events to simulate "snap to edge" behaviour.
 // const snapThreshold = 50;
