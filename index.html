@@ -408,7 +408,7 @@
 
   function SetMediaWindowSrc(src) {
     if(src.split('.').pop() == "pdf"){
-      src = "/pdfviewer/pdfviewer/viewer.html?file=/"+src;
+      src = "/web/viewer.html?file=/"+src;
     }
     document.getElementById('window-src').src = src;
   }
