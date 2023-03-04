@@ -18,6 +18,10 @@
   <script src="js/interact.min.js"></script>
   <!-- <script type="text/javascript" src='js/resizedrag.js'></script> -->
 
+  <!-- <script src="js/pdf.js"></script>
+    <script src="js/pdf-viewer.js"></script>
+    <link rel="stylesheet" href="css/main.css"> -->
+
   <!-- Demo styles -->
   <style>
     html,
@@ -129,7 +133,7 @@
       box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
     }
   
-    #window-src {
+    .window-src {
       left: 0px;
       top: 0px;
       margin: 0px;
@@ -229,13 +233,15 @@
 </div>
 
 
+
 <div id="myWindow" class="window">
   <button class="round red uistyle2"></button>
   <!-- <button class="round green uistyle2"></button>
   <button class="round yellow uistyle2"></button> -->
 
   <div class="window-content">
-    <iframe id="window-src" src=""></iframe>
+    <iframe id="window-src-other" class="window-src" src=""></iframe>
+    <div id="window-src-pdf" class="window-src pdfjs-viewer"></div>
   </div>
   <div class="window-resier-container">
     <div id="handle" class="window-resize"></div>
@@ -245,6 +251,7 @@
 
 <script src="js/pagetransitions.js"></script>
 <!-- <script type="text/javascript" src='js/resizedrag.js'></script> -->
+
 
  
   <script>
@@ -407,10 +414,22 @@
   }
 
   function SetMediaWindowSrc(src) {
-    if(src.split('.').pop() == "pdf"){
-      src = "/web/viewer.html?file=/"+src;
+    if (src.split('.').pop() == "pdf") {
+      // src = "/web/viewer.html?file=/"+src;
+      var winsrc_other = document.getElementById('window-src-other');
+      winsrc_other.style.display = "none";
+      var winsrc_pdf = document.getElementById('window-src-pdf');
+      winsrc_pdf.style.display = "block";
+      var pdfViewer = new PDFjsViewer($('#window-src-pdf'));
+      pdfViewer.loadDocument(src);
     }
-    document.getElementById('window-src').src = src;
+    else {
+      var winsrc_other = document.getElementById('window-src-other');
+      winsrc_other.style.display = "block";
+      var winsrc_pdf = document.getElementById('window-src-pdf');
+      winsrc_pdf.style.display = "none";
+      document.getElementById('window-src-other').src = src;
+    }
   }
 
 
@@ -424,7 +443,7 @@
     });
     //$('#i2').attr('src', 'https://example.com');
     InitMediaWindow("65%", "65%");
-
+    
   })
 
 
@@ -668,7 +687,13 @@
 
   </script>
 
-
+    <script src="js/pdf/pdf.js"></script>
+    <script src="js/pdf/pdfjs-viewer.js"></script>
+    <link rel="stylesheet" href="css/pdf/pdfjs-viewer.css">
+    <script>
+      var pdfjsLib = window['pdfjs-dist/build/pdf'];
+      pdfjsLib.GlobalWorkerOptions.workerSrc = 'js/pdf/pdf-worker.js';
+    </script>
 
 
 </body>

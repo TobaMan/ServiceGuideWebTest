@@ -5,9 +5,13 @@
   src: url("../fonts/Roboto/Roboto-Regular.ttf");
 }
 
+
+/*SCROLLBAR*/
+
 /* width */
 ::-webkit-scrollbar {
-    width: 12px;
+    width: 8px;
+    height: 8px;
     background: #ECECEC;
 }
 
@@ -16,16 +20,27 @@
     background: #ECECEC;
 }
 
+::-webkit-scrollbar-button {
+    display: none;
+}
+
+::-webkit-scrollbar-corner {							
+	background: #ECECEC;
+}
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 8px;
+    background: #a7a7a7;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
+    
 }
+
+
+/*MAIN CONFIG*/
 
 body {
     background: rgb(236, 236, 236);
@@ -38,6 +53,8 @@ body {
 .disabled{
     opacity:0.15;
 }
+
+/*NOTIFICATIONS*/
 
 .UserMessage{
     z-index: 10;
