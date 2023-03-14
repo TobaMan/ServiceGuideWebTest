@@ -1113,27 +1113,36 @@
     
     var page_container = document.getElementById("page-container");
     //var page = document.getElementsByClassName("pf");
-    page_container.addEventListener("wheel", event => {
+    // page_container.addEventListener("wheel", event => {
 
-        // if(event.ctrlKey == true){
-        //     // if(window.fullScreen){
-        //         if(event.deltaY > 0){
-        //             document.body.style.zoom=1.0;this.blur();
-        //             console.log('Zoom out');}
-        //         else{console.log('Zoom in');}
-        //     // }
-        // }
-        // else{
-            if(event.deltaY > 0){ButtonNextPage();}
-            else{ButtonLastPage();}
-        // }
+    //     // if(event.ctrlKey == true){
+    //     //     // if(window.fullScreen){
+    //     //         if(event.deltaY > 0){
+    //     //             document.body.style.zoom=1.0;this.blur();
+    //     //             console.log('Zoom out');}
+    //     //         else{console.log('Zoom in');}
+    //     //     // }
+    //     // }
+    //     // else{
+    //         if(event.deltaY > 0){ButtonNextPage();}
+    //         else{ButtonLastPage();}
+    //     // }
         
-    });
-    page_container.addEventListener("touchmove", event => {
-        page_container.dispatchEvent("wheel");
+    // });
+    // page_container.addEventListener("touchmove", event => {
+    //     page_container.dispatchEvent("wheel");
+    // });
+
+    $("#page-container").on('mousewheel', function(e) {
+        if(e.originalEvent.deltaY > 0){ButtonNextPage();}
+        else{ButtonLastPage();}
     });
 
-   
+    $("#page-container").on('touchmove', function() { //touchmove works for iOS, I don't know if Android supports it
+        $("#page-container").trigger('mousewheel');
+    });
+
+
 
 
     function DocFullScreen() {
