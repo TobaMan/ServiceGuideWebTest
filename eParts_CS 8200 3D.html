@@ -328,6 +328,12 @@ $('.C8823DHCR').on('mouseenter touchend', function(e){
         <a onclick="OpenHtmlPage('Presentation.html')" class="PRESENTATION tabuttonhome uistyle2">
             <img class="icon" src="media/home.png"/>
         </a>
+        <a onclick="PrevPageHistory()" class="tabuttonhistory-prev uistyle2">
+            <img class="icon" src="media/left.png"/>
+        </a>
+        <a onclick="NextPageHistory()" class="tabuttonhistory-next uistyle2">
+            <img class="icon" src="media/right.png"/>
+        </a>
         <a onclick="OpenHtmlPage('Documentation.html')" class="DOCUMENTATION tabutton uistyle2">
             <img class="icon" src="media/documentation48.png"/>
         </a>
@@ -339,9 +345,11 @@ $('.C8823DHCR').on('mouseenter touchend', function(e){
             <img class="icon" src="media/electricaldiagram.png"/>
             <div class="submenu DIAGRAM_PRODUCT_LIST" style="display:none"></div>
         </a>
-        <a href="#" class="EPARTS tabutton tabselected uistyle2" onclick="ShowEpartsProductChoice()">
+        <a href="#" class="EPARTS tabutton uistyle2" onclick="ShowEpartsProductChoice()">
             <div class="dropicon"></div>
             <img class="icon" src="media/part.png"/>
+            <img class="icon-refresh" src="media/refresh_round.png"/>
+            <div class="page-selected"></div>
             <div class="submenu EPARTS_PRODUCT_LIST" style="display:none"></div>
         </a>
         <a onclick="OpenHtmlPage('ErrorCode.html')" class="ERRORCODE tabutton uistyle2">
@@ -443,44 +451,62 @@ $('.C8823DHCR').on('mouseenter touchend', function(e){
 <g class="EPARTS_ZOOM">
 <image class="map" xlink:href="media/863349394367.blob"  width="1616" height="1539"></image>
 <rect class="CSPLZ079" title="SPLZ079 Sliding Motor" informations="Sliding Motor." x="20" y="392" width="170" height="35" fill="#000"></rect>
-<rect class="CSPCGM44" title="SPCGM44 3D sensor  (for unit SN# xxIMxxx OR xxINxxx)" informations="Warning!For unit SN# xxIMxxx OR xxINxxx OR xxILxxx
+<rect class="CSPCGM44" title="SPCGM44 3D sensor  (for unit SN# xxIMxxx OR xxINxxx)" informations="Warning!For unit SN# xxIMxxx OR xxINxxx OR xxILxxx
+
  For unit SN# xxIDxxx please order SPCGF81" x="716" y="943" width="186" height="58" fill="#000"></rect>
-<rect class="CSPCGM69" title="SPCGM69 X-ray Source (3D-T) and secondary collimator Assembly (for 3D unit with Scan Ceph)" informations="WARNING. Secondary collimator specific For CS8100 3D unit with Ceph. AND CS8200 3D
-For unit SN#xxIDxxx please order SPCGH63.
-For unit SN#xxINxxx please order SPCGN50.
-Xray source alone see SPCU252.
+<rect class="CSPCGM69" title="SPCGM69 X-ray Source (3D-T) and secondary collimator Assembly (for 3D unit with Scan Ceph)" informations="WARNING. Secondary collimator specific For CS8100 3D unit with Ceph. AND CS8200 3D
+
+For unit SN#xxIDxxx please order SPCGH63.
+
+For unit SN#xxINxxx please order SPCGN50.
+
+Xray source alone see SPCU252.
+
 Secondary collimator alone see SPCGM65." x="1002" y="984" width="192" height="48" fill="#000"></rect>
 <rect class="CSPCU252" title="SPCU252 Xray Source Assembly (3D)" informations="For XRAY SOURCE  and secondary collimator ASSEMBLY, please see SPCGH63/SPCGN50/SPCGM69" x="1267" y="1134" width="184" height="59" fill="#000"></rect>
-<rect class="CSPCGM65" title="SPCGM65 3D Secondary collimator assembly (for 3D unit with Scan Ceph)" informations="WARNING. Secondary collimator! For CS8100 3D unit with Ceph And CS8200 3D
-For unit SN#xxIDxxx please order SPCGF44.
-For unit SN#xxINxxx please order SPCGN51.
+<rect class="CSPCGM65" title="SPCGM65 3D Secondary collimator assembly (for 3D unit with Scan Ceph)" informations="WARNING. Secondary collimator! For CS8100 3D unit with Ceph And CS8200 3D
+
+For unit SN#xxIDxxx please order SPCGF44.
+
+For unit SN#xxINxxx please order SPCGN51.
+
  if SPCGM65  not available, please order complete X-ray source assembly equiped, SPCGM69." x="551" y="1175" width="194" height="61" fill="#000"></rect>
 <rect class="CSPCGK42" title="SPCGK42 Cable Kit for CS 8100SC Secondary collimator assembly" informations="contains cables CPA94 CPA98" x="305" y="1439" width="189" height="46" fill="#000"></rect>
 <rect class="CSPCJ889" title="SPCJ889 Secondary collimator driver Board" informations="" x="1313" y="1221" width="175" height="53" fill="#000"></rect>
 <rect class="CSPCPA93" title="SPCPA93 Secondary collimator motor Cable" informations="also included in SPCGF82" x="1424" y="869" width="177" height="47" fill="#000"></rect>
 <rect class="CSPCGF4X" title="SPCGF4X Front Motors for secondary collimator." informations="" x="882" y="1432" width="207" height="68" fill="#000"></rect>
-<rect class="CSPJR880" title="SPJR880 Rotative arm cover (X-ray source side)  (for unit SN# xxIMxxx OR xxINxxx)" informations="Warning!For unit SN# xxIMxxx OR xxINxxx OR xxILxxx
+<rect class="CSPJR880" title="SPJR880 Rotative arm cover (X-ray source side)  (for unit SN# xxIMxxx OR xxINxxx)" informations="Warning!For unit SN# xxIMxxx OR xxINxxx OR xxILxxx
+
  For unit SN# xxIDxxx please order SPJR846" x="22" y="233" width="167" height="44" fill="#000"></rect>
 <rect class="CSPCGT88" title="SPCGT88 Counterweight block (for unit SN# xxILxxx)" informations="Warning! Contains only back sensor counterwieight as in CS 8200 3D" x="39" y="777" width="188" height="55" fill="#000"></rect>
-<rect class="CSPHY580" title="SPHY580 Sensor plastic strip (for unit SN# xxIMxxx OR xxINxxx)" informations="Warning!For unit SN# xxIMxxx OR xxINxxx OR xxILxxx
+<rect class="CSPHY580" title="SPHY580 Sensor plastic strip (for unit SN# xxIMxxx OR xxINxxx)" informations="Warning!For unit SN# xxIMxxx OR xxINxxx OR xxILxxx
+
  For unit SN# xxIDxxx please order SPHY456 sensor Collar" x="692" y="823" width="179" height="41" fill="#000"></rect>
-<rect class="CSPHY579" title="SPHY579 3D Sensor cover  (for unit SN# xxIMxxx OR xxINxxx)" informations="Warning!For unit SN# xxIMxxx OR xxINxxx OR xxILxxx.
+<rect class="CSPHY579" title="SPHY579 3D Sensor cover  (for unit SN# xxIMxxx OR xxINxxx)" informations="Warning!For unit SN# xxIMxxx OR xxINxxx OR xxILxxx.
+
  For unit SN# xxIDxxx please order SPJR856" x="15" y="1151" width="181" height="40" fill="#000"></rect>
-<rect class="CSPCGT80" title="SPCGT80 Rotative arm cable kit (for unit SN# xxILxxx)" informations="Contains cables in grey rotating Carter (CPB38 CPA44 CPA45 CPA46 CPA49 CPB41 CPB42 CPA93). Warning: only for unit SN# xxIMxxx OR xxINxxx and units with a SC module.
-For unit SN# xxIDxxx, please order SPCGF83
+<rect class="CSPCGT80" title="SPCGT80 Rotative arm cable kit (for unit SN# xxILxxx)" informations="Contains cables in grey rotating Carter (CPB38 CPA44 CPA45 CPA46 CPA49 CPB41 CPB42 CPA93). Warning: only for unit SN# xxIMxxx OR xxINxxx and units with a SC module.
+
+For unit SN# xxIDxxx, please order SPCGF83
+
 SPCGM49 contains same cables but without CS 8200 cable clamp for sliding" x="636" y="586" width="183" height="52" fill="#000"></rect>
 <rect class="CSPCGM57" title="SPCGM57 Sliding Cable Kit" informations="" x="1132" y="50" width="181" height="57" fill="#000"></rect>
 <rect class="CSPCGM51" title="SPCGM51 Sliding sensor Cable Kit" informations="" x="11" y="438" width="174" height="43" fill="#000"></rect>
 <rect class="CSPCGT83" title="SPCGT83 Sliding assembly" informations="" x="207" y="411" width="172" height="53" fill="#000"></rect>
 <rect class="CSPCGK61" title="SPCGK61 Sliding boards" informations="Contains CJ902 sliding board and CJ848 microprocessor board)" x="719" y="128" width="178" height="48" fill="#000"></rect>
 <rect class="CSPCJ858B" title="SPCJ858B Detector board" informations="Vertical mvmt and 3D sliding" x="18" y="1309" width="397" height="94" fill="#000"></rect>
-<rect class="CSPCGD82B" title="SPCGD82B Power board" informations="For information : 
-CS 8100SC 3D requires PCB CJ855 V6A minimum
+<rect class="CSPCGD82B" title="SPCGD82B Power board" informations="For information : 
+
+CS 8100SC 3D requires PCB CJ855 V6A minimum
+
 CS8100 3D requires PCB CJ855 V5A minimum" x="1169" y="266" width="201" height="58" fill="#000"></rect>
-<rect class="CSPHY696" title="SPHY696 Rotative arm cover (power board side for unit SN# xxILxxx)" informations="Warning! For CS 8200 3D only xxILxxx
-For 3D unit SN# xxIMxxx OR xxINxxx please order SPHY577
+<rect class="CSPHY696" title="SPHY696 Rotative arm cover (power board side for unit SN# xxILxxx)" informations="Warning! For CS 8200 3D only xxILxxx
+
+For 3D unit SN# xxIMxxx OR xxINxxx please order SPHY577
+
 For 2D unit and 3D unit SN# xxIDxxx please order SPHY454" x="1176" y="642" width="172" height="54" fill="#000"></rect>
-<rect class="CSPCJ848" title="SPCJ848 Microprocessor board" informations="Micro board used on SPCGD83B/SPCGD82B (CJ848 included) 
+<rect class="CSPCJ848" title="SPCJ848 Microprocessor board" informations="Micro board used on SPCGD83B/SPCGD82B (CJ848 included) 
+
 Compliant with SPCJ889/SPCJ898 (CJ848 not included)" x="1398" y="1304" width="175" height="54" fill="#000"></rect>
 <rect class="CSPCJ889" title="SPCJ889 Secondary collimator driver Board" informations="" x="1313" y="1221" width="175" height="53" fill="#000"></rect>
 <rect class="CSPCPA93" title="SPCPA93 Secondary collimator motor Cable" informations="also included in SPCGF82" x="1424" y="869" width="177" height="47" fill="#000"></rect>
@@ -492,8 +518,10 @@ Compliant with SPCJ889/SPCJ898 (CJ848 not included)" x="1398" y="1304" width="17
 <g class="EPARTS_ZOOM">
 <image class="map" xlink:href="media/809776245325.blob"  width="2966" height="2076"></image>
 <rect class="CSPLF445" title="SPLF445 Line filter 250 V - 16 A mono 2-stage" informations="" x="73" y="214" width="345" height="94" fill="#000"></rect>
-<rect class="CSPCGD83B" title="SPCGD83B Motor board CJ856 (+microboard CJ848)" informations="For information : 
-CS 8100SC 3D requires PCB CJ856 V7A minimum
+<rect class="CSPCGD83B" title="SPCGD83B Motor board CJ856 (+microboard CJ848)" informations="For information : 
+
+CS 8100SC 3D requires PCB CJ856 V7A minimum
+
 CS8100 3D requires PCB CJ856 V6A minimum" x="0" y="402" width="421" height="94" fill="#000"></rect>
 <rect class="CSPJZ038" title="SPJZ038 POWER SUPPLY 225W AC/DC 5.25V" informations="" x="79" y="734" width="341" height="94" fill="#000"></rect>
 <rect class="CSPJZ036" title="SPJZ036 POWER FACTOR CORRECTION BOARD (400V DC)" informations="" x="78" y="922" width="340" height="94" fill="#000"></rect>

@@ -319,6 +319,12 @@ $('.C88100RA').on('mouseenter touchend', function(e){
         <a onclick="OpenHtmlPage('Presentation.html')" class="PRESENTATION tabuttonhome uistyle2">
             <img class="icon" src="media/home.png"/>
         </a>
+        <a onclick="PrevPageHistory()" class="tabuttonhistory-prev uistyle2">
+            <img class="icon" src="media/left.png"/>
+        </a>
+        <a onclick="NextPageHistory()" class="tabuttonhistory-next uistyle2">
+            <img class="icon" src="media/right.png"/>
+        </a>
         <a onclick="OpenHtmlPage('Documentation.html')" class="DOCUMENTATION tabutton uistyle2">
             <img class="icon" src="media/documentation48.png"/>
         </a>
@@ -330,9 +336,11 @@ $('.C88100RA').on('mouseenter touchend', function(e){
             <img class="icon" src="media/electricaldiagram.png"/>
             <div class="submenu DIAGRAM_PRODUCT_LIST" style="display:none"></div>
         </a>
-        <a href="#" class="EPARTS tabutton tabselected uistyle2" onclick="ShowEpartsProductChoice()">
+        <a href="#" class="EPARTS tabutton uistyle2" onclick="ShowEpartsProductChoice()">
             <div class="dropicon"></div>
             <img class="icon" src="media/part.png"/>
+            <img class="icon-refresh" src="media/refresh_round.png"/>
+            <div class="page-selected"></div>
             <div class="submenu EPARTS_PRODUCT_LIST" style="display:none"></div>
         </a>
         <a onclick="OpenHtmlPage('ErrorCode.html')" class="ERRORCODE tabutton uistyle2">
@@ -416,21 +424,27 @@ $('.C88100RA').on('mouseenter touchend', function(e){
 <svg id="I88100RA" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="97vh" viewBox="3412 5540 3412 5540" style="display:none;">
 <g class="EPARTS_ZOOM">
 <image class="map" xlink:href="media/268002349301.blob"  width="3412" height="5540"></image>
-<rect class="CSPJR846" title="SPJR846 Rotative arm cover (generator side)" informations="Warning! For unit SN# xxIDxxx.
+<rect class="CSPJR846" title="SPJR846 Rotative arm cover (generator side)" informations="Warning! For unit SN# xxIDxxx.
+
 For unit SN# xxIMxxx OR xxINxxx please order SPJR880" x="123" y="3193" width="326" height="91" fill="#000"></rect>
-<rect class="CSPCJ848" title="SPCJ848 Microprocessor board" informations="Micro board used on SPCGD83B/SPCGD82B (CJ848 included) 
+<rect class="CSPCJ848" title="SPCJ848 Microprocessor board" informations="Micro board used on SPCGD83B/SPCGD82B (CJ848 included) 
+
 Compliant with SPCJ889/SPCJ898 (CJ848 not included)" x="3021" y="4600" width="326" height="90" fill="#000"></rect>
-<rect class="CSPHY454" title="SPHY454 Rotative arm cover (power board side)" informations="Warning! For 2D unit and 3D unit SN# xxIDxxx.
+<rect class="CSPHY454" title="SPHY454 Rotative arm cover (power board side)" informations="Warning! For 2D unit and 3D unit SN# xxIDxxx.
+
 For unit SN# xxIMxxx OR xxINxxx please order SPHY577" x="2463" y="3231" width="337" height="91" fill="#000"></rect>
 <rect class="CSPHY455" title="SPHY455 Sensor cover" informations="Carestream Dental branded part. Existing alternative brand see  SPJR849" x="96" y="4926" width="338" height="91" fill="#000"></rect>
-<rect class="CSPHY456" title="SPHY456 Sensor cover collar" informations="Warning! For unit SN# xxIDxxx.
+<rect class="CSPHY456" title="SPHY456 Sensor cover collar" informations="Warning! For unit SN# xxIDxxx.
+
 For unit SN# xxIMxxx OR xxINxxx please order SPHY580 plastic strip" x="85" y="1288" width="337" height="91" fill="#000"></rect>
 <rect class="CSPCGC95" title="SPCGC95 CS 8100 sensor" informations="" x="191" y="3663" width="357" height="91" fill="#000"></rect>
 <rect class="CSPCU236B" title="SPCU236B Xray Source Assembly (2D)" informations="Warning ! Not for China if unit manufactured after January 2017 (SN#>FAx001) see SPCU244CH" x="2772" y="2146" width="387" height="90" fill="#000"></rect>
 <rect class="CSPCGL47" title="SPCGL47 Head positioning mask" informations="Carestream Dental branded part. Existing alternative brand see SPCGL50. (Replaces previous SPCGD45)" x="1024" y="4029" width="346" height="90" fill="#000"></rect>
 <rect class="CSPCGC90" title="SPCGC90 Secondary collimator assembly" informations="" x="2352" y="2255" width="357" height="91" fill="#000"></rect>
-<rect class="CSPCGD82B" title="SPCGD82B Power board" informations="For information : 
-CS 8100SC 3D requires PCB CJ855 V6A minimum
+<rect class="CSPCGD82B" title="SPCGD82B Power board" informations="For information : 
+
+CS 8100SC 3D requires PCB CJ855 V6A minimum
+
 CS8100 3D requires PCB CJ855 V5A minimum" x="1949" y="3270" width="403" height="90" fill="#000"></rect>
 <rect class="CSPHY463" title="SPHY463 Frontal head rest" informations="" x="1163" y="4546" width="337" height="90" fill="#000"></rect>
 <rect class="CSPCGD41" title="SPCGD41 Rotative arm cable kit" informations="Contains cables in white rotating carter CPA43 CPA44 CPA45 CPA46 CPA47 and CPA49. Can be used for units with a SC module." x="1093" y="3802" width="349" height="90" fill="#000"></rect>
@@ -461,10 +475,13 @@ CS8100 3D requires PCB CJ855 V5A minimum" x="1949" y="3270" width="403" height="
 <rect class="CSPJZ036" title="SPJZ036 POWER FACTOR CORRECTION BOARD (400V DC)" informations="" x="111" y="1133" width="352" height="97" fill="#000"></rect>
 <rect class="CSPCPA36" title="SPCPA36 ON/OFF switch" informations="" x="1467" y="454" width="382" height="97" fill="#000"></rect>
 <rect class="CSPCPA38" title="SPCPA38 Stop switch" informations="" x="1465" y="621" width="382" height="97" fill="#000"></rect>
-<rect class="CSPCGD83B" title="SPCGD83B Motor board CJ856 (+microboard CJ848)" informations="For information : 
-CS 8100SC 3D requires PCB CJ856 V7A minimum
+<rect class="CSPCGD83B" title="SPCGD83B Motor board CJ856 (+microboard CJ848)" informations="For information : 
+
+CS 8100SC 3D requires PCB CJ856 V7A minimum
+
 CS8100 3D requires PCB CJ856 V6A minimum" x="16" y="590" width="446" height="96" fill="#000"></rect>
-<rect class="CSPCJ848" title="SPCJ848 Microprocessor board" informations="Micro board used on SPCGD83B/SPCGD82B (CJ848 included) 
+<rect class="CSPCJ848" title="SPCJ848 Microprocessor board" informations="Micro board used on SPCGD83B/SPCGD82B (CJ848 included) 
+
 Compliant with SPCJ889/SPCJ898 (CJ848 not included)" x="3021" y="4600" width="326" height="90" fill="#000"></rect>
 </g></svg>
 

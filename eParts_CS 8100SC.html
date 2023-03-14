@@ -306,6 +306,12 @@ $('.C88100CB').on('mouseenter touchend', function(e){
         <a onclick="OpenHtmlPage('Presentation.html')" class="PRESENTATION tabuttonhome uistyle2">
             <img class="icon" src="media/home.png"/>
         </a>
+        <a onclick="PrevPageHistory()" class="tabuttonhistory-prev uistyle2">
+            <img class="icon" src="media/left.png"/>
+        </a>
+        <a onclick="NextPageHistory()" class="tabuttonhistory-next uistyle2">
+            <img class="icon" src="media/right.png"/>
+        </a>
         <a onclick="OpenHtmlPage('Documentation.html')" class="DOCUMENTATION tabutton uistyle2">
             <img class="icon" src="media/documentation48.png"/>
         </a>
@@ -317,9 +323,11 @@ $('.C88100CB').on('mouseenter touchend', function(e){
             <img class="icon" src="media/electricaldiagram.png"/>
             <div class="submenu DIAGRAM_PRODUCT_LIST" style="display:none"></div>
         </a>
-        <a href="#" class="EPARTS tabutton tabselected uistyle2" onclick="ShowEpartsProductChoice()">
+        <a href="#" class="EPARTS tabutton uistyle2" onclick="ShowEpartsProductChoice()">
             <div class="dropicon"></div>
             <img class="icon" src="media/part.png"/>
+            <img class="icon-refresh" src="media/refresh_round.png"/>
+            <div class="page-selected"></div>
             <div class="submenu EPARTS_PRODUCT_LIST" style="display:none"></div>
         </a>
         <a onclick="OpenHtmlPage('ErrorCode.html')" class="ERRORCODE tabutton uistyle2">

@@ -1010,15 +1010,23 @@
         <a onclick="OpenHtmlPage('Presentation.html')" class="PRESENTATION tabuttonhome uistyle2">
             <img class="icon" src="media/home.png"/>
         </a>
+		<a onclick="PrevPageHistory()" class="tabuttonhistory-prev uistyle2">
+            <img class="icon" src="media/left.png"/>
+        </a>
+        <a onclick="NextPageHistory()" class="tabuttonhistory-next uistyle2">
+            <img class="icon" src="media/right.png"/>
+        </a>
         <a onclick="OpenHtmlPage('Documentation.html')" class="DOCUMENTATION tabutton uistyle2">
             <img class="icon" src="media/documentation48.png"/>
         </a>
         <a onclick="OpenHtmlPage('SearchText.html')" class="TEXTIMAGE tabutton uistyle2">
             <img class="icon" src="media/searchtext.png"/>
         </a>
-        <a href="#" class="ELECDIAGRAM tabutton tabselected uistyle2" onclick="ShowDiagramProductChoice()">
+        <a href="#" class="ELECDIAGRAM tabutton uistyle2" onclick="ShowDiagramProductChoice()">
             <div class="dropicon"></div>
             <img class="icon" src="media/electricaldiagram.png"/>
+			<img class="icon-refresh" src="media/refresh_round.png"/>
+            <div class="page-selected"></div>
             <div class="submenu DIAGRAM_PRODUCT_LIST" style="display:none"></div>
         </a>
         <a href="#" class="EPARTS tabutton uistyle2" onclick="ShowEpartsProductChoice()">

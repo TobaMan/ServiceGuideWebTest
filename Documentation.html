@@ -34,11 +34,25 @@
     <!-- <script type="text/javascript" src='js/pace.js'></script> -->
     <script type="text/javascript" src='js/print.js'></script>
 
+    <script src="js/panzoom.js"></script>
+
     <style>
         #page-container {
             overflow-y: hidden;
             /* Hide vertical scrollbar */
         }
+
+        .pf{
+            background: #ECECEC;
+        }
+
+        /* .pf img{
+            opacity:0.5;
+        } */
+
+        /* #page-container{
+            background: black;
+        } */
     
         .thumbnail {
             z-index: 2;
@@ -565,8 +579,7 @@
 
         try {
             pdf2htmlEX.defaultViewer = new pdf2htmlEX.Viewer({});
-        } catch (e) {
-        }
+        } catch (e) {}
 
         function onDocumentationBodySize() {
             pdf2htmlEX.defaultViewer.fit_height();
@@ -751,6 +764,8 @@
                 header: APLLICATION_COPYRIGHT,
                 style: PRINTHEADER});}
 
+        
+
         function InitDocumentation(){
             LoadAllThumbnails();
             $(".thumbnail").ready(function () {
@@ -770,6 +785,27 @@
             });
             //Outside page wants to navigate inside documentation
             GoToDocLocation();
+
+
+            
+            // var pageimg = document.getElementsByClassName("pf")[
+            //     pdf2htmlEX.defaultViewer.cur_page_idx];
+
+            var iterpg = 0;
+            var pageimg = document.getElementsByClassName("pf");
+            for (var c = 0; c < chapters_names.length; c++) {
+                var size = chapters_npg[c];
+                var chapter = chapters_names[c];
+                var dir = GetThumbDir(chapter);
+                for (var i = 0; i < size; i++) {
+                    var thname  = dir + "page_" + i + ".jpg";
+                    pageimg[iterpg].style.backgroundImage = "url("+thname+")";
+                    pageimg[iterpg].style.backgroundSize = "contain";
+                    iterpg++;
+                }
+            }
+
+
         }
 
         $(document).ready(function () {
@@ -777,44 +813,6 @@
                 InitDocumentation();
             }
         });
-
-        
-        // window.addEventListener("wheel", event => {
-        //     const delta = Math.sign(event.deltaY);
-        //     console.info(delta);
-        // });
-
-        // $('.pf w0 h0').bind('mousewheel', function(e){
-        //     // if(e.originalEvent.wheelDelta /120 > 0) {
-        //     //     console.log('scrolling up !');
-        //     // }
-        //     // else{
-        //     //     console.log('scrolling down !');
-        //     // }
-        //     const delta = Math.sign(e.originalEvent.wheelDelta);
-        //     console.info(delta);
-
-        // });
-
-        // $("#page-container").bind('mousewheel DOMMouseScroll', function (event) {
-        //     // if (event.originalEvent.wheelDelta > 0 || event.originalEvent.detail < 0) {
-        //     //     // scroll up
-        //     // }
-        //     // else {
-        //     //     // scroll down
-        //     // }
-        //     const delta = Math.sign(event.originalEvent.wheelDelta);
-        //     console.info(delta);
-
-        // });
-
-//         $("#pf1").on( 'scroll', function(){
-//    console.log('Event Fired');
-// });
-
-// function myFunction(){
-//     console.log("scrolling !");
-// }
 
 
         //Outside page wants to navigate inside documentation
@@ -1092,17 +1090,44 @@
 <!-- <img alt="" src="pdf2htmlEX-64x64.png"/> -->
 </div>
 
-
 <script>
+
+
+var iterpg = 0;
+            var pageimg = document.getElementsByClassName("pf");
+            for (var c = 0; c < chapters_names.length; c++) {
+                var size = chapters_npg[c];
+                var chapter = chapters_names[c];
+                var dir = GetThumbDir(chapter);
+                for (var i = 0; i < size; i++) {
+                    var thname  = dir + "page_" + i + ".jpg";
+                    pageimg[iterpg].style.backgroundImage = "url("+thname+")";
+                    pageimg[iterpg].style.backgroundSize = "contain";
+                    iterpg++;
+                }
+            }
+
+
+    var fscreen = false;
+    var pzoom = 0;
     
     var page_container = document.getElementById("page-container");
+    //var page = document.getElementsByClassName("pf");
     page_container.addEventListener("wheel", event => {
-        if(event.deltaY > 0){
-            ButtonNextPage();
-        }
-        else{
-            ButtonLastPage();
-        }
+
+        // if(event.ctrlKey == true){
+        //     // if(window.fullScreen){
+        //         if(event.deltaY > 0){
+        //             document.body.style.zoom=1.0;this.blur();
+        //             console.log('Zoom out');}
+        //         else{console.log('Zoom in');}
+        //     // }
+        // }
+        // else{
+            if(event.deltaY > 0){ButtonNextPage();}
+            else{ButtonLastPage();}
+        // }
+        
     });
 
 
@@ -1130,19 +1155,143 @@
                 document.webkitExitFullscreen();
             } else if (document.msExitFullscreen) { /* IE/Edge */
                 document.msExitFullscreen();}}
-        if ((window.fullScreen) ||
-            (window.innerWidth == screen.width && window.innerHeight == screen.height)) {
-                document.getElementById("imgfscreen").src = "media/fullscreen.png";
+            if (IsFullScreen()) {
+                // document.getElementById("imgfscreen").src = "media/fullscreen.png";
                 closeFullscreen();}
-        else{
-            document.getElementById("imgfscreen").src = "media/exitfullscreen.png";
-            openFullscreen();
-        }
+            else{
+                // document.getElementById("imgfscreen").src = "media/exitfullscreen.png";   
+                openFullscreen();}
     }
 
     page_container.addEventListener("dblclick", event => {
+        // page_container.style.overflow = "scroll";
+        fscreen = !fscreen;
         DocFullScreen();
+
+        if (fscreen){
+            var page = document.getElementsByClassName("pf")[
+                pdf2htmlEX.defaultViewer.cur_page_idx];
+            pzoom = panzoom(page,{ 
+                contain: 'outside',
+                zoomSpeed:0.5,
+                minZoom: 1,
+                maxZoom: 3}
+            );
+        }
+        else{
+            //panzoom(null);
+            pzoom.moveTo(0, 0);
+            pzoom.zoomAbs(0, 0, 1);
+            pzoom.pause();
+            // pdf2htmlEX.defaultViewer.fit_height();
+        }
     });
+
+    // page_container.addEventListener("click", event => {
+    //     //pdf2htmlEX.defaultViewer.fit_height();
+    //     pdf2htmlEX.defaultViewer.fit_width();
+    //     pdf2htmlEX.defaultViewer.rescale
+    //     // if (IsFullScreen()){
+    //     //     console.log("fullscreen");
+    //     //     pdf2htmlEX.defaultViewer.fit_width();
+    //     // }
+    //     // else{
+    //     //     console.log("normalscreen");
+    //     //     pdf2htmlEX.defaultViewer.fit_height();
+    //     // }
+    // });
+
+    // var scale = 1,
+    //     panning = false,
+    //     xoff = 0,
+    //     yoff = 0,
+    //     start = {x: 0, y: 0},
+    //     doc = page_container;
+    // page_container.addEventListener("wheel", e => {
+    //     // e.preventDefault();
+    //     // take the scale into account with the offset
+    //     var xs = (e.clientX - xoff) / scale,
+    //         ys = (e.clientY - yoff) / scale,
+    //         delta = (e.wheelDelta ? e.wheelDelta : -e.deltaY);
+    //     // get scroll direction & set zoom level
+    //     (delta > 0) ? (scale = scale/0.9) : (scale = scale*0.9);
+    //     // reverse the offset amount with the new scale
+    //     xoff = e.clientX - xs * scale;
+    //     yoff = e.clientY - ys * scale;
+    //     pdf2htmlEX.defaultViewer.rescale(scale,false,[xoff,yoff]);
+    //     console.log(scale);
+
+    // });
+
+
+
+    // var scale = 1,
+    //     panning = false,
+    //     xoff = 0,
+    //     yoff = 0,
+    //     start = {x: 0, y: 0},
+    //     doc = page_container;
+
+    // function setTransform() {
+    //     doc.style.transform = "translate(" + xoff + "px, " + yoff + "px) scale(" + scale + ")";
+    //     // doc.style.transform = "translate(" + xoff + "px, " + yoff + "px)";
+    //     // pdf2htmlEX.defaultViewer.rescale(scale, true, [xoff,yoff]);
+    //     // doc.style.transform = "scale(" + scale + ")";
+
+    //     // var rect = doc.getBoundingClientRect();
+    //     // var fixed_point = [e.clientX - rect['left'] - doc.clientLeft
+    //     //                   ,e.clientY - rect['top'] - doc.clientTop];
+    //     // // pdf2htmlEX.defaultViewer.rescale(scale, true, fixed_point);
+    //     // xoff = fixed_point[0];
+    //     // yoff = fixed_point[1];
+    //     // doc.style.transform = "translate(" + xoff + "px, " + yoff + "px) scale(" + scale + ")";
+    // }
+    // doc.onmousedown = function(e) {
+    //     e.preventDefault();
+    //     start = {x: e.clientX - xoff, y: e.clientY - yoff};    
+    //     panning = true;
+    // }
+    // doc.onmouseup = function(e) {
+    //     panning = false;
+    // }
+    // doc.onmousemove = function(e) {
+    //     // e.preventDefault();         
+    //     if (!panning) {
+    //         return;
+    //     }
+    //     xoff = (e.clientX - start.x);
+    //     yoff = (e.clientY - start.y);
+    //     // doc.style.transform = "translate(" + xoff + "px, " + yoff + "px)";
+    //     setTransform();
+    // }
+    // doc.onwheel = function(e) {
+    //     // e.preventDefault();
+    //     // take the scale into account with the offset
+        
+
+    //     var rect = doc.getBoundingClientRect();
+    //     var fixed_point = [e.clientX - rect['left'] - doc.clientLeft
+    //                       ,e.clientY - rect['top'] - doc.clientTop];
+    //     // xoff = fixed_point[0];
+    //     // yoff = fixed_point[1];
+
+    //     var xs = (fixed_point[0] - xoff) / scale,
+    //         ys = (fixed_point[1] - yoff) / scale;
+
+    //     var delta = (e.wheelDelta ? e.wheelDelta : -e.deltaY);
+    //     // get scroll direction & set zoom level
+    //     (delta > 0) ? (scale = scale/0.9) : (scale = scale*0.9);
+    //     // reverse the offset amount with the new scale
+    //     xoff = e.clientX - xs * scale;
+    //     yoff = e.clientY - ys * scale;
+    //     // pdf2htmlEX.defaultViewer.rescale(scale,false,[xoff,yoff]);
+
+    //     setTransform();
+    //     console.log(scale);   
+    // }
+
+
+
 
 
 </script>
@@ -1155,8 +1304,16 @@
         <a onclick="OpenHtmlPage('Presentation.html')" class="PRESENTATION tabuttonhome uistyle2">
             <img class="icon" src="media/home.png"/>
         </a>
-        <a onclick="OpenHtmlPage('Documentation.html')" class="DOCUMENTATION tabutton tabselected uistyle2">
+        <a onclick="PrevPageHistory()" class="tabuttonhistory-prev uistyle2">
+            <img class="icon" src="media/left.png"/>
+        </a>
+        <a onclick="NextPageHistory()" class="tabuttonhistory-next uistyle2">
+            <img class="icon" src="media/right.png"/>
+        </a>
+        <a onclick="OpenHtmlPage('Documentation.html')" class="DOCUMENTATION tabutton uistyle2">
             <img class="icon" src="media/documentation48.png"/>
+            <img class="icon-refresh" src="media/refresh_round.png"/>
+            <div class="page-selected"></div>
         </a>
         <a onclick="OpenHtmlPage('SearchText.html')" class="TEXTIMAGE tabutton uistyle2">
             <img class="icon" src="media/searchtext.png"/>

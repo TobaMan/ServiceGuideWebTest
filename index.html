@@ -16,11 +16,6 @@
   <link rel="stylesheet" type="text/css" href="css/animations.css" />
   <script src="js/modernizr.custom.js"></script>
   <script src="js/interact.min.js"></script>
-  <!-- <script type="text/javascript" src='js/resizedrag.js'></script> -->
-
-  <!-- <script src="js/pdf.js"></script>
-    <script src="js/pdf-viewer.js"></script>
-    <link rel="stylesheet" href="css/main.css"> -->
 
   <!-- Demo styles -->
   <style>
@@ -84,8 +79,8 @@
     }
   
     /* .pt-page-1 {
-          visibility: visible;
-        } */
+            visibility: visible;
+          } */
   
   
     .app-page {
@@ -110,9 +105,12 @@
       position: fixed;
       width: 30%;
       height: 25%;
+      /* ------------------------------------- */
+      /* Activer pour l'interaction mobile */
       -ms-touch-action: none;
       touch-action: none;
       box-sizing: border-box;
+      /* ------------------------------------- */
       border-radius: 4px;
       -webkit-border-radius: 4px;
       -moz-border-radius: 4px;
@@ -144,23 +142,33 @@
       -webkit-border-bottom-right-radius: 10px;
       -moz-border-bottom-right-radius: 10px;
       border-bottom-right-radius: 10px;
-      /* margin-bottom: 4px; */
+    }
   
+    #window-pdf {
+      position: relative;
+      width: 100%;
+      height: 100%;
     }
-
-    .window-resier-container{
-      position:relative;
+  
+    /* #window-pdf-textlayer {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    } */
+  
+    .window-resizer-container {
+      position: relative;
     }
-
+  
     .window-resize {
-      position:absolute;
+      position: absolute;
       bottom: 0;
       right: 0;
       width: 0px;
-    height:0px;
-    border-bottom: 14px solid #a7a7a7;
-    border-left: 14px solid transparent;
-    opacity: 0.4;
+      height: 0px;
+      border-bottom: 14px solid #a7a7a7;
+      border-left: 14px solid transparent;
+      opacity: 0.4;
     }
   
     .window-bigsize {
@@ -175,7 +183,7 @@
       left: 10%;
       top: 10%;
       /* margin-top: -20%;
-        margin-left: -50%; */
+          margin-left: -50%; */
       width: 90%;
       height: 90%;
     }
@@ -206,7 +214,7 @@
     #myWindow {
       left: 0px;
       top: 0px;
-      z-index: 99999;
+      z-index: 999;
     }
   </style>
 
@@ -221,17 +229,9 @@
 <div id="pt-main" class="pt-perspective">
   <div class="pt-page pt-page-1"><iframe class="app-page" id="pg1" src="Presentation.html"></iframe></div>
   <div class="pt-page pt-page-2"><iframe class="app-page" id="pg2" src="Documentation.html"></iframe></div>
-  <div class="pt-page pt-page-3"><iframe class="app-page" src="SearchText.html"></iframe></div>
-  <div class="pt-page pt-page-4"><iframe class="app-page" src="ElectricalDiagram_CS 8100.html"></iframe></div>
-  <div class="pt-page pt-page-5"><iframe class="app-page" src="ElectricalDiagram_CS 8100 3D.html"></iframe></div>
-  <div class="pt-page pt-page-6"><iframe class="app-page" src="ElectricalDiagram_CS 8100SC.html"></iframe></div>
-  <div class="pt-page pt-page-7"><iframe class="app-page" src="ElectricalDiagram_CS 8100SC 3D.html"></iframe></div>
-  <div class="pt-page pt-page-8"><iframe class="app-page" src="ElectricalDiagram_CS 8200 3D.html"></iframe></div>
-  <div class="pt-page pt-page-9"><iframe class="app-page" src="ElectricalDiagram_CS 8200 3D with SC.html"></iframe></div>
-  <div class="pt-page pt-page-10"><iframe class="app-page" src="eParts_CS 8100 3D.html"></iframe></div>
-  <div class="pt-page pt-page-11"><iframe class="app-page" src="ErrorCode.html"></iframe></div>
+  <div class="pt-page pt-page-3"><iframe class="app-page" id="pg3" src="SearchText.html"></iframe></div>
+  <div class="pt-page pt-page-4"><iframe class="app-page" id="pg4" src="ErrorCode.html"></iframe></div>
 </div>
-
 
 
 <div id="myWindow" class="window">
@@ -241,26 +241,91 @@
 
   <div class="window-content">
     <iframe id="window-src-other" class="window-src" src=""></iframe>
-    <div id="window-src-pdf" class="window-src pdfjs-viewer"></div>
+    <div id="window-src-pdf" class="window-src">
+      <div id="window-pdf" class="pdfjs-viewer"></div>
+      <div id="window-pdf-textlayer" class="textLayer"></div>
+    </div>
   </div>
-  <div class="window-resier-container">
+
+  <div class="window-resizer-container">
     <div id="handle" class="window-resize"></div>
   </div>
 </div>
 
 
-<script src="js/pagetransitions.js"></script>
+
 <!-- <script type="text/javascript" src='js/resizedrag.js'></script> -->
 
 
  
   <script>
 
+  var oldpage = 0;
+  var usehitory = false;
+  var currentpage = 1;
+  var visitedpage = [0];
+  var curvisited = -1;
+
 
   var ANIM_PRESENTATION = 40;
   var ANIM_EDIAG_EPARTS = 4;
-  var ANIM_OTHER = 1;//67;//54;//36;//51;//36;//16;                                                                                                                                                                                                                                                                                                                                                   ;
+  // var ANIM_OTHER = 1;//67;//54;//36;//51;//36;//16;    
+  var ANIM_OTHER = 68;//67;//54;//36;//51;//36;//16;  
+  var ANIM_LAST = 1;//67;//54;//36;//51;//36;//16;  
+  var ANIM_NEXT = 2;//67;//54;//36;//51;//36;//16;
+  
+  
+    function AddPageHistory(page){
+      console.log(visitedpage);
+      if(usehitory){
+          usehitory = false;
+          return;}
+      visitedpage = visitedpage.slice(0,curvisited+1);
+      if(page == visitedpage[visitedpage.length-1]){return;}
+      visitedpage.push(page);
+      curvisited = visitedpage.length-1;}
 
+    function ButtonLastPage() {
+      if (visitedpage.length == 0) {return;}
+      if (curvisited < 0) {curvisited = 0;return;}
+      var pagenum = visitedpage[curvisited];
+      var cpage = currentpage;
+      if((pagenum == cpage) && (curvisited >= 1)){
+          curvisited = curvisited - 1;
+          pagenum = visitedpage[curvisited];}
+      usehitory = true;
+      console.log(pagenum);
+      currentpage = pagenum;
+      PageTransitions.setPage(pagenum, ANIM_LAST);}
+
+    function ButtonNextPage() {
+      var size = visitedpage.length;
+      if (size == 0) {return;}
+      if (curvisited >= size) {curvisited = size-1;return;}
+      var pagenum = visitedpage[curvisited];
+      var cpage = currentpage;
+      if((pagenum == cpage) && (curvisited <= size-2)){
+          curvisited = curvisited + 1;
+          pagenum = visitedpage[curvisited];}
+      usehitory = true;
+      currentpage = pagenum;
+      PageTransitions.setPage(pagenum, ANIM_NEXT);}
+
+    
+    function GoToPage(n, animation){
+      if (n !== oldpage){
+        currentpage = n;
+        PageTransitions.setPage(currentpage, animation);
+        AddPageHistory(currentpage);
+        oldpage = currentpage;}
+      else{ReloadPage(n);}
+    }
+
+    function ReloadPage(n){
+      var id = 'pg'+(n+1).toString();
+      // document.getElementById(id).contentWindow.location.reload();
+      document.getElementById(id).src = document.getElementById(id).src
+    }
 
     window.onmessage = function (event) {
 
@@ -276,33 +341,36 @@
         }
       }
 
+      if (event.data == "_prev_page_history_") {
+        ButtonLastPage();
+      }
+      if (event.data == "_next_page_history_") {
+        ButtonNextPage();
+      }
       if (event.data == 'mframe_goto_Presentation.html') {
-        PageTransitions.setPage(0, ANIM_PRESENTATION);
+        GoToPage(0, ANIM_PRESENTATION);
       }
       if (event.data == 'mframe_goto_Documentation.html') {
         SendCustomEventToIframe("pg2", "shown");
-        PageTransitions.setPage(1, ANIM_OTHER);
+        GoToPage(1, ANIM_OTHER);
       }
       if (event.data == 'mframe_goto_SearchText.html') {
-        PageTransitions.setPage(2, ANIM_OTHER);
+        GoToPage(2, ANIM_OTHER);
       }
       if (event.data == 'mframe_goto_ErrorCode.html') {
-        PageTransitions.setPage(10, ANIM_OTHER);
+        GoToPage(3, ANIM_OTHER);
       }
-      if (event.data == 'mframe_goto_ElectricalDiagram_CS 8100.html') {
-        PageTransitions.setPage(3, ANIM_EDIAG_EPARTS);
+      var start = 4;
+      for (var i = 0; i < productnames.length; i++) {
+        if (event.data == 'mframe_goto_ElectricalDiagram_' + productnames[i] + '.html') {
+          GoToPage(start + i, ANIM_OTHER);
+        }
       }
-      if (event.data == 'mframe_goto_ElectricalDiagram_CS 8100 3D.html') {
-        PageTransitions.setPage(4, ANIM_EDIAG_EPARTS);
-      }
-      if (event.data == 'mframe_goto_ElectricalDiagram_CS 8100SC.html') {
-        PageTransitions.setPage(5, ANIM_EDIAG_EPARTS);
-      }
-      if (event.data == 'mframe_goto_ElectricalDiagram_CS 8100SC 3D.html') {
-        PageTransitions.setPage(6, ANIM_EDIAG_EPARTS);
-      }
-      if (event.data == 'mframe_goto_eParts_CS 8100 3D.html') {
-        PageTransitions.setPage(9, ANIM_EDIAG_EPARTS);
+      start = 4 + productnames.length;
+      for (var i = 0; i < productnames.length; i++) {
+        if (event.data == 'mframe_goto_eParts_' + productnames[i] + '.html') {
+          GoToPage(start + i, ANIM_OTHER);
+        }
       }
   };
 
@@ -354,35 +422,8 @@
         event.stopPropagation()
       });
 
-    // Cancel dragging if mouse leaves the editor container.
-    // $('.window-resize').on('mouseleave', function () {
-    //   var event = document.createEvent('MouseEvents');
-    //   event.initEvent('blur', true, true);
-    //   document.dispatchEvent(event);
-    //   event.interaction.stop();
-    // });
-
-
-//     myElement.addEventListener('mousedown', () => {
-//   const handleMouseUp = (event) => {
-    
-
-   
-
-//     document.removeEventListener('mouseup', handleMouseUp);
-//   };
-
-//   document.addEventListener('mouseup', handleMouseUp);
-// })
-
-
-
   }
 
-
-
-
-   
 
 
   function InitMediaWindow(posx, posy) {
@@ -420,7 +461,7 @@
       winsrc_other.style.display = "none";
       var winsrc_pdf = document.getElementById('window-src-pdf');
       winsrc_pdf.style.display = "block";
-      var pdfViewer = new PDFjsViewer($('#window-src-pdf'));
+      var pdfViewer = new PDFjsViewer($('#window-pdf'));
       pdfViewer.loadDocument(src);
     }
     else {
@@ -434,17 +475,33 @@
 
 
   
-
-
+ 
   $(document).ready(function () {
-    $('iframe').on('load', function () {
-      var src = $(this).attr('src');
-      console.log(src, 'loaded!');
-    });
-    //$('#i2').attr('src', 'https://example.com');
-    InitMediaWindow("65%", "65%");
-    
-  })
+
+      function AddPages(item, n) {
+        for (var i = 0; i < productnames.length; i++) {
+          var id = "pg" + n.toString();
+          var cls = "pt-page pt-page-" + n.toString();
+          var src = item+"_" + productnames[i] + ".html"
+          var page = "<div class='" + cls + "'><iframe class='app-page' id='" + id + "' src='" + src + "'></iframe ></div>";
+          $("#pt-main").append(page);
+          n++;
+        }
+      }
+      var start = 5;
+      AddPages("ElectricalDiagram", start);
+      start = start + productnames.length;
+      AddPages("eParts", start);
+      PageTransitions.init();
+      AddPageHistory(0);
+
+      InitMediaWindow("65%", "65%");
+      
+      $('iframe').on('load', function () {
+        var src = $(this).attr('src');
+        console.log(src, 'loaded!');
+      });
+    })
 
 
   
@@ -685,15 +742,20 @@
 //     return false;}
 //-------------------------------------------------------------
 
-  </script>
+</script>
+  
 
-    <script src="js/pdf/pdf.js"></script>
-    <script src="js/pdf/pdfjs-viewer.js"></script>
-    <link rel="stylesheet" href="css/pdf/pdfjs-viewer.css">
-    <script>
-      var pdfjsLib = window['pdfjs-dist/build/pdf'];
-      pdfjsLib.GlobalWorkerOptions.workerSrc = 'js/pdf/pdf-worker.js';
-    </script>
+
+  <script src="js/pagetransitions.js"></script>
+  <script src="js/pdf/pdf.js"></script>
+  <script src="js/pdf/pdf-viewer.js"></script>
+  <!-- <script src="js/pdf/ui_utils.js"></script>
+  <link rel="stylesheet" href="css/pdf/text_layer_builder.css"> -->
+  <link rel="stylesheet" href="css/pdf/pdfjs-viewer.css">
+  <script>
+    var pdfjsLib = window['pdfjs-dist/build/pdf'];
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'js/pdf/pdf-worker.js';
+  </script>
 
 
 </body>

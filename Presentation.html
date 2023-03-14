@@ -244,8 +244,16 @@
 <div class="navbar">
 
     <div class="tab">
-        <a onclick="OpenHtmlPage('Presentation.html')" class="PRESENTATION tabuttonhome tabselected uistyle2">
+        <a onclick="OpenHtmlPage('Presentation.html')" class="PRESENTATION tabuttonhome uistyle2">
             <img class="icon" src="media/home.png"/>
+            <img class="icon-refresh" src="media/refresh_round.png"/>
+            <div class="page-selected"></div>
+        </a>
+        <a onclick="PrevPageHistory()" class="tabuttonhistory-prev uistyle2">
+            <img class="icon" src="media/left.png"/>
+        </a>
+        <a onclick="NextPageHistory()" class="tabuttonhistory-next uistyle2">
+            <img class="icon" src="media/right.png"/>
         </a>
         <a  onclick="OpenHtmlPage('Documentation.html')" class="DOCUMENTATION tabutton uistyle2">
             <img class="icon" src="media/documentation48.png"/>
@@ -321,6 +329,7 @@
         <a onclick="OpenHtmlPage('ErrorCode.html')" class="ERRORCODE tabutton uistyle2">
             <img class="icon" src="media/errorcode.png"/>
         </a>
+
     </div>
 
     <div class="tabright">
@@ -384,16 +393,11 @@
                 },
             });
 
-
     document.querySelector(".product_next").addEventListener("click", function(event) {
         swiper.slideNext();
         event.preventDefault();
         event.stopPropagation();
         }, false);
-
-    // document.querySelector(".DIAGRAM_PRODUCT_LIST").addEventListener("click", function(event) {
-    //     event.preventDefault();
-    //     }, false);
 
 
   </script>

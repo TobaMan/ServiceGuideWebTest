@@ -197,7 +197,7 @@ var opentab = false;
 var iframe = true;
 function OpenHtmlPage(page) {
     if(iframe == true){
-        window.top.postMessage('mframe_goto_'+page, '*')
+        SendCustomEventFromIframe('mframe_goto_'+page);
         return false;
     }
     if (opentab == false) {
@@ -238,7 +238,7 @@ function OpenMediaFile(data,newtab){
     var urldest = "media/"+data;
     if(iframe == true){//ServiceGuide line 960 "GenerateDocLinks"
         sessionStorage.setItem("_media_src_", urldest);
-        window.top.postMessage("media_src", '*')
+        SendCustomEventFromIframe("media_src");
         return false;
     }
     if(newtab == true){window.open(urldest);}
@@ -252,6 +252,14 @@ function GoToDocumentationPage(chapter, page) {
     sessionStorage.setItem("_doc_page_", page);
     // console.log(chapter, page);
     OpenHtmlPage("Documentation.html")
+}
+
+function PrevPageHistory(){
+    SendCustomEventFromIframe("_prev_page_history_");
+}
+
+function NextPageHistory(){
+    SendCustomEventFromIframe("_next_page_history_");
 }
 
 function LinkManager(data,attr,newtab){
@@ -647,6 +655,17 @@ function SendFullScreen(){
 //     }
 // }
 
+function IsFullScreen(){
+    if((window.fullScreen) || 
+    ((window.innerWidth == screen.width) && 
+    (window.innerHeight == screen.height))) {
+        return true;
+    } 
+    else {
+        return false;
+    }
+}
+
 function FullScreen() {
     /* Get the documentElement (<html>) to display the page in fullscreen */
     // var elem = document.getElementById("page-container");
@@ -672,10 +691,9 @@ function FullScreen() {
             document.webkitExitFullscreen();
         } else if (document.msExitFullscreen) { /* IE/Edge */
             document.msExitFullscreen();}}
-    if ((window.fullScreen) ||
-        (window.innerWidth == screen.width && window.innerHeight == screen.height)) {
-            // document.getElementById("imgfscreen").src = "media/fullscreen.png";
-            closeFullscreen();}
+    if (IsFullScreen()) {
+        // document.getElementById("imgfscreen").src = "media/fullscreen.png";
+        closeFullscreen();}
     else{
         // document.getElementById("imgfscreen").src = "media/exitfullscreen.png";
         openFullscreen();

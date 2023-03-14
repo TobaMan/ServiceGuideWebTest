@@ -2,7 +2,6 @@ var PageTransitions = (function () {
 
 	var $main = $('#pt-main'),
 		$pages = $main.children('div.pt-page'),
-		// $iterate = $('#toto'),
 		animcursor = 1,
 		pagesCount = $pages.length,
 		current = 0,
@@ -35,27 +34,14 @@ var PageTransitions = (function () {
 
 	function init() {
 
+		$pages = $main.children('div.pt-page'),
+		pagesCount = $pages.length;
+		
 		$pages.each(function () {
 			var $page = $(this);
 			$page.data('originalClassList', $page.attr('class'));
 		});
 		$pages.eq(current).addClass('pt-page-current');
-		// var animcursorCheck = function () {
-		// 	if (isAnimating) {
-		// 		return false;
-		// 	}
-		// 	if (animcursor > animations.max) {
-		// 		animcursor = 1;
-		// 	}
-		// 	else if (animcursor < 1) {
-		// 		animcursor = animations.max
-		// 	}
-		// 	return animcursor;
-		// };
-		// $iterate.on('click', function () {
-		// 	nextPage(animcursorCheck());
-		// 	++animcursor;
-		// });
 	}
 
 	function anim(animation) {
@@ -331,8 +317,8 @@ var PageTransitions = (function () {
 				inClass = 'pt-page-rotateSlideIn';
 				break;
 			case 68:
-				outClass = 'pt-page-fade';
-				inClass = 'pt-page-fade';
+				outClass = 'pt-page-fadeOut';
+				inClass = 'pt-page-fadeIn';
 				break;
 		}
 
@@ -410,9 +396,6 @@ var PageTransitions = (function () {
 
 
 	function setPage(idx, an) {
-
-		console.log(idx, an);
-
 		if (isAnimating) {
 			return false;
 		}
@@ -458,7 +441,7 @@ var PageTransitions = (function () {
 		$inpage.attr('class', $inpage.data('originalClassList') + ' pt-page-current');
 	}
 
-	init();
+	// init();
 
 	return {
 		init: init,

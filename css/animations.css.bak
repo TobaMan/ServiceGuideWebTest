@@ -201,11 +201,11 @@
 
 @-webkit-keyframes fadeOut {
 	from { opacity: 1;}
-	to { opacity: 0; }
+	to { opacity: 0.3; }
 }
 
 @-webkit-keyframes fadeIn {
-	from { opacity: 0; }
+	from { opacity: 0.3; }
 	to { opacity: 1; }
 }
 
