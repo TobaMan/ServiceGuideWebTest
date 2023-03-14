@@ -791,19 +791,19 @@
             // var pageimg = document.getElementsByClassName("pf")[
             //     pdf2htmlEX.defaultViewer.cur_page_idx];
 
-            var iterpg = 0;
-            var pageimg = document.getElementsByClassName("pf");
-            for (var c = 0; c < chapters_names.length; c++) {
-                var size = chapters_npg[c];
-                var chapter = chapters_names[c];
-                var dir = GetThumbDir(chapter);
-                for (var i = 0; i < size; i++) {
-                    var thname  = dir + "page_" + i + ".jpg";
-                    pageimg[iterpg].style.backgroundImage = "url("+thname+")";
-                    pageimg[iterpg].style.backgroundSize = "contain";
-                    iterpg++;
-                }
-            }
+            // var iterpg = 0;
+            // var pageimg = document.getElementsByClassName("pf");
+            // for (var c = 0; c < chapters_names.length; c++) {
+            //     var size = chapters_npg[c];
+            //     var chapter = chapters_names[c];
+            //     var dir = GetThumbDir(chapter);
+            //     for (var i = 0; i < size; i++) {
+            //         var thname  = dir + "page_" + i + ".jpg";
+            //         pageimg[iterpg].style.backgroundImage = "url("+thname+")";
+            //         pageimg[iterpg].style.backgroundSize = "contain";
+            //         iterpg++;
+            //     }
+            // }
 
 
         }
