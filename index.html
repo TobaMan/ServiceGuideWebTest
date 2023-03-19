@@ -78,11 +78,6 @@
       z-index: 1;
     }
   
-    /* .pt-page-1 {
-            visibility: visible;
-          } */
-  
-  
     .app-page {
       display: block;
       left: 0px;
@@ -150,17 +145,11 @@
       height: 100%;
     }
   
-    /* #window-pdf-textlayer {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-    } */
-  
-    .window-resizer-container {
+    .window-resizer {
       position: relative;
     }
   
-    .window-resize {
+    .handle-resize {
       position: absolute;
       bottom: 0;
       right: 0;
@@ -196,6 +185,7 @@
       width: 20px;
       border-radius: 50%;
       margin-right: 6px;
+      border: 1px solid #a7a7a7;
     }
   
     .green {
@@ -235,20 +225,20 @@
 
 
 <div id="myWindow" class="window">
-  <button class="round red uistyle2"></button>
+  <button class="round red"></button>
   <!-- <button class="round green uistyle2"></button>
   <button class="round yellow uistyle2"></button> -->
 
   <div class="window-content">
     <iframe id="window-src-other" class="window-src" src=""></iframe>
-    <div id="window-src-pdf" class="window-src">
+    <!-- <div id="window-src-pdf" class="window-src">
       <div id="window-pdf" class="pdfjs-viewer"></div>
       <div id="window-pdf-textlayer" class="textLayer"></div>
-    </div>
+    </div> -->
   </div>
 
-  <div class="window-resizer-container">
-    <div id="handle" class="window-resize"></div>
+  <div class="window-resizer">
+    <div class="handle-resize"></div>
   </div>
 </div>
 
@@ -378,111 +368,159 @@
 
 
   function dragMoveListener(event) {
-    var target = event.target,
-      // keep the dragged position in the data-x/data-y attributes
-      x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
-      y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
-    // translate the element
-    target.style.webkitTransform =
-      target.style.transform =
-      'translate(' + x + 'px, ' + y + 'px)';
-    // update the posiion attributes
-    target.setAttribute('data-x', x);
-    target.setAttribute('data-y', y);
-  }
-
-  function makeDraggable() {
-    interact('.window')
-      .draggable({
-        onmove: window.dragMoveListener
-      })
-      .resizable({
-        edges: { left: false, right: true, bottom: true, top: false }
-      })
-      .on('resizemove', function (event) {
-        var target = event.target;
-        x = (parseFloat(target.getAttribute('data-x')) || 0),
-          y = (parseFloat(target.getAttribute('data-y')) || 0);
-        // update the element's style
-        target.style.width = event.rect.width + 'px';
-        target.style.height = event.rect.height + 'px';
-        // translate when resizing from top or left edges
-        x += event.deltaRect.left;
-        y += event.deltaRect.top;
-        target.style.webkitTransform = target.style.transform =
-          'translate(' + x + 'px,' + y + 'px)';
-
+        var target = event.target,
+          // keep the dragged position in the data-x/data-y attributes
+          x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
+          y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+        // translate the element
+        target.style.webkitTransform =
+          target.style.transform =
+          'translate(' + x + 'px, ' + y + 'px)';
+        // update the posiion attributes
         target.setAttribute('data-x', x);
         target.setAttribute('data-y', y);
-        // target.textContent = event.rect.width + '×' + event.rect.height;
-      })
-      .on('resizeend', function (event) {
-        var target = event.target;
-        // console.log("resize end ...");
-        event.stopPropagation()
-      });
 
-  }
+        $( ".window" ).blur();
+      }
+
+  function makeDraggable() {
+
+      function HideContent() {
+        $(".window-src").hide();
+        $(".round").hide();
+        $(".window").css({ opacity: 0.4 });
+        $(".window-content").css({ "background-color": "#21b7ff" });
+      }
+      function ShowContent() {
+        $(".window-src").fadeIn(300);
+        $(".round").show();
+        $(".window").css({ opacity: 1 });
+        $(".window-content").css({ "background-color": "#ECECEC" });
+      }
+
+      interact('.window')
+        .draggable({
+          // margin: 30,
+          // ignoreFrom: '.window-resizer',
+          // inertia: false,
+          onmove: window.dragMoveListener
+        })
+        .on('dragstart', function (event) {
+          HideContent();
+        })
+        .on('dragend', function (event) {
+          ShowContent();
+          event.stopPropagation();
+
+        })
+        .resizable({
+          margin: 100,
+          // hold:1000, //start after the pointer is held down for the given number of milliseconds
+          // inertia: false,
+          ignoreFrom: '.window-content',
+          allowFrom: '.window-resizer',
+          edges: { left: false, right: true, bottom: true, top: false }
+
+        })
+        .on('resizestart', function (event) {
+          HideContent();
+        })
+        .on('resizemove', function (event) {
+
+          var target = event.target;
+          x = (parseFloat(target.getAttribute('data-x')) || 0),
+            y = (parseFloat(target.getAttribute('data-y')) || 0);
+          // update the element's style
+          target.style.width = event.rect.width + 'px';
+          target.style.height = event.rect.height + 'px';
+          // translate when resizing from top or left edges
+          x += event.deltaRect.left;
+          y += event.deltaRect.top;
+          target.style.webkitTransform = target.style.transform =
+            'translate(' + x + 'px,' + y + 'px)';
+
+          target.setAttribute('data-x', x);
+          target.setAttribute('data-y', y);
+          // target.textContent = event.rect.width + '×' + event.rect.height;
+        })
+        .on('resizeend', function (event) {
+          ShowContent();
+          // setTimeout(function() { ShowContent(); }, 500);
+          // event.stopPropagation();
+        });
+
+        // addEventListener("mouseup", (event) => {
+        //   // interact(".window").stop();
+        //   // interact(".window").fire({type: 'resizeend'});
+        //   // interact(".window").resizable(false);
+        //   // setTimeout(function() { interact(".window").resizable(true); }, 1000);
+        //   // event.preventDefault();
+        // });
+
+    }
 
 
+   
 
-  function InitMediaWindow(posx, posy) {
-    var mywindow = document.querySelector('#myWindow')
-    makeDraggable();
+    function InitMediaWindow(posx, posy) {
+      var mywindow = document.querySelector('#myWindow')
+      makeDraggable();
 
-    mywindow.style.left = posx;
-    mywindow.style.top = posy;
-    for (const item of document.querySelectorAll('.round.red')) {
-      item.addEventListener('click', function () {
+      mywindow.style.left = posx;
+      mywindow.style.top = posy;
+      for (const item of document.querySelectorAll('.round.red')) {
+        item.addEventListener('click', function () {
+          $('#myWindow').fadeOut();
+        });
+      }
+      for (const item of document.querySelectorAll('.round.yellow')) {
+        item.addEventListener('click', function () {
+          mywindow.classList.toggle("window-bigsize");
+        });
+      }
+    }
+
+    function ShowMediaWindow(state) {
+      if (state) {
+        $('#myWindow').fadeIn();
+      }
+      else {
         $('#myWindow').fadeOut();
-      });
-    }
-    for (const item of document.querySelectorAll('.round.yellow')) {
-      item.addEventListener('click', function () {
-        mywindow.classList.toggle("window-bigsize");
-      });
-    }
-  }
+      }
 
-  function ShowMediaWindow(state) {
-    if(state){
-      $('#myWindow').fadeIn();
     }
-    else{
-      $('#myWindow').fadeOut();
-    }
-    
-  }
 
-  function SetMediaWindowSrc(src) {
-    if (src.split('.').pop() == "pdf") {
-      // src = "/web/viewer.html?file=/"+src;
-      var winsrc_other = document.getElementById('window-src-other');
-      winsrc_other.style.display = "none";
-      var winsrc_pdf = document.getElementById('window-src-pdf');
-      winsrc_pdf.style.display = "block";
-      var pdfViewer = new PDFjsViewer($('#window-pdf'));
-      pdfViewer.loadDocument(src);
-    }
-    else {
-      var winsrc_other = document.getElementById('window-src-other');
-      winsrc_other.style.display = "block";
-      var winsrc_pdf = document.getElementById('window-src-pdf');
-      winsrc_pdf.style.display = "none";
+    function SetMediaWindowSrc(src) {
+      // if (src.split('.').pop() == "pdf") {
+      //   // src = "/web/viewer.html?file=/"+src;
+      //   var winsrc_other = document.getElementById('window-src-other');
+      //   winsrc_other.style.display = "none";
+      //   var winsrc_pdf = document.getElementById('window-src-pdf');
+      //   winsrc_pdf.style.display = "block";
+      //   var pdfViewer = new PDFjsViewer($('#window-pdf'));
+      //   pdfViewer.loadDocument(src);
+      // }
+      // else {
+      //   var winsrc_other = document.getElementById('window-src-other');
+      //   winsrc_other.style.display = "block";
+      //   var winsrc_pdf = document.getElementById('window-src-pdf');
+      //   winsrc_pdf.style.display = "none";
+      //   document.getElementById('window-src-other').src = src;
+      // }
+
       document.getElementById('window-src-other').src = src;
     }
-  }
 
 
-  
- 
-  $(document).ready(function () {
+
+
+    $(document).ready(function () {
 
       function AddPages(item, n) {
         for (var i = 0; i < productnames.length; i++) {
           var id = "pg" + n.toString();
           var cls = "pt-page pt-page-" + n.toString();
-          var src = item+"_" + productnames[i] + ".html"
+          var src = item + "_" + productnames[i] + ".html"
           var page = "<div class='" + cls + "'><iframe class='app-page' id='" + id + "' src='" + src + "'></iframe ></div>";
           $("#pt-main").append(page);
           n++;
@@ -496,7 +534,7 @@
       AddPageHistory(0);
 
       InitMediaWindow("65%", "65%");
-      
+
       $('iframe').on('load', function () {
         var src = $(this).attr('src');
         console.log(src, 'loaded!');
@@ -747,15 +785,14 @@
 
 
   <script src="js/pagetransitions.js"></script>
-  <script src="js/pdf/pdf.js"></script>
+  <!-- <script src="js/pdf/pdf.js"></script>
   <script src="js/pdf/pdf-viewer.js"></script>
-  <!-- <script src="js/pdf/ui_utils.js"></script>
-  <link rel="stylesheet" href="css/pdf/text_layer_builder.css"> -->
+  
   <link rel="stylesheet" href="css/pdf/pdfjs-viewer.css">
   <script>
     var pdfjsLib = window['pdfjs-dist/build/pdf'];
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'js/pdf/pdf-worker.js';
-  </script>
+  </script> -->
 
 
 </body>
