@@ -1,1 +1,0 @@
-start microsoft-edge:http://localhost:5000/Memorize.html

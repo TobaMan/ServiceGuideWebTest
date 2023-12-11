@@ -5,43 +5,6 @@
   src: url("../fonts/Roboto/Roboto-Regular.ttf");
 }
 
-
-/*SCROLLBAR*/
-
-/* width */
-::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-    background: #ECECEC;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-    background: #ECECEC;
-}
-
-::-webkit-scrollbar-button {
-    display: none;
-}
-
-::-webkit-scrollbar-corner {							
-	background: #ECECEC;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-    background: #a7a7a7;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-    background: #555;
-    
-}
-
-
-/*MAIN CONFIG*/
-
 body {
     background: rgb(236, 236, 236);
 }
@@ -53,8 +16,6 @@ body {
 .disabled{
     opacity:0.15;
 }
-
-/*NOTIFICATIONS*/
 
 .UserMessage{
     z-index: 10;
@@ -116,6 +77,7 @@ body {
     text-decoration: none;
     text-shadow: 0px 1px 0px #fff;
     border: 1px solid #a7a7a7;
+    /*box-shadow: 0px 2px 1px white inset, 0px -2px 8px white, 0px 2px 5px rgba(0, 0, 0, 0.1), 0px 8px 10px rgba(0, 0, 0, 0.1);*/
     -webkit-transition: box-shadow 0.5s;
 }
 
@@ -215,6 +177,7 @@ body {
 
 .tabutton {
     float: left;
+    /*width: 120px;*/
     width: 8vw;
     height: 60px;
     margin: 4px 4px 4px 4px;
@@ -222,12 +185,11 @@ body {
 
 .tabuttonhome {
     float: left;
-    width: 8vw;
+    width: 6vw;
     height: 60px;
     margin: 4px 4px 4px 4px;
+    /*border-top-left-radius: 150px 60px;*/
     border-top-left-radius: 15px;
-    border-top-right-radius: 0px;
-    border-bottom-right-radius: 0px;
 }
 
 .tabuttonsmall {
@@ -247,91 +209,27 @@ body {
     border-bottom-right-radius: 10px;
 }
 
-.tabuttonhistory-prev {
-    float: left;
-    width: 2.5vw;
-    height: 60px;
-    margin: 4px 4px 4px -6px;
-    border-top-left-radius: 0px;
-    border-bottom-left-radius: 0px;
-    border-top-right-radius: 0px;
-    border-bottom-right-radius: 0px;
-    border: 1px solid #a7a7a7;
-}
-
-.tabuttonhistory-next {
-    float: left;
-    width: 2.5vw;
-    height: 60px;
-    margin: 4px 4px 4px -6px;
-    border-top-left-radius: 0px;
-    border-bottom-left-radius: 0px;
-    border: 1px solid #a7a7a7;
-}
-
-/* .tabuttonhome:hover{
+.tabutton:hover{
     border-bottom: 4px solid rgba(33, 183, 255, 0.2);
-} */
+}
 
-/* .tabselected{
+.tabuttonhome:hover{
+    border-bottom: 4px solid rgba(33, 183, 255, 0.2);
+}
+
+.tabselected{
     border-bottom: 4px solid rgba(33, 183, 255, 0.5);
-} */
+}
 
 .icon {
     opacity: 0.6;
     background: transparent;
     position: relative;
-    top: 45%;
+    top: 50%;
     left: 50%;
-    width:44px;
-    height:44px;
     transform: translate(-50%, -50%);
     -webkit-filter: drop-shadow(0px 2px 0px #fff);
     filter: drop-shadow(0px 2px 0px #fff);
-}
-
-.icon-refresh {
-    position: relative;
-    background: transparent;
-    top: -10%;
-    left: 15%;
-    max-width:32px;
-    max-height:32px;
-    transform: translate(-5%, -10%);
-}
-
-/* .icon-refresh {
-    position: relative;
-    background: transparent;
-    top: 0%;
-    left: 0%;
-    width:32px;
-    height:32px;
-    margin-left:32px;
-    margin-bottom:8px;
-} */
-
-/* .icon-refresh {
-    position: relative;
-    background: transparent;
-    top: 0%;
-    left: 0%;
-    max-width:20%;
-    height:auto;
-    margin-left:18%;
-    margin-bottom:6%;
-} */
-
-.page-selected{
-    position:relative;
-    width:89%;
-    height:4px;
-    bottom:-4px;
-    left:5%;
-    background:rgba(33, 183, 255, 0.5);
-    border-top: 1px solid rgba(33, 183, 255, 0.7);
-    border-left: 1px solid rgba(33, 183, 255, 0.7);
-    border-right: 1px solid rgba(33, 183, 255, 0.7);
 }
 
 .iconmedium {
@@ -523,8 +421,6 @@ body {
 }
 
 
-
-
 /*SEARCH BAR*/
 
 .search {
@@ -666,7 +562,6 @@ form.search button:hover {
     .smallsidebutton2 {
         margin: 3px 3px 3px 3px;
     }
-
 }
 
 
@@ -698,13 +593,6 @@ form.search button:hover {
         transform: translate(-10%, -10%);
     }
 
-    .page-selected{
-        left:5%;
-        width:88%;
-        height:3px;
-        bottom:0px;
-    }
-
     .tabutton {
         width: 8vw;
         height: 35px;
@@ -722,35 +610,10 @@ form.search button:hover {
         margin: 2px 2px 2px 2px;
     }
 
-    .tabuttonhistory-prev {
-        width: 2.5vw;
-        height: 35px;
-        margin: 4px 0px 0px -1px;
-    } 
-
-    .tabuttonhistory-next {
-        width: 2.5vw;
-        height: 35px;
-        margin: 4px 0px 2px -1px;
-    } 
-
     .icon {
         width: 25px;
         height: 25px;
     }
-
-    .icon-refresh {
-        top: -10%;
-        left: 8%;
-        max-width:18px;
-        max-height:18px;
-        transform: translate(-5%, -10%);
-    }
-
-     /* .icon-refresh {
-        width: 18px;
-        height: 18px;
-    } */
 
      /*NAVBAR SUBMENU*/
     .submenu {
@@ -887,15 +750,6 @@ form.search button:hover {
         height: 25px;
     }
 
-    /* .icon-refresh {
-        top: -10%;
-        left: 8%;
-        max-width:18px;
-        max-height:18px;
-        position:relative;
-        transform: translate(-5%, -10%);
-    } */
-
     .iconmedium {
         width: 25px;
         height: 25px;
@@ -931,6 +785,4 @@ form.search button:hover {
     .search {
         padding: 0px;
     }
-
-    
 }

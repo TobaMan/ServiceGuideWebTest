@@ -2,799 +2,314 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <link rel="manifest" href="/manifest.json">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <!-- <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" /> -->
-  <!-- <link rel="stylesheet" type="text/css" href='css/pace.css' /> -->
-  <script type="text/javascript" src='js/jquery-3.4.1.min.js'></script>
-  <!-- <script type="text/javascript" src='js/pace.js'></script> -->
-  <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script> -->
-  <link rel="stylesheet" type="text/css" href='css/ServiceGuide.css'/>
-  <script type="text/javascript" src='js/ServiceGuide.js'></script>
-  <link rel="stylesheet" type="text/css" href="css/animations.css" />
-  <script src="js/modernizr.custom.js"></script>
-  <script src="js/interact.min.js"></script>
-
-  <!-- Demo styles -->
-  <style>
-    html,
-    body {
-      position: relative;
-      height: 100%;
-      overflow: hidden;
-    }
-  
-    body {
-      background: #eee;
-      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-      font-size: 14px;
-      color: #000;
-      margin: 0;
-      padding: 0;
-    }
-  
-    .pt-main {
-      left: 0px;
-      top: 0px;
-      margin: 0px;
-      padding: 0px;
-      width: 100%;
-      /* /* height: 100%; */
-    }
-  
-    .pt-perspective {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      -webkit-perspective: 1200px;
-      -moz-perspective: 1200px;
-      perspective: 1200px;
-    }
-  
-    .pt-page {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
-      visibility: hidden;
-      overflow: hidden;
-      -webkit-backface-visibility: hidden;
-      -moz-backface-visibility: hidden;
-      backface-visibility: hidden;
-      -webkit-transform: translate3d(0, 0, 0);
-      -moz-transform: translate3d(0, 0, 0);
-      transform: translate3d(0, 0, 0);
-      -webkit-transform-style: preserve-3d;
-      -moz-transform-style: preserve-3d;
-      transform-style: preserve-3d;
-    }
-  
-    .pt-page-current,
-    .no-js .pt-page {
-      visibility: visible;
-      z-index: 1;
-    }
-  
-    .app-page {
-      display: block;
-      left: 0px;
-      top: 0px;
-      margin: 0px;
-      padding: 0px;
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-  
-  
-  
-  
-  
-  
-  
-    .window {
-      display: none;
-      position: fixed;
-      width: 30%;
-      height: 25%;
-      /* ------------------------------------- */
-      /* Activer pour l'interaction mobile */
-      -ms-touch-action: none;
-      touch-action: none;
-      box-sizing: border-box;
-      /* ------------------------------------- */
-      border-radius: 4px;
-      -webkit-border-radius: 4px;
-      -moz-border-radius: 4px;
-      /* box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em; */
-    }
-  
-    .window-content {
-      background: #ECECEC;
-      color: #333;
-      border: 1px solid #a7a7a7;
-      height: 98%;
-      padding: 5px;
-      padding-top: 30px;
-      padding-bottom: 10px;
-      border-radius: 4px;
-      -webkit-border-radius: 4px;
-      -moz-border-radius: 4px;
-      box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
-    }
-  
-    .window-src {
-      left: 0px;
-      top: 0px;
-      margin: 0px;
-      padding: 0px;
-      width: 100%;
-      height: 100%;
-      border: 1px solid #a7a7a7;
-      -webkit-border-bottom-right-radius: 10px;
-      -moz-border-bottom-right-radius: 10px;
-      border-bottom-right-radius: 10px;
-    }
-  
-    #window-pdf {
-      position: relative;
-      width: 100%;
-      height: 100%;
-    }
-  
-    .window-resizer {
-      position: relative;
-    }
-  
-    .handle-resize {
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      width: 0px;
-      height: 0px;
-      border-bottom: 14px solid #a7a7a7;
-      border-left: 14px solid transparent;
-      opacity: 0.4;
-    }
-  
-    .window-bigsize {
-      top: 10%;
-      left: 10%;
-      width: 80%;
-      height: 80%;
-      transform: translate(-70%, -70%);
-    }
-  
-    .window-smallsize {
-      left: 10%;
-      top: 10%;
-      /* margin-top: -20%;
-          margin-left: -50%; */
-      width: 90%;
-      height: 90%;
-    }
-  
-    .round {
-      position: absolute;
-      top: 6px;
-      right: 10px;
-      height: 20px;
-      width: 20px;
-      border-radius: 50%;
-      margin-right: 6px;
-      border: 1px solid #a7a7a7;
-    }
-  
-    .green {
-      background-color: limegreen;
-    }
-  
-    .yellow {
-      background-color: yellow;
-    }
-  
-    .red {
-      cursor: pointer;
-      background-color: rgba(255, 0, 0, 0.5);
-    }
-  
-    #myWindow {
-      left: 0px;
-      top: 0px;
-      z-index: 999;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href='css/pace.css' /> -->
+    <link rel="stylesheet" type="text/css" href='css/ServiceGuide.css' />
+    <link rel="stylesheet" type="text/css" href="css/animations.css" />
+    <link rel="stylesheet" href="css/winbox.min.css">
+    <script type="text/javascript" src='js/jquery-3.4.1.min.js'></script>
+    <script type="text/javascript" src='js/darktooltip.js'></script>
+    <!-- <script type="text/javascript" src='js/pace.js'></script> -->
+    <script type="text/javascript" src='js/ServiceGuide.js'></script>
+    <script src="js/modernizr.custom.js"></script>
+    <script src="js/winbox.min.js"></script>
 
 
-  
+    <style>
+        html,
+        body {
+            position: relative;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            background: #eee;
+            font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            color: #000;
+            margin: 0;
+            padding: 0;
+        }
+
+        .pt-main {
+            left: 0px;
+            top: 0px;
+            margin: 0px;
+            padding: 0px;
+            width: 100%;
+            /* /* height: 100%; */
+        }
+
+        .pt-perspective {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            -webkit-perspective: 1200px;
+            -moz-perspective: 1200px;
+            perspective: 1200px;
+        }
+
+        .pt-page {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            visibility: hidden;
+            overflow: hidden;
+            -webkit-backface-visibility: hidden;
+            -moz-backface-visibility: hidden;
+            backface-visibility: hidden;
+            -webkit-transform: translate3d(0, 0, 0);
+            -moz-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+            -webkit-transform-style: preserve-3d;
+            -moz-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+        }
+
+        .pt-page-current,
+        .no-js .pt-page {
+            visibility: visible;
+            z-index: 1;
+        }
+
+        .app-page {
+            display: block;
+            left: 0px;
+            top: 0px;
+            margin: 0px;
+            padding: 0px;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+
+        .winbox {
+            background: #ECECEC;
+            border-radius: 4px 4px 0 0;
+            border: 1px solid #a7a7a7;
+            /* -webkit-transition: box-shadow 0.5s; */
+        }
+
+        .wb-title {
+            font-family: Roboto;
+            font-weight: bold;
+            color: #7f7f7f;
+            text-decoration: none;
+            text-shadow: 0px 1px 0px #fff;
+        }
+
+        .wb-body {
+            border: 1px solid #a7a7a7;
+        }
+
+        .wb-control * {
+            -webkit-filter: invert(50%);
+        }
+    </style>
+
+    <script>
+
+        var mediabox = 0;
+        var oldpage = 0;
+        var usehitory = false;
+        var currentpage = 1;
+        var visitedpage = [0];
+        var curvisited = -1;
+
+
+        var ANIM_PRESENTATION = 40;
+        var ANIM_EDIAG_EPARTS = 4;
+        // var ANIM_OTHER = 1;//67;//54;//36;//51;//36;//16;    
+        var ANIM_OTHER = 68;//67;//54;//36;//51;//36;//16;  
+        var ANIM_LAST = 1;//67;//54;//36;//51;//36;//16;  
+        var ANIM_NEXT = 2;//67;//54;//36;//51;//36;//16;
+
+        function ShowMedia(content) {
+            if (mediabox) {
+                mediabox.close();
+            }
+            mediabox = new WinBox("ServiceGuide", {
+                border: "0.3em",
+                x: "68%",
+                y: "66%",
+                width: "30%",
+                height: "30%",
+                hidden: false,
+                url: content,
+                onclose: function (force) {
+                    mediabox = 0;
+                }
+            });
+        }
+
+        function AddPageHistory(page) {
+            console.log(visitedpage);
+            if (usehitory) {
+                usehitory = false;
+                return;
+            }
+            visitedpage = visitedpage.slice(0, curvisited + 1);
+            if (page == visitedpage[visitedpage.length - 1]) { return; }
+            visitedpage.push(page);
+            curvisited = visitedpage.length - 1;
+        }
+
+        function ButtonLastPage() {
+            if (visitedpage.length == 0) { return; }
+            if (curvisited < 0) { curvisited = 0; return; }
+            var pagenum = visitedpage[curvisited];
+            var cpage = currentpage;
+            if ((pagenum == cpage) && (curvisited >= 1)) {
+                curvisited = curvisited - 1;
+                pagenum = visitedpage[curvisited];
+            }
+            usehitory = true;
+            console.log(pagenum);
+            currentpage = pagenum;
+            PageTransitions.setPage(pagenum, ANIM_LAST);
+        }
+
+        function ButtonNextPage() {
+            var size = visitedpage.length;
+            if (size == 0) { return; }
+            if (curvisited >= size) { curvisited = size - 1; return; }
+            var pagenum = visitedpage[curvisited];
+            var cpage = currentpage;
+            if ((pagenum == cpage) && (curvisited <= size - 2)) {
+                curvisited = curvisited + 1;
+                pagenum = visitedpage[curvisited];
+            }
+            usehitory = true;
+            currentpage = pagenum;
+            PageTransitions.setPage(pagenum, ANIM_NEXT);
+        }
+
+
+        function GoToPage(n, animation) {
+            if (n !== oldpage) {
+                currentpage = n;
+                PageTransitions.setPage(currentpage, animation);
+                AddPageHistory(currentpage);
+                oldpage = currentpage;
+            }
+            else { ReloadPage(n); }
+        }
+
+        function ReloadPage(n) {
+            var id = 'pg' + (n + 1).toString();
+            // document.getElementById(id).contentWindow.location.reload();
+            document.getElementById(id).src = document.getElementById(id).src
+        }
+
+        window.onmessage = function (event) {
+
+            if (event.data == '_fullscreen_') {
+                FullScreen();
+            }
+
+            if (event.data == 'media_src') {
+                if (sessionStorage.length) {
+                    let src = sessionStorage.getItem('_media_src_');
+                    ShowMedia(src);
+                }
+            }
+
+            if (event.data == "_prev_page_history_") {
+                // ButtonLastPage();
+            }
+            if (event.data == "_next_page_history_") {
+                // ButtonNextPage();
+            }
+            if (event.data == 'mframe_goto_Presentation.html') {
+                GoToPage(0, ANIM_PRESENTATION);
+            }
+            if (event.data == 'mframe_goto_Documentation.html') {
+                SendCustomEventToIframe("pg2", "shown");
+                GoToPage(1, ANIM_OTHER);
+            }
+            if (event.data == 'mframe_goto_SearchText.html') {
+                GoToPage(2, ANIM_OTHER);
+            }
+            if (event.data == 'mframe_goto_ErrorCode.html') {
+                GoToPage(3, ANIM_OTHER);
+            }
+            var start = 4;
+            for (var i = 0; i < productnames.length; i++) {
+                if (event.data == 'mframe_goto_ElectricalDiagram_' + productnames[i] + '.html') {
+                    GoToPage(start + i, ANIM_OTHER);
+                }
+            }
+            start = 4 + productnames.length;
+            for (var i = 0; i < productnames.length; i++) {
+                if (event.data == 'mframe_goto_eParts_' + productnames[i] + '.html') {
+                    GoToPage(start + i, ANIM_OTHER);
+                }
+            }
+        };
+
+        $(document).ready(function () {
+
+            function AddPages(item, n) {
+                for (var i = 0; i < productnames.length; i++) {
+                    var id = "pg" + n.toString();
+                    var cls = "pt-page pt-page-" + n.toString();
+                    var src = item + "_" + productnames[i] + ".html"
+                    var page = "<div class='" + cls + "'><iframe class='app-page' id='" + id + "' src='" + src + "'></iframe ></div>";
+                    $("#pt-main").append(page);
+                    n++;
+                }
+            }
+            var start = 5;
+            AddPages("ElectricalDiagram", start);
+            start = start + productnames.length;
+            AddPages("eParts", start);
+            PageTransitions.init();
+            AddPageHistory(0);
+
+            $('iframe').on('load', function () {
+                var src = $(this).attr('src');
+                console.log(src, 'loaded!');
+            });
+        })
+
+    </script>
+
 </head>
 
 <body>
 
- 
-<!-- <div id="toto" style="height:30px">Next transition</div> -->
-<div id="pt-main" class="pt-perspective">
-  <div class="pt-page pt-page-1"><iframe class="app-page" id="pg1" src="Presentation.html"></iframe></div>
-  <div class="pt-page pt-page-2"><iframe class="app-page" id="pg2" src="Documentation.html"></iframe></div>
-  <div class="pt-page pt-page-3"><iframe class="app-page" id="pg3" src="SearchText.html"></iframe></div>
-  <div class="pt-page pt-page-4"><iframe class="app-page" id="pg4" src="ErrorCode.html"></iframe></div>
-</div>
 
-
-<div id="myWindow" class="window">
-  <button class="round red"></button>
-  <!-- <button class="round green uistyle2"></button>
-  <button class="round yellow uistyle2"></button> -->
-
-  <div class="window-content">
-    <iframe id="window-src-other" class="window-src" src=""></iframe>
-    <!-- <div id="window-src-pdf" class="window-src">
-      <div id="window-pdf" class="pdfjs-viewer"></div>
-      <div id="window-pdf-textlayer" class="textLayer"></div>
-    </div> -->
-  </div>
-
-  <div class="window-resizer">
-    <div class="handle-resize"></div>
-  </div>
-</div>
-
-
-
-<!-- <script type="text/javascript" src='js/resizedrag.js'></script> -->
-
-
- 
-  <script>
-
-  var oldpage = 0;
-  var usehitory = false;
-  var currentpage = 1;
-  var visitedpage = [0];
-  var curvisited = -1;
-
-
-  var ANIM_PRESENTATION = 40;
-  var ANIM_EDIAG_EPARTS = 4;
-  // var ANIM_OTHER = 1;//67;//54;//36;//51;//36;//16;    
-  var ANIM_OTHER = 68;//67;//54;//36;//51;//36;//16;  
-  var ANIM_LAST = 1;//67;//54;//36;//51;//36;//16;  
-  var ANIM_NEXT = 2;//67;//54;//36;//51;//36;//16;
-  
-  
-    function AddPageHistory(page){
-      console.log(visitedpage);
-      if(usehitory){
-          usehitory = false;
-          return;}
-      visitedpage = visitedpage.slice(0,curvisited+1);
-      if(page == visitedpage[visitedpage.length-1]){return;}
-      visitedpage.push(page);
-      curvisited = visitedpage.length-1;}
-
-    function ButtonLastPage() {
-      if (visitedpage.length == 0) {return;}
-      if (curvisited < 0) {curvisited = 0;return;}
-      var pagenum = visitedpage[curvisited];
-      var cpage = currentpage;
-      if((pagenum == cpage) && (curvisited >= 1)){
-          curvisited = curvisited - 1;
-          pagenum = visitedpage[curvisited];}
-      usehitory = true;
-      console.log(pagenum);
-      currentpage = pagenum;
-      PageTransitions.setPage(pagenum, ANIM_LAST);}
-
-    function ButtonNextPage() {
-      var size = visitedpage.length;
-      if (size == 0) {return;}
-      if (curvisited >= size) {curvisited = size-1;return;}
-      var pagenum = visitedpage[curvisited];
-      var cpage = currentpage;
-      if((pagenum == cpage) && (curvisited <= size-2)){
-          curvisited = curvisited + 1;
-          pagenum = visitedpage[curvisited];}
-      usehitory = true;
-      currentpage = pagenum;
-      PageTransitions.setPage(pagenum, ANIM_NEXT);}
-
-    
-    function GoToPage(n, animation){
-      if (n !== oldpage){
-        currentpage = n;
-        PageTransitions.setPage(currentpage, animation);
-        AddPageHistory(currentpage);
-        oldpage = currentpage;}
-      else{ReloadPage(n);}
-    }
-
-    function ReloadPage(n){
-      var id = 'pg'+(n+1).toString();
-      // document.getElementById(id).contentWindow.location.reload();
-      document.getElementById(id).src = document.getElementById(id).src
-    }
-
-    window.onmessage = function (event) {
-
-      if (event.data == '_fullscreen_') {
-        FullScreen();
-      }
-
-      if (event.data == 'media_src') {
-        if (sessionStorage.length) {
-          let src = sessionStorage.getItem('_media_src_');
-          SetMediaWindowSrc(src);
-          ShowMediaWindow(true);
-        }
-      }
-
-      if (event.data == "_prev_page_history_") {
-        ButtonLastPage();
-      }
-      if (event.data == "_next_page_history_") {
-        ButtonNextPage();
-      }
-      if (event.data == 'mframe_goto_Presentation.html') {
-        GoToPage(0, ANIM_PRESENTATION);
-      }
-      if (event.data == 'mframe_goto_Documentation.html') {
-        SendCustomEventToIframe("pg2", "shown");
-        GoToPage(1, ANIM_OTHER);
-      }
-      if (event.data == 'mframe_goto_SearchText.html') {
-        GoToPage(2, ANIM_OTHER);
-      }
-      if (event.data == 'mframe_goto_ErrorCode.html') {
-        GoToPage(3, ANIM_OTHER);
-      }
-      var start = 4;
-      for (var i = 0; i < productnames.length; i++) {
-        if (event.data == 'mframe_goto_ElectricalDiagram_' + productnames[i] + '.html') {
-          GoToPage(start + i, ANIM_OTHER);
-        }
-      }
-      start = 4 + productnames.length;
-      for (var i = 0; i < productnames.length; i++) {
-        if (event.data == 'mframe_goto_eParts_' + productnames[i] + '.html') {
-          GoToPage(start + i, ANIM_OTHER);
-        }
-      }
-  };
-
-
-
-
-  function dragMoveListener(event) {
-        var target = event.target,
-          // keep the dragged position in the data-x/data-y attributes
-          x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
-          y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
-        // translate the element
-        target.style.webkitTransform =
-          target.style.transform =
-          'translate(' + x + 'px, ' + y + 'px)';
-        // update the posiion attributes
-        target.setAttribute('data-x', x);
-        target.setAttribute('data-y', y);
-
-        $( ".window" ).blur();
-      }
-
-  function makeDraggable() {
-
-      function HideContent() {
-        $(".window-src").hide();
-        $(".round").hide();
-        $(".window").css({ opacity: 0.4 });
-        $(".window-content").css({ "background-color": "#21b7ff" });
-      }
-      function ShowContent() {
-        $(".window-src").fadeIn(300);
-        $(".round").show();
-        $(".window").css({ opacity: 1 });
-        $(".window-content").css({ "background-color": "#ECECEC" });
-      }
-
-      interact('.window')
-        .draggable({
-          // margin: 30,
-          // ignoreFrom: '.window-resizer',
-          // inertia: false,
-          onmove: window.dragMoveListener
-        })
-        .on('dragstart', function (event) {
-          HideContent();
-        })
-        .on('dragend', function (event) {
-          ShowContent();
-          event.stopPropagation();
-
-        })
-        .resizable({
-          margin: 100,
-          // hold:1000, //start after the pointer is held down for the given number of milliseconds
-          // inertia: false,
-          ignoreFrom: '.window-content',
-          allowFrom: '.window-resizer',
-          edges: { left: false, right: true, bottom: true, top: false }
-
-        })
-        .on('resizestart', function (event) {
-          HideContent();
-        })
-        .on('resizemove', function (event) {
-
-          var target = event.target;
-          x = (parseFloat(target.getAttribute('data-x')) || 0),
-            y = (parseFloat(target.getAttribute('data-y')) || 0);
-          // update the element's style
-          target.style.width = event.rect.width + 'px';
-          target.style.height = event.rect.height + 'px';
-          // translate when resizing from top or left edges
-          x += event.deltaRect.left;
-          y += event.deltaRect.top;
-          target.style.webkitTransform = target.style.transform =
-            'translate(' + x + 'px,' + y + 'px)';
-
-          target.setAttribute('data-x', x);
-          target.setAttribute('data-y', y);
-          // target.textContent = event.rect.width + '×' + event.rect.height;
-        })
-        .on('resizeend', function (event) {
-          ShowContent();
-          // setTimeout(function() { ShowContent(); }, 500);
-          // event.stopPropagation();
-        });
-
-        // addEventListener("mouseup", (event) => {
-        //   // interact(".window").stop();
-        //   // interact(".window").fire({type: 'resizeend'});
-        //   // interact(".window").resizable(false);
-        //   // setTimeout(function() { interact(".window").resizable(true); }, 1000);
-        //   // event.preventDefault();
-        // });
-
-    }
-
-
-   
-
-    function InitMediaWindow(posx, posy) {
-      var mywindow = document.querySelector('#myWindow')
-      makeDraggable();
-
-      mywindow.style.left = posx;
-      mywindow.style.top = posy;
-      for (const item of document.querySelectorAll('.round.red')) {
-        item.addEventListener('click', function () {
-          $('#myWindow').fadeOut();
-        });
-      }
-      for (const item of document.querySelectorAll('.round.yellow')) {
-        item.addEventListener('click', function () {
-          mywindow.classList.toggle("window-bigsize");
-        });
-      }
-    }
-
-    function ShowMediaWindow(state) {
-      if (state) {
-        $('#myWindow').fadeIn();
-      }
-      else {
-        $('#myWindow').fadeOut();
-      }
-
-    }
-
-    function SetMediaWindowSrc(src) {
-      // if (src.split('.').pop() == "pdf") {
-      //   // src = "/web/viewer.html?file=/"+src;
-      //   var winsrc_other = document.getElementById('window-src-other');
-      //   winsrc_other.style.display = "none";
-      //   var winsrc_pdf = document.getElementById('window-src-pdf');
-      //   winsrc_pdf.style.display = "block";
-      //   var pdfViewer = new PDFjsViewer($('#window-pdf'));
-      //   pdfViewer.loadDocument(src);
-      // }
-      // else {
-      //   var winsrc_other = document.getElementById('window-src-other');
-      //   winsrc_other.style.display = "block";
-      //   var winsrc_pdf = document.getElementById('window-src-pdf');
-      //   winsrc_pdf.style.display = "none";
-      //   document.getElementById('window-src-other').src = src;
-      // }
-
-      document.getElementById('window-src-other').src = src;
-    }
-
-
-
-
-    $(document).ready(function () {
-
-      function AddPages(item, n) {
-        for (var i = 0; i < productnames.length; i++) {
-          var id = "pg" + n.toString();
-          var cls = "pt-page pt-page-" + n.toString();
-          var src = item + "_" + productnames[i] + ".html"
-          var page = "<div class='" + cls + "'><iframe class='app-page' id='" + id + "' src='" + src + "'></iframe ></div>";
-          $("#pt-main").append(page);
-          n++;
-        }
-      }
-      var start = 5;
-      AddPages("ElectricalDiagram", start);
-      start = start + productnames.length;
-      AddPages("eParts", start);
-      PageTransitions.init();
-      AddPageHistory(0);
-
-      InitMediaWindow("65%", "65%");
-
-      $('iframe').on('load', function () {
-        var src = $(this).attr('src');
-        console.log(src, 'loaded!');
-      });
-    })
-
-
-  
-
-    
-
-  // function loading() {
-  //   var elmnt = $("#pg1").contents().find('.DOCUMENTATION');
-  //   elmnt.css('opacity', '0.15');
-  //   elmnt.css('pointer-events', 'none');
-  // }
-
-
-  // function loaded() {
-
-  //   var elmnt = $("#pg1").contents().find('.DOCUMENTATION');
-  //   elmnt.css('opacity', '1');
-  //   //elmnt.css('pointer-events', 'none');
-  // }
-
-
-//   var elmnt = $("#pg1").contents().find('.DOCUMENTATION');
-//   $("#pg1").load(function() {
-//     alert("Ready!");
-
-//     loading();
-// });
-
-  
-
-// document.getElementById('pg1').addEventListener('onload', function () {
-//   document.getElementById("pg3").src="SearchText.html";
-// })
-
-  // document.getElementById('pg1').onload = function () {
-  //   document.getElementById("pg3").src = "ErrorCode.html";
-  //   document.getElementById('pg3').onload = function () {
-  //     MainSwiper.slideTo(1, 1000, false);
-  //   };
-  // };
-
-//  document.getElementById('pg1').ready = function() {
-//       alert("Ready!");
-//     };
-
-    // // document.getElementById('pg1').onload = function() {
-    // document.getElementById('pg1').ready = function() {
-    //   loading();
-    //   // document.getElementById("pg2").src="Documentation.html";
-
-    //   // var target = document.getElementsByClassName('lazzy-iframe');
-    //   // for (var i = 0; i < target.length; i++) {
-    //   //   var src = target[i].getAttribute('data-src');
-    //   //   target[i].setAttribute('src', src);
-    //   // }
-
-      
-
-    // };
-    // document.getElementById('pg1').ready = function() {
-    //   //Blurring("#pg1", 20);
-    //   console.log('Presentat(ion) is loaded');
-    // };
-    // document.getElementById('pg2').onload = function() {
-    //   //Blurring("#pg2", 0);
-    //   console.log('Documentation is loaded');
-    // };
-    // document.getElementById('pg3').onload = function() {
-    //   console.log('SearchText is loaded');
-    // };
-    // document.getElementById('pg4').onload = function() {
-    //   console.log('ElecDiag1 is loaded');
-    // };
-    // document.getElementById('pg5').onload = function() {
-    //   console.log('ElecDiag2is loaded');
-    // };
-    // document.getElementById('pg6').onload = function() {
-    //   console.log('ElecDiag3 is loaded');
-    // };
-    // document.getElementById('pg7').onload = function() {
-    //   console.log('ElecDiag4 is loaded');
-    // };
-    // document.getElementById('pg8').onload = function() {
-    //   console.log('ElecDiag5 is loaded');
-    // };
-    // document.getElementById('pg9').onload = function() {
-    //   console.log('ElecDiag6 is loaded');
-    // };
-
-
-  // $("#pg1").on("load", function () {
-  //   console.log('Presentation is loaded');
-  // });
-  // $("#pg2").on("load", function () {
-  //   console.log('Documentation is loaded');
-  // });
-  // $("#pg11").on("load", function () {
-  //   console.log('ErrorCode is loaded');
-  // });
-
-  //  $(iframe).on("load", function () {
-  //   console.log('iframe is loaded');
-  // });
-
-  // $(document).ready(function () {
-  //   $("iframe").each(function () {
-  //     var src = $(this).attr('src');
-  //     console.log(src);
-  //     //$(this).attr('src', src);
-  //   });
-  // });
-
-  // $(document).ready(function () {
-  //   $("iframe").each(function () {
-  //     var src = $(this).attr('src');
-  //     var body = $(this).contents().find("body");
-  //     $(body).ready(function () {
-  //       console.log(src);
-  //     });
-  //   });
-  // });
-
-  
-
-
-    // document.getElementById('pg1').ready = function() {
-    //   //Blurring("#pg1", 20);
-    //   console.log('Presentation is loaded');
-    // };
-    // document.getElementById('pg2').onload = function() {
-    //   //Blurring("#pg2", 0);
-    //   console.log('Documentation is loaded');
-    // };
-    // document.getElementById('pg3').onload = function() {
-    //   console.log('SearchText is loaded');
-    // };
-    // document.getElementById('pg4').onload = function() {
-    //   console.log('ElecDiag1 is loaded');
-    // };
-    // document.getElementById('pg5').onload = function() {
-    //   console.log('ElecDiag2is loaded');
-    // };
-    // document.getElementById('pg6').onload = function() {
-    //   console.log('ElecDiag3 is loaded');
-    // };
-    // document.getElementById('pg7').onload = function() {
-    //   console.log('ElecDiag4 is loaded');
-    // };
-    // document.getElementById('pg8').onload = function() {
-    //   console.log('ElecDiag5 is loaded');
-    // };
-    // document.getElementById('pg9').onload = function() {
-    //   console.log('ElecDiag6 is loaded');
-    // };
-
-
-
-
-    // paceOptions = {
-    //   elements: {
-    //     //selectors: ['#pg1', '#pg2', '#pg3']
-    //     selectors: ['#pg2'],
-    //     target:$("#pg1").contents().find('.DOCUMENTATION')
-    //   }
-    // }
-
-    // paceOptions = {
-    //     // Configuration goes here. Example:
-    //     // elements: false,
-    //     // restartOnPushState: false,
-    //     // restartOnRequestAfter: false
-    //     startOnPageLoad: false
-    //   }
-
-    // function pageloaded(evt){
-    //   Pace.restart();
-    // }
-
-  // $("#pg1").ready = function () {
-  //   // var elmnt = $("#pg1").contents().find('.DOCUMENTATION');
-  //   // elmnt.click(function () {
-  //   //   alert("Start loading documentation");
-  //   //   // $("#test1").html('<iframe id="iframedoc" data="Documentation.html"></iframe>');
-  //   //   //document.getElementById('pg2').src = "Documentation.html";
-  //   //   // $("#pg2").src = "Documentation.html";
-  //   // });
-    
-  //   alert("Start loading documentation");
-
-  // };
-
-  // var elmnt = $("#pg1").contents().find('.DOCUMENTATION');
-  // elmnt.click(function () {
-  //     alert("Start loading documentation");
-  //     // $("#test1").html('<iframe id="iframedoc" data="Documentation.html"></iframe>');
-  //     //document.getElementById('pg2').src = "Documentation.html";
-  //     // $("#pg2").src = "Documentation.html";
-  //   });
-
-  // elmnt.click(function () {
-  //   alert("Start loading documentation");
-  //   // $("#test1").html('<iframe id="iframedoc" data="Documentation.html"></iframe>');
-  //   //document.getElementById('pg2').src = "Documentation.html";
-  //   // $("#pg2").src = "Documentation.html";
-  // });
-
-  // ("#pg2").load = function () {
-
-  //   MainSwiper.slideTo(1, 1000, false);
-  //   //alert("Ready!");
-  // }
-
-//-------------------------------------------------------------
-//INSIDE SERVICEGUIDE.JS
-//-------------------------------------------------------------
-// var winRef;
-// var opentab = false;
-// var iframe = true;
-// function OpenHtmlPage(page) {
-//     if(iframe == true){
-//         window.top.postMessage('mframe_goto_'+page, '*')
-//         return false;
-//     }
-//     if (opentab == false) {
-//         window.open(page, "_self");}
-//     else {
-//         var params = [
-//             'height=' + screen.height,
-//             'width=' + screen.width
-//         ].join(',');
-//         if (typeof(winRef) == 'undefined' || winRef.closed) {
-//             var winref = window.open("", page);
-//             if (winRef == null) {
-//                 SetVariable("test",false);
-//                  //win.moveTo(0,0);
-//                 var win = window.open(page, page, params);}}
-//         else {winRef.focus();}}
-//     return false;}
-//-------------------------------------------------------------
-
-</script>
-  
-
-
-  <script src="js/pagetransitions.js"></script>
-  <!-- <script src="js/pdf/pdf.js"></script>
-  <script src="js/pdf/pdf-viewer.js"></script>
-  
-  <link rel="stylesheet" href="css/pdf/pdfjs-viewer.css">
-  <script>
-    var pdfjsLib = window['pdfjs-dist/build/pdf'];
-    pdfjsLib.GlobalWorkerOptions.workerSrc = 'js/pdf/pdf-worker.js';
-  </script> -->
-
+    <div id="pt-main" class="pt-perspective">
+        <div class="pt-page pt-page-1"><iframe class="app-page" id="pg1" src="Presentation.html"></iframe></div>
+        <div class="pt-page pt-page-2"><iframe class="app-page" id="pg2" src="Documentation.html"></iframe></div>
+        <div class="pt-page pt-page-3"><iframe class="app-page" id="pg3" src="SearchText.html"></iframe></div>
+        <div class="pt-page pt-page-4"><iframe class="app-page" id="pg4" src="ErrorCode.html"></iframe></div>
+    </div>
 
 </body>
+
+<script src="js/pagetransitions.js"></script>
+<script>
+    //http://localhost:5000/?SearchText
+    console.log(window.location.search);
+    var search = window.location.search;
+    if (search === "?Documentation") {
+        GoToPage(1, ANIM_OTHER);
+    }
+    if (search === "?SearchText") {
+        GoToPage(2, ANIM_OTHER);
+    }
+    if (search === "?ErrorCode") {
+        GoToPage(3, ANIM_OTHER);
+    }
+</script>
 
 </html>

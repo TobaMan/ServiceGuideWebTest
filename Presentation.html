@@ -17,151 +17,48 @@
     <script type="text/javascript" src='js/jquery-3.4.1.min.js'></script>
     <script type="text/javascript" src='js/darktooltip.js'></script>
 	<script type="text/javascript" src='js/ServiceGuide.js'></script>
-    <!-- <script type="text/javascript" src='js/pace.js'></script> -->
+    <script type="text/javascript" src='js/pace.js'></script>
     <script type="text/javascript" src='js/slick.js'></script>
     <title>ServiceGuide</title>
 
-    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
 
-<style>
-    .container {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        overflow: hidden;
-        background: #000;
-    }
+    <style>
 
-    video {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translateX(-50%) translateY(-50%);
+        .container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+            background: #000;
+        }
 
-        /*VIDEO TRANSFORMATION HERE ...*/
-    }
+        video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
 
-    .submenu_product_top {
-        left: 0;
-        height: 200%;
-        width: 100%;
-        display: none;
-        border-bottom-right-radius: 30% 10%;
-    }
+            /*VIDEO TRANSFORMATION HERE ...*/
 
-    .submenu_product_content {
-        position: relative;
-        border: 1px solid #a7a7a7;
-        top: 1.5%;
-        left: 5%;
-        width: 93.5%;
-        /* left: 2%;
-        width: 96%; */
-        height: 90%;
-        border-bottom-right-radius: 30% 10%;
-
-    }
-
-    .submenu_product {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 50%;
-        height: 100%;
-        background-color: rgba(236, 236, 236, 0);
-    }
-
-    .submenu_product_effect {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(236, 236, 236, 0.2);
-        /* box-shadow: 4% 4% 4% rgba(0,0,0,0.9) inset; */
-        box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
-        border-bottom-right-radius: 30% 10%;
-    }
-
-    .submenu_card_product {
-        position: relative;
-        /* top: 4%;
-        left: 1.5%; */
-        top: 14%;
-        left: -6%;
-        width: 80%;
-        height: 65%;
-        border: 1px solid #a7a7a7;
-        border-bottom-right-radius: 30% 10%;
-        /* box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset; */
-        box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
-        background-color: rgba(236, 236, 236, 0.9);
-    }
-
-    .product_label {
-        position: relative;
-        width: 100%;
-        height: 30%;
-        border-bottom: 1px solid #a7a7a7;
-        opacity: 0.7;
-    }
-
-    .product_text {
-        position: absolute;
-        padding: 4%;
-    }
-
-    .product_next {
-        position: absolute;
-        top: 40%;
-        right: 3%;
-        width: 14%;
-        height: 40%;
-        opacity: 0.6;
-        border-bottom-right-radius: 60% 20%; 
-        -webkit-filter: drop-shadow(0px 2px 0px #fff);
-        filter: drop-shadow(0px 2px 0px #fff);
-    }
-
-    .menu-backimg {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        border-bottom-right-radius: 30% 10%;
-        object-fit: cover;
-
-    }
-
-    .triangle-right {
-        width: 0;
-        height: 0;
-        position: relative;
-        top: 40%;
-        right: 3%;
-        border-top: 40% solid transparent;
-        border-left: 16% solid #333;
-        border-bottom: 40% solid transparent;
-    }
+            			-webkit-filter: grayscale(100%);
+            			-moz-filter: grayscale(100%);
+            			-ms-filter: grayscale(100%);
+            			-o-filter: grayscale(100%);
+            			filter: grayscale(100%);
+            
+        }
 
 
 
-</style>
+    </style>
+
 
     <script>
 
         function InitPresentation() {
             $('.information').slick({autoplay: true, arrows: false});
-            
-            // var swiper = new Swiper(".submenu_product", {});
-            // $('.submenu_product').slick({
-            //     autoplay: true, 
-            //     autoplaySpeed: 3000, 
-            //     vertical: true, 
-            //     dots: false, 
-            //     arrows:false});
 
             var vid = $('video');
             var vid_w_orig = 1280;
@@ -185,32 +82,10 @@
 
         $(document).ready(function () {
             if(CheckChromeBrowser()){
-                InitPresentation();
-            }
+                InitPresentation();}
         });
 
-
-        function test(){
-            window.top.postMessage('mframe_goto_docpage', '*')
-        }
-
-        // paceOptions = {
-        //         elements: {
-        //             target: "#pp"
-        //         }
-        //     }
-
-        function ShowDiagramProductMenu(){
-            $('.DIAGRAM_PRODUCT_LIST').slideToggle("fast");
-        }
-
-        
-
 </script>
-
-<!-- <script>window.paceOptions = { target: ".DOCUMENTATION" };</script>
-
-<script type="text/javascript" src='js/pace.js'></script> -->
 
 
 </head>
@@ -225,7 +100,7 @@
         </a>
         <img class="icolabel_menu disabled" src="media/search.png"/><a class="disabled" href="#" onclick="">Search</a>
         <img class="icolabel_menu disabled" src="media/print.png"/><a href="#" class="disabled" onclick="">Print</a>
-        <img class="icolabel_menu" src="media/email.png"/><a href="mailto:serviceguide@csdental.com?subject=CS 8x00 Service Guide" onclick="">Feedback</a>
+        <img class="icolabel_menu" src="media/email.png"/><a href="mailto:serviceguide@csdental.com" onclick="">Feedback</a>
         <img class="icolabel_menu" src="media/fullscreen.png"/><a href="#" onclick="FullScreen()">Fullscreen</a>
     </div>
 </div>
@@ -244,83 +119,20 @@
 <div class="navbar">
 
     <div class="tab">
-        <a onclick="OpenHtmlPage('Presentation.html')" class="PRESENTATION tabuttonhome uistyle2">
+        <a onclick="OpenHtmlPage('Presentation.html')" class="PRESENTATION tabuttonhome tabselected uistyle2">
             <img class="icon" src="media/home.png"/>
-            <img class="icon-refresh" src="media/refresh_round.png"/>
-            <div class="page-selected"></div>
         </a>
-        <a onclick="PrevPageHistory()" class="tabuttonhistory-prev uistyle2">
-            <img class="icon" src="media/left.png"/>
-        </a>
-        <a onclick="NextPageHistory()" class="tabuttonhistory-next uistyle2">
-            <img class="icon" src="media/right.png"/>
-        </a>
-        <a  onclick="OpenHtmlPage('Documentation.html')" class="DOCUMENTATION tabutton uistyle2">
+        <a onclick="OpenHtmlPage('Documentation.html')" class="DOCUMENTATION tabutton uistyle2">
             <img class="icon" src="media/documentation48.png"/>
         </a>
-        <!-- <a  onclick="test()" class="DOCUMENTATION tabutton uistyle2">
-            <img class="icon" src="media/documentation48.png"/>
-        </a> -->
         <a onclick="OpenHtmlPage('SearchText.html')" class="TEXTIMAGE tabutton uistyle2">
             <img class="icon" src="media/searchtext.png"/>
         </a>
-        <!-- <a href="#" class="ELECDIAGRAM tabutton uistyle2" onclick="ShowDiagramProductChoice()">
+        <a href="#" class="ELECDIAGRAM tabutton uistyle2" onclick="ShowDiagramProductChoice()">
             <div class="dropicon"></div>
             <img class="icon" src="media/electricaldiagram.png"/>
             <div class="submenu DIAGRAM_PRODUCT_LIST" style="display:none"></div>
-        </a> -->
-
-        <a href="#" class="ELECDIAGRAM tabutton uistyle2" onclick="ShowDiagramProductMenu()">
-            <div class="dropicon"></div>
-            <img class="icon" src="media/electricaldiagram.png" />
-            <div class="submenu submenu_product_top DIAGRAM_PRODUCT_LIST">
-                <div class="submenu_product_content">
-        
-                    <!-- <img class="menu-backimg" src='media/diagram3.gif'> -->
-                    <img class="menu-backimg" src='media/epart.gif'>
-                    <div class="submenu_product_effect"></div>
-                    
-                    <div class="swiper submenu_product">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide" role="group">
-                                <div class="submenu_card_product">
-                                    <div class="product_label" style="background-color: #e91313;color:#000;"></div>
-                                    <div class="product_text">CS 8100</div>
-                                    <img class="product_next uistyle2" src="media/right.png">
-                                </div>
-                            </div>
-                            <div class="swiper-slide" role="group">
-                                <div class="submenu_card_product">
-                                    <div class="product_label" style="background-color: #2ce913;color:darkgreen;"></div>
-                                    <div class="product_text">CS 8100SC</div>
-                                    <img class="product_next uistyle2" src="media/right.png">
-                                </div>
-                            </div>
-                            <div class="swiper-slide" role="group">
-                                <div class="submenu_card_product">
-                                    <div class="product_label" style="background-color: #2ce913;color:darkgreen;"></div>
-                                    <div class="product_text">CS 8100SC 3D</div>
-                                    <img class="product_next uistyle2" src="media/right.png">
-                                </div>
-                            </div>
-                            <div class="swiper-slide" role="group">
-                                <div class="submenu_card_product">
-                                    <div class="product_label" style="background-color: #2ce913;color:darkgreen;"></div>
-                                    <div class="product_text">CS 8200</div>
-                                    <img class="product_next uistyle2" src="media/right.png">
-                                </div>
-                            </div>
-                            <!--USER PRODUCT DIAGRAM LIST HERE-->
-                        </div>
-                    </div>
-
-
-
-                </div>
-            </div>
         </a>
-
-
         <a href="#" class="EPARTS tabutton uistyle2" onclick="ShowEpartsProductChoice()">
             <div class="dropicon"></div>
             <img class="icon" src="media/part.png"/>
@@ -329,7 +141,6 @@
         <a onclick="OpenHtmlPage('ErrorCode.html')" class="ERRORCODE tabutton uistyle2">
             <img class="icon" src="media/errorcode.png"/>
         </a>
-
     </div>
 
     <div class="tabright">
@@ -339,10 +150,10 @@
         <a href="#" class="PRINT tabuttonsmall uistyle2 disabled" onclick="PrintDoc()">
             <img class="icon" src="media/print.png"/>
         </a>
-        <a href="mailto:serviceguide@csdental.com?subject=CS 8x00 Service Guide" class="FEEDBACK tabuttonsmall uistyle2">
+        <a href="mailto:serviceguide@csdental.com" class="FEEDBACK tabuttonsmall uistyle2">
             <img class="icon" src="media/email.png"/>
         </a>
-        <a href="#" class="FULLSCREEN tabuttonsmall tabuttonright uistyle2" onclick="SendFullScreen()">
+        <a href="#" class="FULLSCREEN tabuttonsmall tabuttonright uistyle2" onclick="FullScreen()">
             <img id="imgfscreen" class="icon" src="media/fullscreen.png"/>
         </a>
     </div>
@@ -360,11 +171,11 @@
 
 <div class="information">
     <div class="card">
-        <h1 class="infotext"><b class="infotext title">CS 8x00 Family </b> Service Guide version 03-2022</h1>
-        <p class="infotext">For troubleshooting and training</p>
+        <h1 class="infotext"><b class="infotext title">MyProduct </b> ggggggg</h1>
+        <p class="infotext"></p>
     </div>
     <div class="card">
-        <h1 class="infotext title" >Service Guide CS 8x00 Family v2<br/>Copyright (c) Carestream Dental 2019-2022</h1>
+        <h1 class="infotext title" >Service Guide MyProduct v1<br/>Copyright (c) Carestream Dental 2019-2023</h1>
     </div>
     <!--USER INFORMATION HERE-->
 
@@ -377,29 +188,5 @@
 <!--Notifications dependencies ...-->
 <script type="text/javascript" src="js/notiny.js"></script>
 <link rel="stylesheet" href="css/notiny.css"/>
-
-<script>
-    var swiper = new Swiper(".submenu_product", {
-                effect: 'flip', //'cube',//'cards',
-                cardsEffect: {
-                    slideShadows:false
-                },
-                flipEffect: {
-                    slideShadows: false,
-                },
-                autoplay: {
-                    delay: 2500,
-                    disableOnInteraction: false,
-                },
-            });
-
-    document.querySelector(".product_next").addEventListener("click", function(event) {
-        swiper.slideNext();
-        event.preventDefault();
-        event.stopPropagation();
-        }, false);
-
-
-  </script>
 
 </html>

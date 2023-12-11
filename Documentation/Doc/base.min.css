@@ -39,9 +39,14 @@
     }
 
     .loading-indicator.active {
-        background-color: #FBD603;
         display: block;
         position: absolute;
+        width: 64px;
+        height: 64px;
+        top: 50%;
+        left: 50%;
+        margin-top: -32px;
+        margin-left: -32px
     }
 
     .loading-indicator img {
@@ -108,7 +113,7 @@
 }
 
 .pc.opened {
-    display: block;
+    display: block
 }
 
 .bf {
@@ -209,6 +214,7 @@
 .d {
     position: absolute;
     background-color: rgba(33, 183, 255, 0.05);
+    /*border: 1px solid #a7a7a7;*/
     transform-origin: 0 100%;
     -ms-transform-origin: 0 100%;
     -webkit-transform-origin: 0 100%

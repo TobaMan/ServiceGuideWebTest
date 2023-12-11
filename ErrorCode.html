@@ -13,11 +13,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href='css/ServiceGuide.css'/>
     <link rel="stylesheet" type="text/css" href='css/darktooltip.css'/>
+    <link rel="stylesheet" type="text/css" href='css/pace.css'/>
     <link rel="stylesheet" type="text/css" href='css/tail.select.css'/>
     <link rel="stylesheet" type="text/css" href='css/popupwindow.css'/>
     <script type="text/javascript" src='js/jquery-3.4.1.min.js'></script>
     <script type="text/javascript" src='js/darktooltip.js'></script>
     <script type="text/javascript" src='js/ServiceGuide.js'></script>
+    <script type="text/javascript" src='js/pace.js'></script>
     <script type="text/javascript" src='js/tail.select.js'></script>
     <script type="text/javascript" src='js/print.js'></script>
 
@@ -376,7 +378,7 @@
         </a>
         <img class="icolabel_menu" src="media/search.png"/><a href="#" onclick="ShowSearchForm()">Search</a>
         <img class="icolabel_menu" src="media/print.png"/><a href="#" onclick="PrintErrorCode()">Print</a>
-        <img class="icolabel_menu" src="media/email.png"/><a href="mailto:serviceguide@csdental.com?subject=CS 8x00 Service Guide" onclick="">Feedback</a>
+        <img class="icolabel_menu" src="media/email.png"/><a href="mailto:serviceguide@csdental.com" onclick="">Feedback</a>
         <img class="icolabel_menu" src="media/fullscreen.png"/><a href="#" onclick="FullScreen()">Fullscreen</a>
     </div>
 </div>
@@ -398,12 +400,6 @@
         <a onclick="OpenHtmlPage('Presentation.html')" class="PRESENTATION tabuttonhome uistyle2">
             <img class="icon" src="media/home.png"/>
         </a>
-        <a onclick="PrevPageHistory()" class="tabuttonhistory-prev uistyle2">
-            <img class="icon" src="media/left.png"/>
-        </a>
-        <a onclick="NextPageHistory()" class="tabuttonhistory-next uistyle2">
-            <img class="icon" src="media/right.png"/>
-        </a>
         <a onclick="OpenHtmlPage('Documentation.html')" class="DOCUMENTATION tabutton uistyle2">
             <img class="icon" src="media/documentation48.png"/>
         </a>
@@ -420,10 +416,8 @@
             <img class="icon" src="media/part.png"/>
             <div class="submenu EPARTS_PRODUCT_LIST" style="display:none"></div>
         </a>
-        <a onclick="OpenHtmlPage('ErrorCode.html')" class="ERRORCODE tabutton uistyle2">
+        <a onclick="OpenHtmlPage('ErrorCode.html')" class="ERRORCODE tabutton tabselected uistyle2">
             <img class="icon" src="media/errorcode.png"/>
-            <img class="icon-refresh" src="media/refresh_round.png"/>
-            <div class="page-selected"></div>
         </a>
         <div class="submenu_search SEARCH_FORM" style="display:none">
             <form class="search" action="">
@@ -978,7 +972,7 @@
         <a href="#" class="PRINT tabuttonsmall uistyle2" onclick="PrintErrorCode()">
             <img class="icon" src="media/print.png"/>
         </a>
-        <a href="mailto:serviceguide@csdental.com?subject=CS 8x00 Service Guide" class="FEEDBACK tabuttonsmall uistyle2">
+        <a href="mailto:serviceguide@csdental.com" class="FEEDBACK tabuttonsmall uistyle2">
             <img class="icon" src="media/email.png"/>
         </a>
         <a href="#" class="FULLSCREEN tabuttonsmall tabuttonright uistyle2" onclick="FullScreen()">
