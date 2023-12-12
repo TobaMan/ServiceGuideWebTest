@@ -190,11 +190,16 @@
                 width: "30%",
                 height: "30%",
                 hidden: false,
-                url: content,
+                //url: content,
                 onclose: function (force) {
                     mediabox = 0;
                 }
             });
+
+            mediabox.mount($('#mediacontent')[0]);
+            $('#mediaframe').attr('src', content);
+            $('#mediacontent').show();
+
 
             mediabox.addControl({
                 index: 0,
@@ -205,7 +210,7 @@
                     console.log(winbox.id);
                     // "this" refers to the button which was clicked:
                     // this.classList.toggle("active");
-                    winbox.mount(document.getElementById("myNav"));
+                    //winbox.mount(document.getElementById("myNav"));
                     openNav();
                 }
             });
@@ -363,14 +368,18 @@
         <div class="pt-page pt-page-4"><iframe class="app-page" id="pg4" src="ErrorCode.html"></iframe></div>
     </div>
 
-    <div id="myNav" class="overlay">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <div class="overlay-content">
-            <a href="#">About</a>
-            <a href="#">Services</a>
-            <a href="#">Clients</a>
-            <a href="#">Contact</a>
+
+    <div id="mediacontent" style="display:none;">
+        <div id="myNav" class="overlay">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <div class="overlay-content">
+                <a href="#">About</a>
+                <a href="#">Services</a>
+                <a href="#">Clients</a>
+                <a href="#">Contact</a>
+            </div>
         </div>
+        <iframe id="mediaframe"></iframe>
     </div>
 
 </body>
