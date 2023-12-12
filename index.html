@@ -127,7 +127,7 @@
             top: 0;
             left: 0;
             background-color: #ECECEC;
-            opacity: 0.75;
+            opacity: 0.85;
             overflow-x: hidden;
             transition: 0.5s;
         }
@@ -187,6 +187,7 @@
         var currentpage = 1;
         var visitedpage = [0];
         var curvisited = -1;
+        var medialist = [];
 
 
         var ANIM_PRESENTATION = 40;
@@ -216,7 +217,10 @@
             mediabox.mount($('#mediacontent')[0]);
             $('#mediaframe').attr('src', content);
             $('#mediacontent').show();
-
+            medialist.push(content);
+            for (var i = 0; i < medialist.length; i++) {
+                $(".vertical-menu").append('<a href="#">' + medialist[i] + '</a>');
+            }
 
             mediabox.addControl({
                 index: 0,
