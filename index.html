@@ -113,6 +113,10 @@
         .wb-control * {
             -webkit-filter: invert(50%);
         }
+
+        .wb-history {
+            background-size: 20px auto;
+        }
     </style>
 
     <script>
@@ -146,6 +150,18 @@
                 url: content,
                 onclose: function (force) {
                     mediabox = 0;
+                }
+            });
+
+            winbox.addControl({
+                index: 0,
+                class: "wb-history",
+                image: "media/history.svg",
+                click: function (event, winbox) {
+                    // the winbox instance will be passed as 2nd parameter
+                    console.log(winbox.id);
+                    // "this" refers to the button which was clicked:
+                    // this.classList.toggle("active");
                 }
             });
         }
