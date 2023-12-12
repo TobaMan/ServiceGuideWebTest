@@ -214,14 +214,15 @@
                 }
             });
 
-            const imgvid = "<i src='media/media_movie'></i>";
-            const imgpdf = "<i src='media/media_pdf'></i>";
-            const imgurl = "<i src='media/media_url'></i>";
-            const imgoth = "<i src='media/media_other'></i>";
+            const imgvid = "<i src='media/media_movie.png'></i>";
+            const imgpdf = "<i src='media/media_pdf.png'></i>";
+            const imgurl = "<i src='media/media_url.png'></i>";
+            const imgoth = "<i src='media/media_other.png'></i>";
             mediabox.mount($('#mediacontent')[0]);
             $('#mediaframe').attr('src', content);
             $('#mediacontent').show();
-            medialist.push(content);
+            if(!medialist.includes(content)){
+                medialist.push(content);}
             for (var i = 0; i < medialist.length; i++) {
                 var icon = imgoth;
                 var file = medialist[i];
