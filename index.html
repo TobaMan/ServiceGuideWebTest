@@ -143,7 +143,7 @@
         .overlay a {
             padding: 8px;
             text-decoration: none;
-            font-size: 36px;
+            font-size: 16px;
             color: #818181;
             display: block;
             transition: 0.3s;
@@ -219,7 +219,8 @@
             $('#mediacontent').show();
             medialist.push(content);
             for (var i = 0; i < medialist.length; i++) {
-                $(".vertical-menu").append('<a href="#">' + medialist[i] + '</a>');
+                $(".vertical-menu").append(
+                    '<a href="#">' + medialist[i] + '</a>');
             }
 
             mediabox.addControl({
@@ -227,11 +228,7 @@
                 class: "wb-history",
                 image: "media/history.svg",
                 click: function (event, winbox) {
-                    // the winbox instance will be passed as 2nd parameter
                     console.log(winbox.id);
-                    // "this" refers to the button which was clicked:
-                    // this.classList.toggle("active");
-                    //winbox.mount(document.getElementById("myNav"));
                     openNav();
                 }
             });
