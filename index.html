@@ -167,11 +167,11 @@
             text-shadow: 0px 1px 0px #fff;
             text-decoration: none;
             padding: 12px;
-            margin:4px;
-            left:4px;
+            margin: 4px;
+            left: 4px;
         }
 
-        .mediaitem:hover{
+        .mediaitem:hover {
             border: 1px solid #a7a7a7;
         }
 
@@ -224,16 +224,18 @@
             mediabox.mount($('#mediacontent')[0]);
             $('#mediaframe').attr('src', content);
             $('#mediacontent').show();
-            if(medialist.length){
-                $('.mediaitem').remove();}
-            if(!medialist.includes(content)){
-                medialist.push(content);}
+            if (medialist.length) {
+                $('.mediaitem').remove();
+            }
+            if (!medialist.includes(content)) {
+                medialist.push(content);
+            }
             for (var i = 0; i < medialist.length; i++) {
                 var icon = imgoth;
                 var file = medialist[i];
                 var ext = file.split('.').pop();
-                if(ext === "mp4"){icon = imgvid;}
-                if(ext === "pdf"){icon = imgpdf;}
+                if (ext === "mp4") { icon = imgvid; }
+                if (ext === "pdf") { icon = imgpdf; }
                 $(".vertical-menu").append(
                     '<a href="#" class="mediaitem">' + icon + file + '</a>');
             }
@@ -407,7 +409,7 @@
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             <div class="overlay-content">
                 <div class="vertical-menu">
-                    <a href="#" class="active">Last media files</a>
+                    <a href="#" class="active"><img src='media/big_history.png' />Last media files</a>
                 </div>
             </div>
         </div>
