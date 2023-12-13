@@ -175,11 +175,20 @@
             border: 1px solid #a7a7a7;
         }
 
-        .vertical-menu img {
-            top: 14px;
+        .mediaitem img {
+            transform: translateY(6px);
             margin-right: 8px;
             -webkit-filter: invert(50%);
         }
+
+        .active img {
+            transform: translateY(18px);
+        }
+
+        .active a {
+            font-size: 24px;
+        }
+        
     </style>
 
     <script>
@@ -409,7 +418,7 @@
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             <div class="overlay-content">
                 <div class="vertical-menu">
-                    <a href="#" class="active"><img src='media/big_history.png' />Last media files</a>
+                    <a href="#" class="active"><img src='media/big_history.png' />Media files</a>
                 </div>
             </div>
         </div>
