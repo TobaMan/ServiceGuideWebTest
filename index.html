@@ -247,6 +247,9 @@
                 $(".vertical-menu").append(
                     '<a href="#" class="mediaitem">' + icon + file + '</a>');
             }
+            $(".mediaitem").click(function(){
+                alert($(this).text());
+            });
 
             mediabox.addControl({
                 index: 0,
