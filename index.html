@@ -127,7 +127,7 @@
             top: 0;
             left: 0;
             background-color: #ECECEC;
-            opacity: 0.85;
+            opacity: 0.95;
             overflow-x: hidden;
             transition: 0.5s;
         }
@@ -248,7 +248,8 @@
                     '<a href="#" class="mediaitem">' + icon + file + '</a>');
             }
             $(".mediaitem").click(function(){
-                alert($(this).text());
+                $('#mediaframe').attr('src', $(this).text());
+                closeNav();
             });
 
             mediabox.addControl({
