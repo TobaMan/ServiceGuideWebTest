@@ -217,12 +217,11 @@
             }
             mediabox = new WinBox("ServiceGuide", {
                 border: "0.3em",
-                x: "68%",
-                y: "66%",
-                width: "30%",
-                height: "30%",
+                x: "58%",
+                y: "56%",
+                width: "40%",
+                height: "40%",
                 hidden: false,
-                //url: content,
                 onclose: function (force) {
                     mediabox = 0;
                 }
@@ -236,11 +235,9 @@
             $('#mediaframe').attr('src', content);
             $('#mediacontent').show();
             if (medialist.length) {
-                $('.mediaitem').remove();
-            }
+                $('.mediaitem').remove();}
             if (!medialist.includes(content)) {
-                medialist.push(content);
-            }
+                medialist.push(content);}
             for (var i = 0; i < medialist.length; i++) {
                 var icon = imgoth;
                 var file = medialist[i];
