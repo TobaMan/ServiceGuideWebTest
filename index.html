@@ -218,10 +218,12 @@
             const imgvid = "<img src='media/media_movie.png'/>";
             const imgpdf = "<img src='media/media_pdf.png'/>";
             const imgurl = "<img src='media/media_url.png'/>";
-            const imgoth = "<mg src='media/media_other.png'/>";
+            const imgoth = "<img src='media/media_other.png'/>";
             mediabox.mount($('#mediacontent')[0]);
             $('#mediaframe').attr('src', content);
             $('#mediacontent').show();
+            if(medialist.length){
+                $('.mediaitem').remove();}
             if(!medialist.includes(content)){
                 medialist.push(content);}
             for (var i = 0; i < medialist.length; i++) {
