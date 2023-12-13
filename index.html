@@ -166,15 +166,15 @@
             text-shadow: 0px 1px 0px #fff;
             text-decoration: none;
             padding: 12px;
+            left:4px;
         }
 
-        .vertical-menu a :hover{
-            left:4px;
+        .mediaitem:hover{
             border: 1px solid #a7a7a7;
         }
 
         .vertical-menu img {
-            padding-top: 14px;
+            margin-top: 14px;
             margin-right: 8px;
             -webkit-filter: invert(50%);
         }
@@ -231,7 +231,7 @@
                 if(ext === "mp4"){icon = imgvid;}
                 if(ext === "pdf"){icon = imgpdf;}
                 $(".vertical-menu").append(
-                    '<a href="#">' + icon + file + '</a>');
+                    '<a href="#" class="mediaitem">' + icon + file + '</a>');
             }
 
             mediabox.addControl({
