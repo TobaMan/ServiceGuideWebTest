@@ -17,6 +17,7 @@
     <script type="text/javascript" src='js/ServiceGuide.js'></script>
     <script src="js/modernizr.custom.js"></script>
     <script src="js/winbox.min.js"></script>
+
     <!-- <script src="js/html2canvas.min.js"></script> -->
     
 
@@ -149,22 +150,16 @@
         .grid-item iframe {
             position: relative;
             grid-area: iframe;
-            top: 4%;
+            /* top: 4%;
             left: 4%;
             width: 92%;
-            height: 32vh;
-            overflow: hidden;
+            height: 32vh; */
+            /* overflow: hidden; */
             pointer-events: none;
             opacity: 0.5;
 
-            /* -ms-zoom: 0.75;
-            -moz-transform: scale(0.75);
-            -moz-transform-origin: 0 0;
-            -o-transform: scale(0.75);
-            -o-transform-origin: 0 0;
-            -webkit-transform: scale(0.75);
-            -webkit-transform-origin: 0 0; */
-
+            margin:4%;
+            height: 32vh;
         }
 
         .html-resize {
@@ -324,12 +319,13 @@
                     let src = sessionStorage.getItem('_media_src_');
 
 
-                    // <div id="pt-main" class="pt-perspective">
                     $("#pt-main").removeClass("pt-perspective");
                     $("#pt-main").addClass("grid-container");
                     $("#pt-main .pt-page").addClass("grid-item");
                     $("#pt-main .grid-item").removeClass("pt-page");
                     $("#pt-main .grid-item").addClass("uistyle2");
+                    // $("#pt-main .grid-item iframe").addClass("html-resize");
+                    
                     
 
 
