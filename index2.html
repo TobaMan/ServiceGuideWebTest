@@ -18,9 +18,6 @@
     <script src="js/modernizr.custom.js"></script>
     <script src="js/winbox.min.js"></script>
 
-    <!-- <script src="js/html2canvas.min.js"></script> -->
-    
-
 
     <style>
         html,
@@ -117,92 +114,93 @@
             -webkit-filter: invert(50%);
         }
 
-
-
-        #framepreview {
-            display: none;
-            position: absolute;
-            background: #ECECEC;
-            margin: 0;
-            top: 0px;
-            left: 0px;
-            width: 100%;
-            height: 100vh
+        .wb-history {
+            background-size: 20px auto;
         }
 
-        .grid-container {
-            background: none;
-            display: grid;
-            position: sticky;
-            grid-template-columns: repeat(2, 1fr);
-            column-gap: 1rem;
-            row-gap: 1rem;
-            margin: 1rem;
-            justify-content: center;
-            height: 90vh;
+
+        .overlay {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #ECECEC;
+            opacity: 0.95;
+            overflow-x: hidden;
         }
 
-        .grid-item {
-            display: flex;
-            justify-content: center;
-        }
-
-        .grid-item iframe {
+        .overlay-content {
             position: relative;
-            grid-area: iframe;
-            top: 4%;
-            left: 4%;
-            width: 92%;
-            height: 32vh;
-            overflow: hidden;
-            pointer-events: none;
-            opacity: 0.5;
-
-            /* -ms-zoom: 0.75;
-            -moz-transform: scale(0.75);
-            -moz-transform-origin: 0 0;
-            -o-transform: scale(0.75);
-            -o-transform-origin: 0 0;
-            -webkit-transform: scale(0.75);
-            -webkit-transform-origin: 0 0; */
-
-        }
-
-        .html-resize {
-            -ms-zoom: 0.7;
-            -moz-transform: scale(0.7);
-            -moz-transform-origin: 0 0;
-            -o-transform: scale(0.7);
-            -o-transform-origin: 0 0;
-            -webkit-transform: scale(0.7);
-            -webkit-transform-origin: 0 0;
-            /* width: 50%;
-            height: 50%; */
-        }
-
-        .grid-item-cover {
-            z-index: 500;
+            top: 4px;
             width: 100%;
-            height: 40vh;
         }
 
-        .grid-cover-text {
-            text-align: center;
-            justify-content: center;
-            font-size: 32px;
-            transform: translate(0%, -100%);
+        /* .overlay a {
+            padding: 8px;
+            text-decoration: none;
+            font-size: 16px;
+            color: #818181;
+            display: block;
+        } */
+
+        .overlay .closebtn {
+            position: absolute;
+            top: 10px;
+            right: 25px;
+            font-size: 26px;
         }
+
+        .vertical-menu a {
+            display: block;
+            background-color: #eee;
+            text-align: start;
+            font-family: Roboto;
+            font-weight: bold;
+            color: #7f7f7f;
+            text-decoration: none;
+            text-shadow: 0px 1px 0px #fff;
+            padding: 12px;
+            margin: 2%;
+        }
+
+        .mediaitem:hover {
+            border: 1px solid #a7a7a7;
+        }
+
+        .mediaitem img {
+            left: 4px;
+            transform: translateY(6px);
+            margin-right: 8px;
+            -webkit-filter: invert(50%);
+        }
+
+        .active img {
+            text-shadow: 0px 1px 0px #fff;
+            -webkit-filter: invert(50%);
+            transform: translateY(18px);
+        }
+
+        .active {
+            background-color: transparent;
+        }
+
+        .active a {
+            font-size: 36px;
+        }
+        
     </style>
 
     <script>
 
-        var tabbox = 0;
         var mediabox = 0;
         var oldpage = 0;
         var usehitory = false;
         var currentpage = 1;
         var visitedpage = [0];
         var curvisited = -1;
+        var medialist = [];
 
 
         var ANIM_PRESENTATION = 40;
@@ -218,36 +216,58 @@
             }
             mediabox = new WinBox("ServiceGuide", {
                 border: "0.3em",
-                x: "68%",
-                y: "66%",
-                width: "30%",
-                height: "30%",
+                x: "58%",
+                y: "56%",
+                width: "40%",
+                height: "40%",
                 hidden: false,
-                url: content,
                 onclose: function (force) {
                     mediabox = 0;
                 }
             });
-        }
 
-        function ShowTabs() {
-            if (tabbox) {
-                tabbox.close();
+            const imgvid = "<img src='media/media_movie.png'/>";
+            const imgpdf = "<img src='media/media_pdf.png'/>";
+            const imgurl = "<img src='media/media_url.png'/>";
+            const imgoth = "<img src='media/media_other.png'/>";
+            mediabox.mount($('#mediacontent')[0]);
+            $('#mediaframe').attr('src', content);
+            $('#mediacontent').show();
+            if (medialist.length) {
+                $('.mediaitem').remove();}
+            if (!medialist.includes(content)) {
+                medialist.push(content);}
+            for (var i = 0; i < medialist.length; i++) {
+                var icon = imgoth;
+                var file = medialist[i];
+                var ext = file.split('.').pop();
+                if (ext === "mp4") { icon = imgvid; }
+                if (ext === "pdf") { icon = imgpdf; }
+                $(".vertical-menu").append(
+                    '<a href="#" class="mediaitem">' + icon + file + '</a>');
             }
-            tabbox = new WinBox("ServiceGuide", {
-                background: "#ECECEC",
-                border: "0.3em",
-                x: "center",
-                y: "center",
-                width: "80%",
-                height: "80%",
-                hidden: false,
-                modal: true,
-                // onclose: function (force) {
-                //     tabbox = 0;
-                // }
+            $(".mediaitem").click(function(){
+                $('#mediaframe').attr('src', $(this).text());
+                closeNav();
             });
 
+            mediabox.addControl({
+                index: 0,
+                class: "wb-history",
+                image: "media/history.svg",
+                click: function (event, winbox) {
+                    console.log(winbox.id);
+                    openNav();
+                }
+            });
+        }
+
+        function openNav() {
+            document.getElementById("myNav").style.width = "100%";
+        }
+
+        function closeNav() {
+            document.getElementById("myNav").style.width = "0%";
         }
 
         function AddPageHistory(page) {
@@ -309,11 +329,6 @@
             document.getElementById(id).src = document.getElementById(id).src
         }
 
-        function PageFromPreview(id) {
-            GoToPage(id, ANIM_OTHER);
-            tabbox.close();
-        }
-
         window.onmessage = function (event) {
 
             if (event.data == '_fullscreen_') {
@@ -323,84 +338,7 @@
             if (event.data == 'media_src') {
                 if (sessionStorage.length) {
                     let src = sessionStorage.getItem('_media_src_');
-
-
-                    // <div id="pt-main" class="pt-perspective">
-                    $("#pt-main").removeClass("pt-perspective");
-                    $("#pt-main").addClass("grid-container");
-                    $("#pt-main .pt-page").addClass("grid-item");
-                    $("#pt-main .grid-item").removeClass("pt-page");
-                    $("#pt-main .grid-item").addClass("uistyle2");
-                    
-
-
-                    //ShowMedia(src);
-
-                    // ShowTabs();
-                    //tabbox.mount($('#framepreview')[0]);
-                    // tabbox.mount($('#pt-main')[0]);
-                    
-                    // $('#framepreview').show();
-                    
-
-                   
-                    // var item = `
-                    // <div class="grid-item">
-                    //     <a class="grid-item-cover uistyle2" href="#" onclick="PageFromPreview(0);">
-                    //         <iframe></iframe>
-                    //         <p class="grid-cover-text">Presentation</p>
-                    //     </a>
-                    // </div>
-                    // `;
-
-
-
-                    // // $("#framepreview .grid-container").empty();
-                    // // var children = $("#pt-main .pt-page").children().contents().find("body").clone();
-                    // var children = $("#pt-main .pt-page").children().clone();
-                    // for (var i = 0; i < children.length; i++) {
-                    //     // console.log(children[i]);
-                    //     var jqitem = $($.parseHTML(item));
-                    //     var jqitem_iframe = jqitem.find("iframe");
-                    //     //var iframe = $("#pg4").contents().find("html").clone();
-                    //     var iframe = children[i];
-                    //     jqitem_iframe.replaceWith(iframe);
-                    //     // $($.parseHTML(iframe)).attr('id',  "framepreview_" + i.toString());
-                    //     $(".grid-container").append(jqitem);
-                    // }
-
-                    // $("#framepreview .grid-container body").addClass("html-resize");
-                    // var children = $("#framepreview .grid-container body").children();
-                    // for (var i = 0; i < children.length; i++) {
-                    //     console.log(children[i]);
-
-
-                    // }
-
-                    // $("#framepreview .grid-container iframe .navbar").addClass("html-resize");
-                    // $("#framepreview .grid-container iframe .navbar").hide();
-                    // $('iframe').on('load', function () {
-                    //     var children = $("#pt-main .pt-page").children().contents().find("body").clone();
-                    //     for (var i = 0; i < children.length; i++) {
-                    //         console.log(children[i]);
-                    //         // $("#framepreview .grid-container iframe").contents().find("body").replaceWith(children[i]);
-                    //         $("#framepreview .grid-container iframe body").replaceWith(children[i]);
-                    //     }
-                    // });
-
-                    // // $("#framepreview_0").on('load', function () {
-                    // $("iframe").on('load', function () {
-                    //     var src = $(this).attr('src');
-                    //     if(src === "ErrorCode.html"){
-                    //         console.log(src, 'loaded!');
-                    //         // $(this).contents().find("body").replaceWith("<body>Hello every one !</body>");
-                    //         $(this).contents().find("body").replaceWith($("#pg4").contents().find("body"));
-                    //     }
-                        
-
-                    // });
-
-
+                    ShowMedia(src);
                 }
             }
 
@@ -459,7 +397,6 @@
             $('iframe').on('load', function () {
                 var src = $(this).attr('src');
                 console.log(src, 'loaded!');
-
             });
         })
 
@@ -469,6 +406,7 @@
 
 <body>
 
+
     <div id="pt-main" class="pt-perspective">
         <div class="pt-page pt-page-1"><iframe class="app-page" id="pg1" src="Presentation.html"></iframe></div>
         <div class="pt-page pt-page-2"><iframe class="app-page" id="pg2" src="Documentation.html"></iframe></div>
@@ -476,40 +414,17 @@
         <div class="pt-page pt-page-4"><iframe class="app-page" id="pg4" src="ErrorCode.html"></iframe></div>
     </div>
 
-    <!-- <div class="grid-item">
-        <a class="grid-item-cover uistyle2" href="#" onclick="PageFromPreview(0);">
-            <iframe src="Presentation.html"></iframe>
-            <p class="grid-cover-text">Presentation</p>
-        </a>
-    </div> -->
 
-    <!-- <div id="framepreview">
-        <div class="grid-container"> -->
-            <!-- <div class="grid-item">
-                <a class="grid-item-cover uistyle2" href="#" onclick="PageFromPreview(0);">
-                    <iframe src="Presentation.html"></iframe>
-                    <p class="grid-cover-text">Presentation</p>
-                </a>
+    <div id="mediacontent" style="display:none;">
+        <div id="myNav" class="overlay">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <div class="overlay-content">
+                <div class="vertical-menu">
+                    <a href="#" class="active"><img src='media/big_history.png'/>Media files</a>
+                </div>
             </div>
-            <div class="grid-item">
-                <a class="grid-item-cover uistyle2" href="#" onclick="PageFromPreview(1);">
-                    <iframe src="Documentation.html"></iframe>
-                    <p class="grid-cover-text">Documentation</p>
-                </a>
-            </div>
-            <div class="grid-item">
-                <a class="grid-item-cover uistyle2" href="#" onclick="PageFromPreview(2);">
-                    <iframe src="SearchText.html"></iframe>
-                    <p class="grid-cover-text">Search by text</p>
-                </a>
-            </div>
-            <div class="grid-item">
-                <a class="grid-item-cover uistyle2" href="#" onclick="PageFromPreview(3);">
-                    <iframe src="ErrorCode.html"></iframe>
-                    <p class="grid-cover-text">Error code</p>
-                </a>
-            </div> -->
-        <!-- </div> -->
+        </div>
+        <iframe id="mediaframe"></iframe>
     </div>
 
 </body>
