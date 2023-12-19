@@ -19,7 +19,7 @@
     <script src="js/winbox.min.js"></script>
 
     <!-- <script src="js/html2canvas.min.js"></script> -->
-    
+
 
 
     <style>
@@ -93,6 +93,10 @@
             border: none;
         }
 
+        .pt-title{
+            display:none;
+        }
+
 
         .winbox {
             background: #ECECEC;
@@ -140,6 +144,7 @@
             margin: 1rem;
             justify-content: center;
             height: 90vh;
+            overflow-y: auto;
         }
 
         .grid-item {
@@ -150,16 +155,10 @@
         .grid-item iframe {
             position: relative;
             grid-area: iframe;
-            /* top: 4%;
-            left: 4%;
-            width: 92%;
-            height: 32vh; */
-            /* overflow: hidden; */
             pointer-events: none;
-            opacity: 0.5;
-
-            margin:4%;
-            height: 32vh;
+            opacity: 0.85;
+            margin: 4%;
+            height: 80vh;
         }
 
         .html-resize {
@@ -170,21 +169,17 @@
             -o-transform-origin: 0 0;
             -webkit-transform: scale(0.7);
             -webkit-transform-origin: 0 0;
-            /* width: 50%;
-            height: 50%; */
-        }
-
-        .grid-item-cover {
-            z-index: 500;
-            width: 100%;
-            height: 40vh;
         }
 
         .grid-cover-text {
+            display:block;
+            position: absolute;
+            margin-top: 20%;
+            z-index: 500;
+            font-size: 32px;
             text-align: center;
             justify-content: center;
-            font-size: 32px;
-            transform: translate(0%, -100%);
+            /* transform: translate(0%, 100%); */
         }
     </style>
 
@@ -294,7 +289,7 @@
                 AddPageHistory(currentpage);
                 oldpage = currentpage;
             }
-            else { ReloadPage(n); }
+            //else { ReloadPage(n); }
         }
 
         function ReloadPage(n) {
@@ -304,9 +299,34 @@
         }
 
         function PageFromPreview(id) {
-            GoToPage(id, ANIM_OTHER);
-            tabbox.close();
+            $("#pt-main").addClass("pt-perspective");
+            $("#pt-main").removeClass("grid-container");
+            $("#pt-main .pt-page").removeClass("grid-item");
+            $("#pt-main .grid-item").addClass("pt-page");
+            $("#pt-main .grid-item").removeClass("uistyle2");
+            $(".grid-cover-text").addClass("pt-title");
+            $(".pt-title").removeClass("grid-cover-text");
+            GoToPage(id, 22);
         }
+
+        function PageToPreview() {
+            $("#pt-main").removeClass("pt-perspective");
+            $("#pt-main").addClass("grid-container");
+            $("#pt-main .pt-page").addClass("grid-item");
+            $("#pt-main .grid-item").removeClass("pt-page");
+            $("#pt-main .grid-item").addClass("uistyle2");
+            $(".pt-title").addClass("grid-cover-text");
+            $(".grid-cover-text").removeClass("pt-title");
+            $(".grid-item").on("click", function () {
+                var id = $(this).find("iframe").attr('id');
+                id = parseInt(id.split("pg")[1]) - 1;
+                PageFromPreview(id);
+            });
+        }
+
+
+
+
 
         window.onmessage = function (event) {
 
@@ -319,81 +339,7 @@
                     let src = sessionStorage.getItem('_media_src_');
 
 
-                    $("#pt-main").removeClass("pt-perspective");
-                    $("#pt-main").addClass("grid-container");
-                    $("#pt-main .pt-page").addClass("grid-item");
-                    $("#pt-main .grid-item").removeClass("pt-page");
-                    $("#pt-main .grid-item").addClass("uistyle2");
-                    // $("#pt-main .grid-item iframe").addClass("html-resize");
-                    
-                    
-
-
-                    //ShowMedia(src);
-
-                    // ShowTabs();
-                    //tabbox.mount($('#framepreview')[0]);
-                    // tabbox.mount($('#pt-main')[0]);
-                    
-                    // $('#framepreview').show();
-                    
-
-                   
-                    // var item = `
-                    // <div class="grid-item">
-                    //     <a class="grid-item-cover uistyle2" href="#" onclick="PageFromPreview(0);">
-                    //         <iframe></iframe>
-                    //         <p class="grid-cover-text">Presentation</p>
-                    //     </a>
-                    // </div>
-                    // `;
-
-
-
-                    // // $("#framepreview .grid-container").empty();
-                    // // var children = $("#pt-main .pt-page").children().contents().find("body").clone();
-                    // var children = $("#pt-main .pt-page").children().clone();
-                    // for (var i = 0; i < children.length; i++) {
-                    //     // console.log(children[i]);
-                    //     var jqitem = $($.parseHTML(item));
-                    //     var jqitem_iframe = jqitem.find("iframe");
-                    //     //var iframe = $("#pg4").contents().find("html").clone();
-                    //     var iframe = children[i];
-                    //     jqitem_iframe.replaceWith(iframe);
-                    //     // $($.parseHTML(iframe)).attr('id',  "framepreview_" + i.toString());
-                    //     $(".grid-container").append(jqitem);
-                    // }
-
-                    // $("#framepreview .grid-container body").addClass("html-resize");
-                    // var children = $("#framepreview .grid-container body").children();
-                    // for (var i = 0; i < children.length; i++) {
-                    //     console.log(children[i]);
-
-
-                    // }
-
-                    // $("#framepreview .grid-container iframe .navbar").addClass("html-resize");
-                    // $("#framepreview .grid-container iframe .navbar").hide();
-                    // $('iframe').on('load', function () {
-                    //     var children = $("#pt-main .pt-page").children().contents().find("body").clone();
-                    //     for (var i = 0; i < children.length; i++) {
-                    //         console.log(children[i]);
-                    //         // $("#framepreview .grid-container iframe").contents().find("body").replaceWith(children[i]);
-                    //         $("#framepreview .grid-container iframe body").replaceWith(children[i]);
-                    //     }
-                    // });
-
-                    // // $("#framepreview_0").on('load', function () {
-                    // $("iframe").on('load', function () {
-                    //     var src = $(this).attr('src');
-                    //     if(src === "ErrorCode.html"){
-                    //         console.log(src, 'loaded!');
-                    //         // $(this).contents().find("body").replaceWith("<body>Hello every one !</body>");
-                    //         $(this).contents().find("body").replaceWith($("#pg4").contents().find("body"));
-                    //     }
-                        
-
-                    // });
+                    PageToPreview();
 
 
                 }
@@ -467,8 +413,12 @@
     <div id="pt-main" class="pt-perspective">
         <div class="pt-page pt-page-1"><iframe class="app-page" id="pg1" src="Presentation.html"></iframe></div>
         <div class="pt-page pt-page-2"><iframe class="app-page" id="pg2" src="Documentation.html"></iframe></div>
-        <div class="pt-page pt-page-3"><iframe class="app-page" id="pg3" src="SearchText.html"></iframe></div>
-        <div class="pt-page pt-page-4"><iframe class="app-page" id="pg4" src="ErrorCode.html"></iframe></div>
+        <div class="pt-page pt-page-3"><iframe class="app-page" id="pg3" src="SearchText.html"></iframe>
+            <p class="pt-title">Search by text</p>
+        </div>
+        <div class="pt-page pt-page-4"><iframe class="app-page" id="pg4" src="ErrorCode.html"></iframe>
+            <p class="pt-title">Error code</p>
+        </div>
     </div>
 
     <!-- <div class="grid-item">
@@ -480,7 +430,7 @@
 
     <!-- <div id="framepreview">
         <div class="grid-container"> -->
-            <!-- <div class="grid-item">
+    <!-- <div class="grid-item">
                 <a class="grid-item-cover uistyle2" href="#" onclick="PageFromPreview(0);">
                     <iframe src="Presentation.html"></iframe>
                     <p class="grid-cover-text">Presentation</p>
@@ -504,7 +454,7 @@
                     <p class="grid-cover-text">Error code</p>
                 </a>
             </div> -->
-        <!-- </div> -->
+    <!-- </div> -->
     </div>
 
 </body>
