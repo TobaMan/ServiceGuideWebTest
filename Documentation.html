@@ -165,6 +165,96 @@
 
         }
 
+        .LOCALIZATION_BLINK {
+            animation: LOCALIZATION_blink 3s ease infinite;
+        }
+        @keyframes LOCALIZATION_blink {
+            0% {
+                background-color: #ECECEC;
+            }
+            50% {
+                background-color: rgba(28, 155, 140, 0.2);
+            }
+            100% {
+                background-color: #ECECEC;
+            }
+        }
+
+        .TROUBLESHOOTING_BLINK {
+            animation: TROUBLESHOOTING_blink 3s ease infinite;
+        }
+        @keyframes TROUBLESHOOTING_blink {
+            0% {
+                background-color: #ECECEC;
+            }
+            50% {
+                background-color: rgba(255, 0, 0, 0.2);
+            }
+            100% {
+                background-color: #ECECEC;
+            }
+        }
+
+        .REPLACEMENT_BLINK {
+            animation: REPLACEMENT_blink 3s ease infinite;
+        }
+        @keyframes REPLACEMENT_blink {
+            0% {
+                background-color: #ECECEC;
+            }
+            50% {
+                background-color: rgba(55, 155, 0, 0.2);
+            }
+            100% {
+                background-color: #ECECEC;
+            }
+        }
+
+        .DEPENDENCIES_BLINK {
+            animation: DEPENDENCIES_blink 3s ease infinite;
+        }
+        @keyframes DEPENDENCIES_blink {
+            0% {
+                background-color: #ECECEC;
+            }
+            50% {
+                background-color: rgba(255, 126, 0, 0.2);
+            }
+            100% {
+                background-color: #ECECEC;
+            }
+        }
+
+        .FUNCTIONS_BLINK {
+            animation: FUNCTIONS_blink 3s ease infinite;
+        }
+        @keyframes FUNCTIONS_blink {
+            0% {
+                background-color: #ECECEC;
+            }
+            50% {
+                background-color: rgba(55, 0, 200, 0.2);
+            }
+            100% {
+                background-color: #ECECEC;
+            }
+        }
+
+        .VIDEO_BLINK {
+            animation: VIDEO_blink 3s ease infinite;
+        }
+        @keyframes VIDEO_blink {
+            0% {
+                background-color: #ECECEC;
+            }
+            50% {
+                background-color: rgba(23, 23, 23, 0.2);
+            }
+            100% {
+                background-color: #ECECEC;
+            }
+        }
+
     </style>
 
 
@@ -215,20 +305,49 @@
                 opacity = "opacity:0.75;";}
             return opacity;}
 
-            function IsInsideNavigation(page, pstart, pstop) {
+
+        function BlinkNavigation(status, classname) {
+            if (status) {$("."+classname).addClass(classname+"_BLINK");}
+            else {$("."+classname).removeClass(classname+"_BLINK");}}
+
+        function BlinkLocalization(status) {
+            BlinkNavigation(status, "LOCALIZATION");}
+
+        function BlinkTroubleshooting(status) {
+            BlinkNavigation(status, "TROUBLESHOOTING");}
+
+        function BlinkReplacement(status) {
+            BlinkNavigation(status, "REPLACEMENT");}
+
+        function BlinkDependencies(status) {
+            BlinkNavigation(status, "DEPENDENCIES");}
+
+        function BlinkFunctions(status) {
+            BlinkNavigation(status, "FUNCTIONS");}
+
+        function BlinkVideo(status) {
+            BlinkNavigation(status, "VIDEO");}
+
+
+        function IsInsideNavigation(page, pstart, pstop, direct_start = true) {
             var curchapter = -1;
             var inside = false;
-            if (pstop == -1) {pstop = 1;}
-            for (var i = 0; i < function_navigation.length; i++) {
-                if(page == function_navigation[i][0]){return true;}}
+            if (pstop == -1) { pstop = 1; }
+            if (direct_start) {
+                for (var i = 0; i < function_navigation.length; i++) {
+                    if (page == function_navigation[i][0]) { return true; }
+                }
+            }
             for (var i = 0; i < function_navigation.length; i++) {
                 var start = function_navigation[i][pstart];
                 var stop = function_navigation[i][pstop];
-				if(start == -1){return false;}
+                if (start == -1) { return false; }
                 if ((page >= start) && (page < stop)) {
                     inside = true;
                     curchapter = i;
-                    break;}}
+                    break;
+                }
+            }
             return inside;
         }
 
@@ -237,22 +356,27 @@
          * @param {page} A page inside the documentation.
          * @return {number} True or False.
          */
-         function InsideLocalization(page){
-           return IsInsideNavigation(page,2,3);}
+        function InsideLocalization(page, direct_start = true) {
+            return IsInsideNavigation(page, 2, 3, direct_start);
+        }
 
-        function InsideTroubleshooting(page){
-            return IsInsideNavigation(page,3,4);}
+        function InsideTroubleshooting(page, direct_start = true) {
+            return IsInsideNavigation(page, 3, 4, direct_start);
+        }
 
-        function InsideReplacement(page){
-            return IsInsideNavigation(page,4,5);}
+        function InsideReplacement(page, direct_start = true) {
+            return IsInsideNavigation(page, 4, 5, direct_start);
+        }
 
-        function InsideDependencies(page){
-            return IsInsideNavigation(page,5,6);}
+        function InsideDependencies(page, direct_start = true) {
+            return IsInsideNavigation(page, 5, 6, direct_start);
+        }
 
-        function InsideFunctions(page){
-            return IsInsideNavigation(page,6,-1);}
+        function InsideFunctions(page, direct_start = true) {
+            return IsInsideNavigation(page, 6, -1, direct_start);
+        }
 
-        function InsideVideo(page){
+        function InsideVideo(page) {
             return (page in video_navigation);
         }
 
@@ -300,6 +424,15 @@
                 //hide button outside navigation chapter
                 if (cur_content == -1) {
                     navshown = true;
+                }
+
+                if(oldpage != pagenum){
+                    BlinkLocalization(InsideLocalization(pagenum, false));
+                    BlinkTroubleshooting(InsideTroubleshooting(pagenum, false));
+                    BlinkReplacement(InsideReplacement(pagenum, false));
+                    BlinkDependencies(InsideDependencies(pagenum, false));
+                    BlinkFunctions(InsideFunctions(pagenum, false));
+                    BlinkVideo(InsideVideo(pagenum, false));
                 }
                 
                 //Show or not the navigation button
@@ -687,8 +820,12 @@
         <a onclick="OpenHtmlPage('Presentation.html')" class="PRESENTATION tabuttonhome uistyle2">
             <img class="icon" src="media/home.png"/>
         </a>
-        <a onclick="OpenHtmlPage('Documentation.html')" class="DOCUMENTATION tabutton tabselected uistyle2">
+		<a onclick="OpenPreview()" class="PREVIEW tabutton-preview uistyle2">
+            <img class="icon" src="media/preview.png"/>
+        </a>
+        <a onclick="OpenHtmlPage('Documentation.html')" class="DOCUMENTATION tabutton uistyle2">
             <img class="icon" src="media/documentation48.png"/>
+            <div class="page-selected"></div>
         </a>
         <a onclick="OpenHtmlPage('SearchText.html')" class="TEXTIMAGE tabutton uistyle2">
             <img class="icon" src="media/searchtext.png"/>
@@ -729,7 +866,7 @@
         <a href="mailto:serviceguide@csdental.com" class="FEEDBACK tabuttonsmall uistyle2">
             <img class="icon" src="media/email.png"/>
         </a>
-        <a href="#" class="FULLSCREEN tabuttonsmall tabuttonright uistyle2" onclick="FullScreen()">
+        <a href="#" class="FULLSCREEN tabuttonsmall tabuttonright uistyle2" onclick="SendFullScreen()">
             <img id="imgfscreen" class="icon" src="media/fullscreen.png"/>
         </a>
     </div>
@@ -742,28 +879,34 @@
 
 <div class="sidebar">
     <div class="LOCALIZATION sidebutton firstsidebutton uistyle2"
-         style="opacity: 0.15;border-bottom: 4px solid rgba(28,155,140,0.3);" onclick="FNavigationLink(this)">
+         style="opacity: 0.15;" onclick="FNavigationLink(this)">
         <img class="icon" src="media/Localization.png"/>
+        <div class="docnav-selected" style="background: rgba(28,155,140,0.3);"></div>
     </div>
     <div class="TROUBLESHOOTING sidebutton uistyle2"
-         style="opacity: 0.15;border-bottom: 4px solid rgba(255,0,0,0.3);" onclick="FNavigationLink(this)">
+         style="opacity: 0.15;" onclick="FNavigationLink(this)">
         <img class="icon" src="media/Troubleshooting.png"/>
+        <div class="docnav-selected" style="background: rgba(255,0,0,0.3);"></div>
     </div>
     <div class="REPLACEMENT sidebutton uistyle2"
-         style="opacity: 0.15;border-bottom: 4px solid rgba(55,155,0,0.3);" onclick="FNavigationLink(this)">
+         style="opacity: 0.15;" onclick="FNavigationLink(this)">
         <img class="icon" src="media/Replacement.png"/>
+        <div class="docnav-selected" style="background: rgba(55,155,0,0.3);"></div>
     </div>
     <div class="DEPENDENCIES sidebutton uistyle2"
-         style="opacity: 0.15;border-bottom: 4px solid rgba(255,126,0,0.3);" onclick="FNavigationLink(this)">
+         style="opacity: 0.15;" onclick="FNavigationLink(this)">
         <img class="icon" src="media/Dependencies.png"/>
+        <div class="docnav-selected" style="background: rgba(255,126,0,0.3);"></div>
     </div>
     <div class="FUNCTIONS sidebutton uistyle2"
-         style="opacity: 0.15;border-bottom: 4px solid rgba(55,0,200,0.3);" onclick="FNavigationLink(this)">
+         style="opacity: 0.15;" onclick="FNavigationLink(this)">
         <img class="icon" src="media/Functions.png"/>
+        <div class="docnav-selected" style="background: rgba(55,0,200,0.3);"></div>
     </div>
     <div id="video" class="VIDEO sidebutton uistyle2"
-         style="opacity: 0.15;border-bottom: 4px solid rgba(23, 23, 23, 0.3);" onclick="ShowVideo()">
+         style="opacity: 0.15;" onclick="ShowVideo()">
         <img class="icon" src="media/video.png"/>
+        <div class="docnav-selected" style="background: rgba(23, 23, 23, 0.3);"></div>
     </div>
     <div class="LASTLOC smallsidebutton1 sidebuttonspace uistyle2"
          onclick="ButtonLastLocation()">

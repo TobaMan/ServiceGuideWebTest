@@ -156,6 +156,10 @@ function EDiagramLink(id) {
     return true;
 }
 
+function OpenPreview(){
+    SendCustomEventFromIframe("_open_preview_");
+}
+
 function GetThumbDir(chapter){
     return chapter+"/Thumb/";
 }
@@ -297,6 +301,7 @@ $(document).ready(function() {
     InstallToolTip("west",'MODALITY', "Switch between all modalities ...");
 
     InstallToolTip("north",'PRESENTATION', "Return to the first page ...");
+    InstallToolTip("north",'PREVIEW', "Show all tabs as grid view ...");
     InstallToolTip("north",'DOCUMENTATION', "Documentation content ...");
     InstallToolTip("north",'DIAGRAM_PRODUCT_LIST', "Search by electrical diagram ...");
     InstallToolTip("north",'ERRORCODE', "Search by error code ...");
@@ -450,6 +455,10 @@ function CheckChromeBrowser() {
 	}
 }
 
+function SendFullScreen(){
+    SendCustomEventFromIframe("_fullscreen_");
+}
+
 function FullScreen() {
     /* Get the documentElement (<html>) to display the page in fullscreen */
     //var elem = document.getElementById("page-container");
@@ -476,10 +485,10 @@ function FullScreen() {
             document.msExitFullscreen();}}
     if ((window.fullScreen) ||
         (window.innerWidth == screen.width && window.innerHeight == screen.height)) {
-            document.getElementById("imgfscreen").src = "media/fullscreen.png";
+            // document.getElementById("imgfscreen").src = "media/fullscreen.png";
             closeFullscreen();}
     else{
-        document.getElementById("imgfscreen").src = "media/exitfullscreen.png";
+        // document.getElementById("imgfscreen").src = "media/exitfullscreen.png";
         openFullscreen();
     }
 }

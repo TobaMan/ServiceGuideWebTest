@@ -6,8 +6,6 @@
     <link rel="manifest" href="/manifest.json">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" /> -->
-    <!-- <link rel="stylesheet" type="text/css" href='css/pace.css' /> -->
     <link rel="stylesheet" type="text/css" href='css/ServiceGuide.css' />
     <link rel="stylesheet" type="text/css" href="css/animations.css" />
     <link rel="stylesheet" href="css/winbox.min.css">
@@ -17,9 +15,6 @@
     <script type="text/javascript" src='js/ServiceGuide.js'></script>
     <script src="js/modernizr.custom.js"></script>
     <script src="js/winbox.min.js"></script>
-
-    <!-- <script src="js/html2canvas.min.js"></script> -->
-    
 
 
     <style>
@@ -45,7 +40,6 @@
             margin: 0px;
             padding: 0px;
             width: 100%;
-            /* /* height: 100%; */
         }
 
         .pt-perspective {
@@ -93,7 +87,6 @@
             border: none;
         }
 
-
         .winbox {
             background: #ECECEC;
             border-radius: 4px 4px 0 0;
@@ -117,29 +110,72 @@
             -webkit-filter: invert(50%);
         }
 
-
-
-        #framepreview {
-            display: none;
-            position: absolute;
-            background: #ECECEC;
-            margin: 0;
-            top: 0px;
-            left: 0px;
-            width: 100%;
-            height: 100vh
+        .wb-icon {
+            -webkit-filter: invert(50%);
         }
+
+
+
+        .overlay {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #ECECEC;
+            opacity: 0.92;
+            overflow-x: hidden;
+        }
+
+        .overlay-content {
+            position: relative;
+            width: 100%;
+        }
+
+        .vertical-menu a {
+            display: block;
+            background-color: #eee;
+            text-align: start;
+            font-family: Roboto;
+            font-weight: bold;
+            color: #7f7f7f;
+            text-decoration: none;
+            text-shadow: 0px 1px 0px #fff;
+            padding: 12px;
+            margin: 2%;
+        }
+
+        .mediaitem img {
+            left: 4px;
+            transform: translateY(6px);
+            margin-right: 8px;
+            -webkit-filter: invert(50%);
+        }
+
+        .active {
+            font-size: 32px;
+            background-color: transparent;
+        }
+        .active img {
+            text-shadow: 0px 1px 0px #fff;
+            -webkit-filter: invert(50%);
+            transform: translateY(12px);
+        }
+
+
+
+
 
         .grid-container {
             background: none;
             display: grid;
             position: sticky;
             grid-template-columns: repeat(2, 1fr);
-            column-gap: 1rem;
-            row-gap: 1rem;
-            margin: 1rem;
             justify-content: center;
-            height: 90vh;
+            height: 100vh;
+            overflow-y: auto;
+            background: rgba(70, 70, 70, 0.151);
         }
 
         .grid-item {
@@ -150,48 +186,88 @@
         .grid-item iframe {
             position: relative;
             grid-area: iframe;
-            /* top: 4%;
-            left: 4%;
-            width: 92%;
-            height: 32vh; */
-            /* overflow: hidden; */
             pointer-events: none;
-            opacity: 0.5;
-
-            margin:4%;
-            height: 32vh;
+            opacity: 0.85;
+            height: 80vh;
         }
 
-        .html-resize {
-            -ms-zoom: 0.7;
-            -moz-transform: scale(0.7);
-            -moz-transform-origin: 0 0;
-            -o-transform: scale(0.7);
-            -o-transform-origin: 0 0;
-            -webkit-transform: scale(0.7);
-            -webkit-transform-origin: 0 0;
-            /* width: 50%;
-            height: 50%; */
-        }
 
-        .grid-item-cover {
-            z-index: 500;
+        .off-thumbnail-container {}
+
+        .off-thumbnail {}
+
+        /* --This is our screen sizing */
+        .off-thumbnail,
+        .off-thumbnail iframe {
             width: 100%;
-            height: 40vh;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
         }
 
-        .grid-cover-text {
+        /* --This container helps the thumbnail behave as if it were an unscaled IMG element */
+        .thumbnail-container {
+            width: calc(1440px * 0.6);
+            height: calc(900px * 0.6);
+            display: inline-block;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid #a7a7a7;
+            margin: 2%;
+        }
+
+        /* --This is a masking container for the zoomed iframe element */
+        .thumbnail {
+            -ms-zoom: 0.6;
+            -moz-transform: scale(0.6);
+            -moz-transform-origin: 0 0;
+            -o-transform: scale(0.6);
+            -o-transform-origin: 0 0;
+            -webkit-transform: scale(0.6);
+            -webkit-transform-origin: 0 0;
+        }
+
+        /* --This is our screen sizing */
+        .thumbnail,
+        .thumbnail iframe {
+            width: 1440px;
+            height: 900px;
+
+        }
+
+        .off-pt-title {
+            display: none;
+        }
+
+        .pt-title {
+            display: block;
+            position: absolute;
+            width: 20%;
+            margin-top: 14%;
+            z-index: 500;
+            font-size: 32px;
             text-align: center;
             justify-content: center;
-            font-size: 32px;
-            transform: translate(0%, -100%);
+            border-radius: 8px;
+        }
+
+        .pt-title .pt-icon {
+            margin: 0;
+            left: 5%;
+            transform: translate(-50%, 25%);
+            opacity: 0.3;
+        }
+
+        .pt-title .pt-text {
+            margin-top: 3%;
         }
     </style>
 
     <script>
 
-        var tabbox = 0;
         var mediabox = 0;
+        var medialist = [];
         var oldpage = 0;
         var usehitory = false;
         var currentpage = 1;
@@ -206,42 +282,122 @@
         var ANIM_LAST = 1;//67;//54;//36;//51;//36;//16;  
         var ANIM_NEXT = 2;//67;//54;//36;//51;//36;//16;
 
+
+        var MEDIABOX_MINIMIZED = 0;
+        var MEDIABOX_WINDOW = 1;
+        var MEDIABOX_MAXIMIZED = 2;
+        var MEDIABOX_FULLSCREEN = 3;
+        var MEDIABOX_MODAL = 4;
+
+        var MEDIABOX_SMALL = "30%";
+        var MEDIABOX_MEDIUM = "40%";
+        var MEDIABOX_LARGE = "55%";
+        var MEDIABOX_XL = "65%";
+
+        var MEDIABOX_TOP_LEFT = {
+            POS_X : "2%",
+            POS_Y : "4%"
+        };
+        var MEDIABOX_TOP_RIGHT = {
+            POS_X : "58%",
+            POS_Y : "4%"
+        };
+        var MEDIABOX_BOTTOM_LEFT = {
+            POS_X : "2%",
+            POS_Y : "56%"
+        };
+        var MEDIABOX_BOTTOM_RIGHT = {
+            POS_X : "58%",
+            POS_Y : "56%"
+        };
+        var MEDIABOX_CENTER = {
+            POS_X : "center",
+            POS_Y : "center"
+        };
+
+        
+        var MEDIABOX_OPTIONS_VIEW = MEDIABOX_WINDOW;
+        var MEDIABOX_OPTIONS_POSITION = MEDIABOX_BOTTOM_RIGHT;
+        var MEDIABOX_OPTIONS_SIZE = MEDIABOX_MEDIUM;
+
+
+        var MEDIABOX_OPTIONS = {
+            POS_X : MEDIABOX_OPTIONS_POSITION["POS_X"],
+            POS_Y : MEDIABOX_OPTIONS_POSITION["POS_Y"],
+            SIZE_W : MEDIABOX_OPTIONS_SIZE,
+            SIZE_H : MEDIABOX_OPTIONS_SIZE,
+            VIEW : MEDIABOX_OPTIONS_VIEW
+        };
+
         function ShowMedia(content) {
             if (mediabox) {
                 mediabox.close();
             }
             mediabox = new WinBox("ServiceGuide", {
+                icon: 'media/media_other.png',
                 border: "0.3em",
-                x: "68%",
-                y: "66%",
-                width: "30%",
-                height: "30%",
+                x: MEDIABOX_OPTIONS["POS_X"],
+                y: MEDIABOX_OPTIONS["POS_Y"],
+                width: MEDIABOX_OPTIONS["SIZE_W"],
+                height: MEDIABOX_OPTIONS["SIZE_H"],
                 hidden: false,
-                url: content,
                 onclose: function (force) {
+                    CloseMediaHistoryPanel();
                     mediabox = 0;
                 }
             });
+            const imgvid = "<img src='media/media_movie.png'/>";
+            const imgpdf = "<img src='media/media_pdf.png'/>";
+            const imgurl = "<img src='media/media_url.png'/>";
+            const imgoth = "<img src='media/media_other.png'/>";
+            mediabox.mount($('#mediacontent')[0]);
+            $('#mediaframe').attr('src', content);
+            $('#mediacontent').show();
+            if (medialist.length) {
+                $('.mediaitem').remove();
+            }
+            if (!medialist.includes(content)) {
+                medialist.push(content);
+            }
+            for (var i = 0; i < medialist.length; i++) {
+                var icon = imgurl;
+                var file = medialist[i];
+                var ext = file.split('.').pop();
+                if (ext === "mp4") { icon = imgvid; }
+                if (ext === "pdf") { icon = imgpdf; }
+                $(".vertical-menu").append(
+                    '<a href="#" class="mediaitem uistyle2">' + icon + file + '</a>');
+            }
+            $(".mediaitem").click(function () {
+                $('#mediaframe').attr('src', $(this).text());
+                CloseMediaHistoryPanel();
+            });
+            mediabox.addControl({
+                index: 0,
+                class: "wb-history",
+                image: "media/history.svg",
+                click: function (event, winbox) {
+                    console.log(winbox.id);
+                    OpenMediaHistoryPanel();
+                }
+            });
+            if(MEDIABOX_OPTIONS["VIEW"] == MEDIABOX_MINIMIZED){
+                mediabox.minimize();}
+            if(MEDIABOX_OPTIONS["VIEW"] == MEDIABOX_MAXIMIZED){
+                mediabox.maximize();}
+            if(MEDIABOX_OPTIONS["VIEW"] == MEDIABOX_FULLSCREEN){
+                mediabox.fullscreen();}
+            if(MEDIABOX_OPTIONS["VIEW"] == MEDIABOX_MODAL){
+                mediabox.toggleClass("modal");}
+
         }
 
-        function ShowTabs() {
-            if (tabbox) {
-                tabbox.close();
-            }
-            tabbox = new WinBox("ServiceGuide", {
-                background: "#ECECEC",
-                border: "0.3em",
-                x: "center",
-                y: "center",
-                width: "80%",
-                height: "80%",
-                hidden: false,
-                modal: true,
-                // onclose: function (force) {
-                //     tabbox = 0;
-                // }
-            });
+        function OpenMediaHistoryPanel() {
+            document.getElementById("myNav").style.width = "100%";
+        }
 
+        function CloseMediaHistoryPanel() {
+            document.getElementById("myNav").style.width = "0%";
         }
 
         function AddPageHistory(page) {
@@ -294,7 +450,7 @@
                 AddPageHistory(currentpage);
                 oldpage = currentpage;
             }
-            else { ReloadPage(n); }
+            // else { ReloadPage(n); }
         }
 
         function ReloadPage(n) {
@@ -304,8 +460,39 @@
         }
 
         function PageFromPreview(id) {
-            GoToPage(id, ANIM_OTHER);
-            tabbox.close();
+            $("#pt-main").addClass("pt-perspective");
+            $("#pt-main").removeClass("grid-container");
+            $("#pt-main .pt-page").removeClass("grid-item");
+            $("#pt-main .grid-item").addClass("pt-page");
+            // $("#pt-main .grid-item").removeClass("uistyle2");
+            $(".grid-cover-text").addClass("pt-title");
+            $(".pt-title").addClass("off-pt-title");
+            $(".off-pt-title").removeClass("pt-title");
+            $("#pt-main .pt-page .thumbnail-container .thumbnail").addClass("off-thumbnail");
+            $("#pt-main .pt-page .thumbnail-container .off-thumbnail").removeClass("thumbnail");
+            $("#pt-main .pt-page .thumbnail-container").addClass("off-thumbnail-container");
+            $("#pt-main .pt-page .off-thumbnail-container").removeClass("thumbnail-container");
+            // GoToPage(id, 22);
+            PageTransitions.setPageNoAnimation(id);
+        }
+
+        function PageToPreview() {
+            $("#pt-main .pt-page .off-thumbnail-container .off-thumbnail").addClass("thumbnail");
+            $("#pt-main .pt-page .off-thumbnail-container .thumbnail").removeClass("off-thumbnail");
+            $("#pt-main .pt-page .off-thumbnail-container").addClass("thumbnail-container");
+            $("#pt-main .pt-page .thumbnail-container").removeClass("off-thumbnail-container");
+            $("#pt-main").removeClass("pt-perspective");
+            $("#pt-main").addClass("grid-container");
+            $("#pt-main .pt-page").addClass("grid-item");
+            $("#pt-main .grid-item").removeClass("pt-page");
+            // $("#pt-main .grid-item").addClass("uistyle2");
+            $(".off-pt-title").addClass("pt-title");
+            $(".pt-title").removeClass("off-pt-title");
+            $(".grid-item").on("click", function () {
+                var id = $(this).find("iframe").attr('id');
+                id = parseInt(id.split("pg")[1]) - 1;
+                PageFromPreview(id);
+            });
         }
 
         window.onmessage = function (event) {
@@ -317,93 +504,17 @@
             if (event.data == 'media_src') {
                 if (sessionStorage.length) {
                     let src = sessionStorage.getItem('_media_src_');
-
-
-                    $("#pt-main").removeClass("pt-perspective");
-                    $("#pt-main").addClass("grid-container");
-                    $("#pt-main .pt-page").addClass("grid-item");
-                    $("#pt-main .grid-item").removeClass("pt-page");
-                    $("#pt-main .grid-item").addClass("uistyle2");
-                    // $("#pt-main .grid-item iframe").addClass("html-resize");
-                    
-                    
-
-
-                    //ShowMedia(src);
-
-                    // ShowTabs();
-                    //tabbox.mount($('#framepreview')[0]);
-                    // tabbox.mount($('#pt-main')[0]);
-                    
-                    // $('#framepreview').show();
-                    
-
-                   
-                    // var item = `
-                    // <div class="grid-item">
-                    //     <a class="grid-item-cover uistyle2" href="#" onclick="PageFromPreview(0);">
-                    //         <iframe></iframe>
-                    //         <p class="grid-cover-text">Presentation</p>
-                    //     </a>
-                    // </div>
-                    // `;
-
-
-
-                    // // $("#framepreview .grid-container").empty();
-                    // // var children = $("#pt-main .pt-page").children().contents().find("body").clone();
-                    // var children = $("#pt-main .pt-page").children().clone();
-                    // for (var i = 0; i < children.length; i++) {
-                    //     // console.log(children[i]);
-                    //     var jqitem = $($.parseHTML(item));
-                    //     var jqitem_iframe = jqitem.find("iframe");
-                    //     //var iframe = $("#pg4").contents().find("html").clone();
-                    //     var iframe = children[i];
-                    //     jqitem_iframe.replaceWith(iframe);
-                    //     // $($.parseHTML(iframe)).attr('id',  "framepreview_" + i.toString());
-                    //     $(".grid-container").append(jqitem);
-                    // }
-
-                    // $("#framepreview .grid-container body").addClass("html-resize");
-                    // var children = $("#framepreview .grid-container body").children();
-                    // for (var i = 0; i < children.length; i++) {
-                    //     console.log(children[i]);
-
-
-                    // }
-
-                    // $("#framepreview .grid-container iframe .navbar").addClass("html-resize");
-                    // $("#framepreview .grid-container iframe .navbar").hide();
-                    // $('iframe').on('load', function () {
-                    //     var children = $("#pt-main .pt-page").children().contents().find("body").clone();
-                    //     for (var i = 0; i < children.length; i++) {
-                    //         console.log(children[i]);
-                    //         // $("#framepreview .grid-container iframe").contents().find("body").replaceWith(children[i]);
-                    //         $("#framepreview .grid-container iframe body").replaceWith(children[i]);
-                    //     }
-                    // });
-
-                    // // $("#framepreview_0").on('load', function () {
-                    // $("iframe").on('load', function () {
-                    //     var src = $(this).attr('src');
-                    //     if(src === "ErrorCode.html"){
-                    //         console.log(src, 'loaded!');
-                    //         // $(this).contents().find("body").replaceWith("<body>Hello every one !</body>");
-                    //         $(this).contents().find("body").replaceWith($("#pg4").contents().find("body"));
-                    //     }
-                        
-
-                    // });
-
-
+                    ShowMedia(src);
                 }
             }
-
             if (event.data == "_prev_page_history_") {
                 // ButtonLastPage();
             }
             if (event.data == "_next_page_history_") {
                 // ButtonNextPage();
+            }
+            if (event.data == "_open_preview_") {
+                PageToPreview();
             }
             if (event.data == 'mframe_goto_Presentation.html') {
                 GoToPage(0, ANIM_PRESENTATION);
@@ -432,24 +543,37 @@
             }
         };
 
+        function AddApplicationPage(src, index, icon, text) {
+            var id = "pg" + index.toString();
+            var cls = "pt-page pt-page-" + index.toString();
+            var info = "<div class='off-pt-title uistyle2'><p class='pt-text'><img class='icon pt-icon' src='media/" + icon + ".png' />" + text + "</p></div>";
+            var thumb = "<div class='off-thumbnail-container'><div class='off-thumbnail'>";
+            var page = "<div class='" + cls + "'>" + info + thumb + "<iframe class='app-page' id='" + id + "' src='" + src + "'>";
+            var page = page + "</iframe ></div></div></div>";
+            $("#pt-main").append(page);
+        }
+
         $(document).ready(function () {
 
-            function AddPages(item, n) {
-                for (var i = 0; i < productnames.length; i++) {
-                    var id = "pg" + n.toString();
-                    var cls = "pt-page pt-page-" + n.toString();
-                    var src = item + "_" + productnames[i] + ".html"
-                    var page = "<div class='" + cls + "'><iframe class='app-page' id='" + id + "' src='" + src + "'></iframe ></div>";
-                    $("#pt-main").append(page);
-                    n++;
-                }
-            }
+            AddApplicationPage("Presentation.html", 1, "home", "Presentation");
+            AddApplicationPage("Documentation.html", 2, "documentation48", "Documentation");
+            AddApplicationPage("SearchText.html", 3, "searchtext", "Search by text");
+            AddApplicationPage("ErrorCode.html", 4, "errorcode", "Error code");
+
             var start = 5;
-            AddPages("ElectricalDiagram", start);
+            for (var i = 0; i < productnames.length; i++) {
+                var src = "ElectricalDiagram" + "_" + productnames[i] + ".html"
+                AddApplicationPage(
+                    src, start + i, "electricaldiagram", "Electrical diagram " + productnames[i]);
+            }
             start = start + productnames.length;
-            AddPages("eParts", start);
+            for (var i = 0; i < productnames.length; i++) {
+                var src = "eParts" + "_" + productnames[i] + ".html"
+                AddApplicationPage(
+                    src, start + i, "part", "eParts " + productnames[i]);
+            }
             PageTransitions.init();
-            AddPageHistory(0);
+            // AddPageHistory(0);
 
             $('iframe').on('load', function () {
                 var src = $(this).attr('src');
@@ -464,47 +588,18 @@
 
 <body>
 
-    <div id="pt-main" class="pt-perspective">
-        <div class="pt-page pt-page-1"><iframe class="app-page" id="pg1" src="Presentation.html"></iframe></div>
-        <div class="pt-page pt-page-2"><iframe class="app-page" id="pg2" src="Documentation.html"></iframe></div>
-        <div class="pt-page pt-page-3"><iframe class="app-page" id="pg3" src="SearchText.html"></iframe></div>
-        <div class="pt-page pt-page-4"><iframe class="app-page" id="pg4" src="ErrorCode.html"></iframe></div>
-    </div>
+    <div id="pt-main" class="pt-perspective"></div>
 
-    <!-- <div class="grid-item">
-        <a class="grid-item-cover uistyle2" href="#" onclick="PageFromPreview(0);">
-            <iframe src="Presentation.html"></iframe>
-            <p class="grid-cover-text">Presentation</p>
-        </a>
-    </div> -->
-
-    <!-- <div id="framepreview">
-        <div class="grid-container"> -->
-            <!-- <div class="grid-item">
-                <a class="grid-item-cover uistyle2" href="#" onclick="PageFromPreview(0);">
-                    <iframe src="Presentation.html"></iframe>
-                    <p class="grid-cover-text">Presentation</p>
-                </a>
+    <div id="mediacontent" style="display:none;">
+        <div id="myNav" class="overlay">
+            <div class="overlay-content">
+                <div class="vertical-menu">
+                    <a href="javascript:void(0)" onclick="CloseMediaHistoryPanel()" class="active"><img
+                            src='media/big_history.png' />Media files ...</a>
+                </div>
             </div>
-            <div class="grid-item">
-                <a class="grid-item-cover uistyle2" href="#" onclick="PageFromPreview(1);">
-                    <iframe src="Documentation.html"></iframe>
-                    <p class="grid-cover-text">Documentation</p>
-                </a>
-            </div>
-            <div class="grid-item">
-                <a class="grid-item-cover uistyle2" href="#" onclick="PageFromPreview(2);">
-                    <iframe src="SearchText.html"></iframe>
-                    <p class="grid-cover-text">Search by text</p>
-                </a>
-            </div>
-            <div class="grid-item">
-                <a class="grid-item-cover uistyle2" href="#" onclick="PageFromPreview(3);">
-                    <iframe src="ErrorCode.html"></iframe>
-                    <p class="grid-cover-text">Error code</p>
-                </a>
-            </div> -->
-        <!-- </div> -->
+        </div>
+        <iframe id="mediaframe"></iframe>
     </div>
 
 </body>

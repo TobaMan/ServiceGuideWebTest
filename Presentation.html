@@ -119,8 +119,12 @@
 <div class="navbar">
 
     <div class="tab">
-        <a onclick="OpenHtmlPage('Presentation.html')" class="PRESENTATION tabuttonhome tabselected uistyle2">
+        <a onclick="OpenHtmlPage('Presentation.html')" class="PRESENTATION tabuttonhome uistyle2">
             <img class="icon" src="media/home.png"/>
+            <div class="page-selected"></div>
+        </a>
+		<a onclick="OpenPreview()" class="PREVIEW tabutton-preview uistyle2">
+            <img class="icon" src="media/preview.png"/>
         </a>
         <a onclick="OpenHtmlPage('Documentation.html')" class="DOCUMENTATION tabutton uistyle2">
             <img class="icon" src="media/documentation48.png"/>
@@ -153,7 +157,7 @@
         <a href="mailto:serviceguide@csdental.com" class="FEEDBACK tabuttonsmall uistyle2">
             <img class="icon" src="media/email.png"/>
         </a>
-        <a href="#" class="FULLSCREEN tabuttonsmall tabuttonright uistyle2" onclick="FullScreen()">
+        <a href="#" class="FULLSCREEN tabuttonsmall tabuttonright uistyle2" onclick="SendFullScreen()">
             <img id="imgfscreen" class="icon" src="media/fullscreen.png"/>
         </a>
     </div>

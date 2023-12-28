@@ -394,6 +394,14 @@ var PageTransitions = (function () {
 		$inpage.attr('class', $inpage.data('originalClassList') + ' pt-page-current');
 	}
 
+	function setPageNoAnimation(idx) {
+		var $currPage = $pages.eq(current);
+		if (idx < pagesCount) {
+			current = idx;}
+		else {current = 0;}
+		var $nextPage = $pages.eq(current).addClass('pt-page-current');
+		onEndAnimation($currPage, $nextPage);
+	}
 
 	function setPage(idx, an) {
 		if (isAnimating) {
@@ -446,7 +454,8 @@ var PageTransitions = (function () {
 	return {
 		init: init,
 		nextPage: nextPage,
-		setPage: setPage
+		setPage: setPage,
+		setPageNoAnimation: setPageNoAnimation
 	};
 
 })();
