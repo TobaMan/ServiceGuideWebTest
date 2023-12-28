@@ -328,18 +328,6 @@ body {
     margin-bottom:6%;
 } */
 
-.page-selected{
-    position:relative;
-    width:89%;
-    height:4px;
-    bottom:-4px;
-    left:5%;
-    background:rgba(33, 183, 255, 0.5);
-    border-top: 1px solid rgba(33, 183, 255, 0.7);
-    border-left: 1px solid rgba(33, 183, 255, 0.7);
-    border-right: 1px solid rgba(33, 183, 255, 0.7);
-}
-
 .iconmedium {
     opacity: 0.6;
     background: transparent;
