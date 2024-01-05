@@ -157,6 +157,7 @@
             font-size: 32px;
             background-color: transparent;
         }
+
         .active img {
             text-shadow: 0px 1px 0px #fff;
             -webkit-filter: invert(50%);
@@ -262,6 +263,29 @@
         .pt-title .pt-text {
             margin-top: 3%;
         }
+
+        @media screen and (max-width: 1400px),
+        (max-height: 800px) {
+
+            .thumbnail-container {
+                width: calc(1440px * 0.3);
+                height: calc(900px * 0.3);
+            }
+
+            .thumbnail {
+                -ms-zoom: 0.3;
+                -moz-transform: scale(0.3);
+                -moz-transform-origin: 0 0;
+                -o-transform: scale(0.3);
+                -o-transform-origin: 0 0;
+                -webkit-transform: scale(0.3);
+                -webkit-transform-origin: 0 0;
+            }
+
+            .pt-title {
+                font-size: 16px;
+            }
+        }
     </style>
 
     <script>
@@ -295,38 +319,38 @@
         var MEDIABOX_XL = "65%";
 
         var MEDIABOX_TOP_LEFT = {
-            POS_X : "2%",
-            POS_Y : "4%"
+            POS_X: "2%",
+            POS_Y: "4%"
         };
         var MEDIABOX_TOP_RIGHT = {
-            POS_X : "58%",
-            POS_Y : "4%"
+            POS_X: "58%",
+            POS_Y: "4%"
         };
         var MEDIABOX_BOTTOM_LEFT = {
-            POS_X : "2%",
-            POS_Y : "56%"
+            POS_X: "2%",
+            POS_Y: "56%"
         };
         var MEDIABOX_BOTTOM_RIGHT = {
-            POS_X : "58%",
-            POS_Y : "56%"
+            POS_X: "58%",
+            POS_Y: "56%"
         };
         var MEDIABOX_CENTER = {
-            POS_X : "center",
-            POS_Y : "center"
+            POS_X: "center",
+            POS_Y: "center"
         };
 
-        
+
         var MEDIABOX_OPTIONS_VIEW = MEDIABOX_WINDOW;
         var MEDIABOX_OPTIONS_POSITION = MEDIABOX_BOTTOM_RIGHT;
         var MEDIABOX_OPTIONS_SIZE = MEDIABOX_MEDIUM;
 
 
         var MEDIABOX_OPTIONS = {
-            POS_X : MEDIABOX_OPTIONS_POSITION["POS_X"],
-            POS_Y : MEDIABOX_OPTIONS_POSITION["POS_Y"],
-            SIZE_W : MEDIABOX_OPTIONS_SIZE,
-            SIZE_H : MEDIABOX_OPTIONS_SIZE,
-            VIEW : MEDIABOX_OPTIONS_VIEW
+            POS_X: MEDIABOX_OPTIONS_POSITION["POS_X"],
+            POS_Y: MEDIABOX_OPTIONS_POSITION["POS_Y"],
+            SIZE_W: MEDIABOX_OPTIONS_SIZE,
+            SIZE_H: MEDIABOX_OPTIONS_SIZE,
+            VIEW: MEDIABOX_OPTIONS_VIEW
         };
 
         function ShowMedia(content) {
@@ -381,14 +405,18 @@
                     OpenMediaHistoryPanel();
                 }
             });
-            if(MEDIABOX_OPTIONS["VIEW"] == MEDIABOX_MINIMIZED){
-                mediabox.minimize();}
-            if(MEDIABOX_OPTIONS["VIEW"] == MEDIABOX_MAXIMIZED){
-                mediabox.maximize();}
-            if(MEDIABOX_OPTIONS["VIEW"] == MEDIABOX_FULLSCREEN){
-                mediabox.fullscreen();}
-            if(MEDIABOX_OPTIONS["VIEW"] == MEDIABOX_MODAL){
-                mediabox.toggleClass("modal");}
+            if (MEDIABOX_OPTIONS["VIEW"] == MEDIABOX_MINIMIZED) {
+                mediabox.minimize();
+            }
+            if (MEDIABOX_OPTIONS["VIEW"] == MEDIABOX_MAXIMIZED) {
+                mediabox.maximize();
+            }
+            if (MEDIABOX_OPTIONS["VIEW"] == MEDIABOX_FULLSCREEN) {
+                mediabox.fullscreen();
+            }
+            if (MEDIABOX_OPTIONS["VIEW"] == MEDIABOX_MODAL) {
+                mediabox.toggleClass("modal");
+            }
 
         }
 

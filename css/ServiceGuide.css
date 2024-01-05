@@ -280,11 +280,10 @@ body {
     bottom:-12px;
     left:5%;
     box-shadow: inset 0px 0px 4px 0px rgba(0, 0, 0, 0.55);
-    border-radius:0px;
 }
 
 .icon {
-    opacity: 0.6;
+    opacity: 0.4;
     background: transparent;
     position: relative;
     top: 45%;
@@ -658,6 +657,13 @@ form.search button:hover {
     .smallsidebutton2 {
         margin: 3px 3px 3px 3px;
     }
+
+    .docnav-selected{
+        left:5%;
+        width:88%;
+        height:4px;
+        bottom:-5px;
+    }
 }
 
 
@@ -690,6 +696,12 @@ form.search button:hover {
     }
 
     .page-selected{
+        left:5%;
+        width:88%;
+        height:3px;
+        bottom:0px;
+    }
+    .docnav-selected{
         left:5%;
         width:88%;
         height:3px;

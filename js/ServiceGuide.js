@@ -2,7 +2,7 @@
 
 var APLLICATION_TYPE ='Web-Html';
 var APLLICATION_VERSION = "1";
-var APLLICATION_COPYRIGHT = "<p class='printheader'>Service Guide MyProduct v1 Copyright (c) Carestream Dental 2019-2023</p>";
+var APLLICATION_COPYRIGHT = "<p class='printheader'>Service Guide MyProduct v1 Copyright (c) Carestream Dental 2019-2024</p>";
 var PRINTHEADER = '.printheader{position:fixed;font-size:10px;top:0;background-color:rgba(33, 183, 255, 0.25);}';
 
 LinkType = {
