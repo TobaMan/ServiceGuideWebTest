@@ -803,10 +803,16 @@ form.search button:hover {
     }
 
     .tabuttonhome {
-        width: 6vw;
+        width: 3vw;
         height: 35px;
-        margin: 4px 0px 4px 4px;
+        margin: 2px 2px 2px 2px;
     }
+
+    .tabutton-preview {
+        width: 3vw;
+        height: 35px;
+        margin: 4px 0px 0px -1px;
+    } 
 
     .tabutton {
         width: 8vw;
