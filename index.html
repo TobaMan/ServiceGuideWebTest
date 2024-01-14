@@ -622,64 +622,7 @@
 
             });
 
-            //http://localhost:5000/?SearchText
-    console.log(window.location.search);
-    var search = window.location.search;
-
-
-    if (search.includes("?Documentation")) {
-        if (search.includes("::")) {
-            const local = search.split("::")[1];
-            console.log(local);
-            if (local in documentation_bookmarks) {
-                const docpos = documentation_bookmarks[local];
-                console.log(docpos);
-                // GoToDocumentationPage(docpos[0], docpos[1]);
-
-
-                SendCustomEventToIframe("pg2", "shown");
-                GoToPage(1, ANIM_OTHER);
-
-                // GoToPage(1, ANIM_OTHER);
-            }
-            else{GoToPage(1, ANIM_OTHER);}}
-        else { GoToPage(1, ANIM_OTHER); }
-    }
-
-    if (search === "?SearchText") {
-        GoToPage(2, ANIM_OTHER);
-    }
-    if (search === "?ErrorCode") {
-        GoToPage(3, ANIM_OTHER);
-    }
-
-        })
-
-    </script>
-
-</head>
-
-<body>
-
-    <div id="pt-main" class="pt-perspective"></div>
-
-    <div id="mediacontent" style="display:none;">
-        <div id="myNav" class="overlay">
-            <div class="overlay-content">
-                <div class="vertical-menu">
-                    <a href="javascript:void(0)" onclick="CloseMediaHistoryPanel()" class="active"><img
-                            src='media/big_history.png' />Media files ...</a>
-                </div>
-            </div>
-        </div>
-        <iframe id="mediaframe"></iframe>
-    </div>
-
-</body>
-
-<script src="js/pagetransitions.js"></script>
-<script>
-    // //http://localhost:5000/?SearchText
+    //         //http://localhost:5000/?SearchText
     // console.log(window.location.search);
     // var search = window.location.search;
 
@@ -709,6 +652,63 @@
     // if (search === "?ErrorCode") {
     //     GoToPage(3, ANIM_OTHER);
     // }
+
+        })
+
+    </script>
+
+</head>
+
+<body>
+
+    <div id="pt-main" class="pt-perspective"></div>
+
+    <div id="mediacontent" style="display:none;">
+        <div id="myNav" class="overlay">
+            <div class="overlay-content">
+                <div class="vertical-menu">
+                    <a href="javascript:void(0)" onclick="CloseMediaHistoryPanel()" class="active"><img
+                            src='media/big_history.png' />Media files ...</a>
+                </div>
+            </div>
+        </div>
+        <iframe id="mediaframe"></iframe>
+    </div>
+
+</body>
+
+<script src="js/pagetransitions.js"></script>
+<script>
+    //http://localhost:5000/?SearchText
+    console.log(window.location.search);
+    var search = window.location.search;
+
+
+    if (search.includes("?Documentation")) {
+        if (search.includes("::")) {
+            const local = search.split("::")[1];
+            console.log(local);
+            if (local in documentation_bookmarks) {
+                const docpos = documentation_bookmarks[local];
+                console.log(docpos);
+                // GoToDocumentationPage(docpos[0], docpos[1]);
+
+
+                SendCustomEventToIframe("pg2", "shown");
+                GoToPage(1, ANIM_OTHER);
+
+                // GoToPage(1, ANIM_OTHER);
+            }
+            else{GoToPage(1, ANIM_OTHER);}}
+        else { GoToPage(1, ANIM_OTHER); }
+    }
+
+    if (search === "?SearchText") {
+        GoToPage(2, ANIM_OTHER);
+    }
+    if (search === "?ErrorCode") {
+        GoToPage(3, ANIM_OTHER);
+    }
 </script>
 
 </html>
