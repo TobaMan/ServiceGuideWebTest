@@ -347,6 +347,13 @@
 
     <script>
 
+        var mediabox = 0;
+        var medialist = [];
+        var oldpage = 0;
+        var currentpage = 1;
+        var visitedpage = [0];
+        var curvisited = -1;
+
         const PAGE_PRESENTATION = 0;
         const PAGE_DOCUMENTATION = 1;
         const PAGE_SEARCHTEXT = 2;
@@ -354,62 +361,53 @@
         const PAGE_ELECDIAGRAM = 4 ;
         const PAGE_EPARTS = PAGE_ELECDIAGRAM + productnames.length;
 
-        var mediabox = 0;
-        var medialist = [];
-        var oldpage = 0;
-        var usehitory = false;
-        var currentpage = 1;
-        var visitedpage = [0];
-        var curvisited = -1;
-
-
-        var ANIM_PRESENTATION = 40;
-        var ANIM_EDIAG_EPARTS = 4;
+        const ANIM_PRESENTATION = 40;
+        const ANIM_EDIAG_EPARTS = 4;
         // var ANIM_OTHER = 1;//67;//54;//36;//51;//36;//16;    
-        var ANIM_OTHER = 68;//67;//54;//36;//51;//36;//16;  
-        var ANIM_LAST = 1;//67;//54;//36;//51;//36;//16;  
-        var ANIM_NEXT = 2;//67;//54;//36;//51;//36;//16;
+        const ANIM_OTHER = 68;//67;//54;//36;//51;//36;//16;  
+        const ANIM_LAST = 1;//67;//54;//36;//51;//36;//16;  
+        const ANIM_NEXT = 2;//67;//54;//36;//51;//36;//16;
 
 
-        var MEDIABOX_MINIMIZED = 0;
-        var MEDIABOX_WINDOW = 1;
-        var MEDIABOX_MAXIMIZED = 2;
-        var MEDIABOX_FULLSCREEN = 3;
-        var MEDIABOX_MODAL = 4;
+        const MEDIABOX_MINIMIZED = 0;
+        const MEDIABOX_WINDOW = 1;
+        const MEDIABOX_MAXIMIZED = 2;
+        const MEDIABOX_FULLSCREEN = 3;
+        const MEDIABOX_MODAL = 4;
 
-        var MEDIABOX_SMALL = "30%";
-        var MEDIABOX_MEDIUM = "40%";
-        var MEDIABOX_LARGE = "55%";
-        var MEDIABOX_XL = "65%";
+        const MEDIABOX_SMALL = "30%";
+        const MEDIABOX_MEDIUM = "40%";
+        const MEDIABOX_LARGE = "55%";
+        const MEDIABOX_XL = "65%";
 
-        var MEDIABOX_TOP_LEFT = {
+        const MEDIABOX_TOP_LEFT = {
             POS_X: "2%",
             POS_Y: "4%"
         };
-        var MEDIABOX_TOP_RIGHT = {
+        const MEDIABOX_TOP_RIGHT = {
             POS_X: "58%",
             POS_Y: "4%"
         };
-        var MEDIABOX_BOTTOM_LEFT = {
+        const MEDIABOX_BOTTOM_LEFT = {
             POS_X: "2%",
             POS_Y: "56%"
         };
-        var MEDIABOX_BOTTOM_RIGHT = {
+        const MEDIABOX_BOTTOM_RIGHT = {
             POS_X: "58%",
             POS_Y: "56%"
         };
-        var MEDIABOX_CENTER = {
+        const MEDIABOX_CENTER = {
             POS_X: "center",
             POS_Y: "center"
         };
 
 
-        var MEDIABOX_OPTIONS_VIEW = MEDIABOX_WINDOW;
-        var MEDIABOX_OPTIONS_POSITION = MEDIABOX_BOTTOM_RIGHT;
-        var MEDIABOX_OPTIONS_SIZE = MEDIABOX_MEDIUM;
+        const MEDIABOX_OPTIONS_VIEW = MEDIABOX_WINDOW;
+        const MEDIABOX_OPTIONS_POSITION = MEDIABOX_BOTTOM_RIGHT;
+        const MEDIABOX_OPTIONS_SIZE = MEDIABOX_MEDIUM;
 
 
-        var MEDIABOX_OPTIONS = {
+        const MEDIABOX_OPTIONS = {
             POS_X: MEDIABOX_OPTIONS_POSITION["POS_X"],
             POS_Y: MEDIABOX_OPTIONS_POSITION["POS_Y"],
             SIZE_W: MEDIABOX_OPTIONS_SIZE,
