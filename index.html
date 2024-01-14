@@ -660,7 +660,12 @@
             if (local in documentation_bookmarks) {
                 const docpos = documentation_bookmarks[local];
                 console.log(docpos);
-                GoToDocumentationPage(docpos[0], docpos[1]);
+                // GoToDocumentationPage(docpos[0], docpos[1]);
+
+
+                SendCustomEventToIframe("pg2", "shown");
+                GoToPage(1, ANIM_OTHER);
+
                 // GoToPage(1, ANIM_OTHER);
             }
             else{GoToPage(1, ANIM_OTHER);}}
