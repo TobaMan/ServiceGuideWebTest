@@ -527,7 +527,6 @@
             if (n !== oldpage) {
                 currentpage = n;
                 PageTransitions.setPage(currentpage, animation);
-                AddPageHistory(currentpage);
                 oldpage = currentpage;
             }
             // else { ReloadPage(n); }
@@ -653,7 +652,6 @@
                     src, start + i, "part", "eParts " + productnames[i]);
             }
             PageTransitions.init();
-            // AddPageHistory(0);
 
             $('iframe').on('load', function () {
                 var src = $(this).attr('src');
