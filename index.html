@@ -539,7 +539,8 @@
             $(".pt-title").removeClass("off-pt-title");
             $(".grid-item").on("click", function () {
                 var id = $(this).find("iframe").attr('id');
-                id = parseInt(id.split("pg")[1]) - 1;
+                // id = parseInt(id.split("pg")[1]) - 1;
+                id = parseInt(id.split("pg")[1]);
                 PageFromPreview(id);
             });
         }
