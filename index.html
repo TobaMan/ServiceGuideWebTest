@@ -288,6 +288,7 @@
                 width: calc(1440px * 0.4);
                 height: calc(900px * 0.4);
             }
+
             .thumbnail {
                 -ms-zoom: 0.4;
                 -moz-transform: scale(0.4);
@@ -299,11 +300,12 @@
             }
         }
 
-        @media screen and (max-width: 1100px){
+        @media screen and (max-width: 1100px) {
             .thumbnail-container {
                 width: calc(1440px * 0.35);
                 height: calc(900px * 0.35);
             }
+
             .thumbnail {
                 -ms-zoom: 0.35;
                 -moz-transform: scale(0.35);
@@ -313,17 +315,20 @@
                 -webkit-transform: scale(0.35);
                 -webkit-transform-origin: 0 0;
             }
+
             .pt-title {
                 font-size: 16px;
             }
 
         }
 
-        @media screen and (max-width: 850px) , (max-height: 600px){
+        @media screen and (max-width: 850px),
+        (max-height: 600px) {
             .thumbnail-container {
                 width: calc(1440px * 0.3);
                 height: calc(900px * 0.3);
             }
+
             .thumbnail {
                 -ms-zoom: 0.3;
                 -moz-transform: scale(0.3);
@@ -333,11 +338,11 @@
                 -webkit-transform: scale(0.3);
                 -webkit-transform-origin: 0 0;
             }
+
             .pt-title {
                 font-size: 12px;
             }
         }
-
     </style>
 
     <script>
@@ -479,48 +484,6 @@
         function CloseMediaHistoryPanel() {
             document.getElementById("myNav").style.width = "0%";
         }
-
-        // function AddPageHistory(page) {
-        //     console.log(visitedpage);
-        //     if (usehitory) {
-        //         usehitory = false;
-        //         return;
-        //     }
-        //     visitedpage = visitedpage.slice(0, curvisited + 1);
-        //     if (page == visitedpage[visitedpage.length - 1]) { return; }
-        //     visitedpage.push(page);
-        //     curvisited = visitedpage.length - 1;
-        // }
-
-        // function ButtonLastPage() {
-        //     if (visitedpage.length == 0) { return; }
-        //     if (curvisited < 0) { curvisited = 0; return; }
-        //     var pagenum = visitedpage[curvisited];
-        //     var cpage = currentpage;
-        //     if ((pagenum == cpage) && (curvisited >= 1)) {
-        //         curvisited = curvisited - 1;
-        //         pagenum = visitedpage[curvisited];
-        //     }
-        //     usehitory = true;
-        //     console.log(pagenum);
-        //     currentpage = pagenum;
-        //     PageTransitions.setPage(pagenum, ANIM_LAST);
-        // }
-
-        // function ButtonNextPage() {
-        //     var size = visitedpage.length;
-        //     if (size == 0) { return; }
-        //     if (curvisited >= size) { curvisited = size - 1; return; }
-        //     var pagenum = visitedpage[curvisited];
-        //     var cpage = currentpage;
-        //     if ((pagenum == cpage) && (curvisited <= size - 2)) {
-        //         curvisited = curvisited + 1;
-        //         pagenum = visitedpage[curvisited];
-        //     }
-        //     usehitory = true;
-        //     currentpage = pagenum;
-        //     PageTransitions.setPage(pagenum, ANIM_NEXT);
-        // }
 
 
         function GoToPage(n, animation) {
@@ -689,18 +652,19 @@
     console.log(window.location.search);
     var search = window.location.search;
 
-    
-    if (search.includes("?Documentation")) {
 
-        const local = search.split("::")[1];
-        console.log(local);
-        if(local in documentation_bookmarks){
-            const docpos = documentation_bookmarks[local];
-            console.log(docpos);
-            GoToDocumentationPage(docpos[0], docpos[1]);
-            // GoToPage(1, ANIM_OTHER);
-        }
-        else{GoToPage(1, ANIM_OTHER);}
+    if (search.includes("?Documentation")) {
+        if (search.includes("::")) {
+            const local = search.split("::")[1];
+            console.log(local);
+            if (local in documentation_bookmarks) {
+                const docpos = documentation_bookmarks[local];
+                console.log(docpos);
+                GoToDocumentationPage(docpos[0], docpos[1]);
+                // GoToPage(1, ANIM_OTHER);
+            }
+            else{GoToPage(1, ANIM_OTHER);}}
+        else { GoToPage(1, ANIM_OTHER); }
     }
 
     if (search === "?SearchText") {
