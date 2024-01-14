@@ -560,7 +560,8 @@
                 GoToPage(PAGE_PRESENTATION, ANIM_PRESENTATION);
             }
             if (event.data == 'mframe_goto_Documentation.html') {
-                SendCustomEventToIframe("pg1", "shown");
+                var id = "pg" + PAGE_DOCUMENTATION.toString();
+                SendCustomEventToIframe(id, "shown");
                 GoToPage(PAGE_DOCUMENTATION, ANIM_OTHER);
             }
             if (event.data == 'mframe_goto_SearchText.html') {
