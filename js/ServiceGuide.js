@@ -177,7 +177,7 @@ function HasEparts(){
 }
 
 function HasErrorCode(){
-    return errcode_content != 0;
+    return errcode_content == 1;
 }
 
 function DiagramsActivity(){
@@ -195,7 +195,7 @@ function EpartsActivity(){
 }
 
 function ErrCodeActivity(){
-    if(HasErrorCode()){
+    if(!HasErrorCode()){
         $(".ERRORCODE").css('opacity', '0.15');
         $(".ERRORCODE").css('pointer-events', 'none');
     }
