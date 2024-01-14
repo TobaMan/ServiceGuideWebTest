@@ -347,6 +347,13 @@
 
     <script>
 
+        const PAGE_PRESENTATION = 0;
+        const PAGE_DOCUMENTATION = 1;
+        const PAGE_SEARCHTEXT = 2;
+        const PAGE_ERRORCODE = 3;
+        const PAGE_ELECDIAGRAM = 4 ;
+        const PAGE_EPARTS = PAGE_ELECDIAGRAM + productnames.length;
+
         var mediabox = 0;
         var medialist = [];
         var oldpage = 0;
@@ -542,7 +549,6 @@
             if (event.data == '_fullscreen_') {
                 FullScreen();
             }
-
             if (event.data == 'media_src') {
                 if (sessionStorage.length) {
                     let src = sessionStorage.getItem('_media_src_');
@@ -553,30 +559,31 @@
                 PageToPreview();
             }
             if (event.data == 'mframe_goto_Presentation.html') {
-                GoToPage(0, ANIM_PRESENTATION);
+                GoToPage(PAGE_PRESENTATION, ANIM_PRESENTATION);
             }
             if (event.data == 'mframe_goto_Documentation.html') {
                 SendCustomEventToIframe("pg2", "shown");
-                GoToPage(1, ANIM_OTHER);
+                GoToPage(PAGE_DOCUMENTATION, ANIM_OTHER);
             }
             if (event.data == 'mframe_goto_SearchText.html') {
-                GoToPage(2, ANIM_OTHER);
+                GoToPage(PAGE_SEARCHTEXT, ANIM_OTHER);
             }
             if (event.data == 'mframe_goto_ErrorCode.html') {
-                GoToPage(3, ANIM_OTHER);
+                GoToPage(PAGE_ERRORCODE, ANIM_OTHER);
             }
-            var start = 4;
-            for (var i = 0; i < productnames.length; i++) {
-                if (event.data == 'mframe_goto_ElectricalDiagram_' + productnames[i] + '.html') {
-                    GoToPage(start + i, ANIM_OTHER);
-                }
-            }
-            start = 4 + productnames.length;
+            start = PAGE_ELECDIAGRAM;
             for (var i = 0; i < productnames.length; i++) {
                 if (event.data == 'mframe_goto_eParts_' + productnames[i] + '.html') {
                     GoToPage(start + i, ANIM_OTHER);
                 }
             }
+            var start = PAGE_EPARTS;
+            for (var i = 0; i < productnames.length; i++) {
+                if (event.data == 'mframe_goto_ElectricalDiagram_' + productnames[i] + '.html') {
+                    GoToPage(start + i, ANIM_OTHER);
+                }
+            }
+            
         };
 
         function AddApplicationPage(src, index, icon, text) {
@@ -589,41 +596,15 @@
             $("#pt-main").append(page);
         }
 
-        function StartFromURL() {
-            //http://localhost:5000/?SearchText
-            console.log(window.location.search);
-            var search = window.location.search;
-
-            if (search.includes("?Documentation")) {
-                if (search.includes("::")) {
-                    const local = search.split("::")[1];
-                    if (local in documentation_bookmarks) {
-                        const docpos = documentation_bookmarks[local];
-                        GoToDocumentationPage(docpos[0], docpos[1]);}
-                    else { GoToPage(1, ANIM_OTHER); }}
-                else { GoToPage(1, ANIM_OTHER); }
-            }
-
-            if (search === "?SearchText") {
-                GoToPage(2, ANIM_OTHER);
-            }
-            if (search === "?ErrorCode") {
-                GoToPage(3, ANIM_OTHER);
-            }
-        }
-
-        $(document).ready(function () {
-
-            AddApplicationPage("Presentation.html", 1, "home", "Presentation");
-            AddApplicationPage("Documentation.html", 2, "documentation48", "Documentation");
-            AddApplicationPage("SearchText.html", 3, "searchtext", "Search by text");
-
+        function LoadPages(){
+            AddApplicationPage("Presentation.html", PAGE_PRESENTATION, "home", "Presentation");
+            AddApplicationPage("Documentation.html", PAGE_DOCUMENTATION, "documentation48", "Documentation");
+            AddApplicationPage("SearchText.html", PAGE_SEARCHTEXT, "searchtext", "Search by text");
             if(HasErrorCode()){
-                AddApplicationPage("ErrorCode.html", 4, "errorcode", "Error code");
+                AddApplicationPage("ErrorCode.html", PAGE_ERRORCODE, "errorcode", "Error code");
             }
-
             if(HasElectricalDiagram()){
-                var start = 5;
+                var start = PAGE_ELECDIAGRAM;
                 for (var i = 0; i < productnames.length; i++) {
                     var src = "ElectricalDiagram" + "_" + productnames[i] + ".html"
                     AddApplicationPage(
@@ -631,7 +612,7 @@
                 }
             }
             if(HasEparts()){
-                start = start + productnames.length;
+                start = PAGE_EPARTS;
                 for (var i = 0; i < productnames.length; i++) {
                     var src = "eParts" + "_" + productnames[i] + ".html"
                     AddApplicationPage(
@@ -644,6 +625,51 @@
                 var src = $(this).attr('src');
                 console.log(src, 'loaded!');
             });
+        }
+
+        function StartFromURL() {
+            //http://localhost:5000/?SearchText
+            // console.log(window.location.search);
+            var search = window.location.search;
+
+            if (search.includes("?Documentation")) {
+                if (search.includes("::")) {
+                    const local = search.split("::")[1];
+                    if (local in documentation_bookmarks) {
+                        const docpos = documentation_bookmarks[local];
+                        GoToDocumentationPage(docpos[0], docpos[1]);}
+                    else { GoToPage(PAGE_DOCUMENTATION, ANIM_OTHER); }}
+                else { GoToPage(PAGE_DOCUMENTATION, ANIM_OTHER); }
+            }
+
+            if (search.includes("?SearchText")) {
+                GoToPage(PAGE_SEARCHTEXT, ANIM_OTHER);
+            }
+            if (search.includes("?ErrorCode")) {
+                if(HasErrorCode()){
+                    GoToPage(PAGE_ERRORCODE, ANIM_OTHER);
+                }
+            }
+            if (search.includes("?ElectricalDiagram")) {
+                // if(HasElectricalDiagram()){
+                //     if (search.includes("::")) {
+                //     const local = search.split("::")[1];
+                //     if(productnames.includes(local)){
+                //         const index = productnames.indexOf(local);
+                //     }
+                //     GoToPage(3, ANIM_OTHER);
+                //     }
+                // }
+            }
+
+
+
+            // ElectricalDiagram_CS 8100 3D
+        }
+
+        $(document).ready(function () {
+
+            LoadPages();
 
             StartFromURL();
 
