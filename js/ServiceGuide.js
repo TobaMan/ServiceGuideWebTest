@@ -19,14 +19,14 @@ var selected_color = "rgba(33, 183, 255, 0.25)";
 var diagram_content = [0];
 
 //EPARTS CONTENT HERE ...
-var epart_content = [1];
+var epart_content = [];
 
 //ERROR CODE CONTENT HERE ...
 var errcode_content = 1;
 
 //CHAPTER PAGE NUMBER HERE...
-var chapters_beginpg = [0, 2, 11];
-var chapters_npg = [2, 9, 1];
+var chapters_beginpg = [0, 9, 11];
+var chapters_npg = [9, 2, 2];
 var chapters_names = ['ch1', 'ch2', 'ch3'];
 
 
@@ -46,11 +46,15 @@ var ediagram_link = {
 
 //EPARTS LINK DATA HERE ...
 var eparts_link = {
-	'SPHY549' : ['tv003-02-cs8100-resistive-track-y-voltage-consitency-test.mp4', 2, 1],
-	'SPHR848' : ['https://docs.wxpython.org/index.html', 1, 1]
 };
 
 
+//DOCUMENTATION BOOKMARKS HERE ...
+var documentation_bookmarks = {
+	'Notice' : [1, 0],
+	'Test' : [2, 0],
+	'MyLink' : [2, 1]
+};
 
 
 
