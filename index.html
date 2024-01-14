@@ -553,8 +553,7 @@
             if (event.data == 'media_src') {
                 if (sessionStorage.length) {
                     let src = sessionStorage.getItem('_media_src_');
-                    ShowMedia(src);
-                }
+                    ShowMedia(src);}
             }
             if (event.data == "_open_preview_") {
                 PageToPreview();
@@ -572,17 +571,17 @@
             if (event.data == 'mframe_goto_ErrorCode.html') {
                 GoToPage(PAGE_ERRORCODE, ANIM_OTHER);
             }
-            start = PAGE_ELECDIAGRAM;
-            for (var i = 0; i < productnames.length; i++) {
-                if (event.data == 'mframe_goto_eParts_' + productnames[i] + '.html') {
-                    GoToPage(start + i, ANIM_OTHER);
-                }
+            if(HasElectricalDiagram()){
+                start = PAGE_ELECDIAGRAM;
+                for (var i = 0; i < productnames.length; i++) {
+                    if (event.data == 'mframe_goto_ElectricalDiagram_' + productnames[i] + '.html') {
+                        GoToPage(start + i, ANIM_OTHER);}}
             }
-            var start = PAGE_EPARTS;
-            for (var i = 0; i < productnames.length; i++) {
-                if (event.data == 'mframe_goto_ElectricalDiagram_' + productnames[i] + '.html') {
-                    GoToPage(start + i, ANIM_OTHER);
-                }
+            if(HasEparts()){
+                var start = PAGE_EPARTS;
+                for (var i = 0; i < productnames.length; i++) {
+                    if (event.data == 'mframe_goto_eParts_' + productnames[i] + '.html') {
+                        GoToPage(start + i, ANIM_OTHER);}}
             }
             
         };
