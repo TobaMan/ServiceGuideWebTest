@@ -549,12 +549,6 @@
                     ShowMedia(src);
                 }
             }
-            if (event.data == "_prev_page_history_") {
-                // ButtonLastPage();
-            }
-            if (event.data == "_next_page_history_") {
-                // ButtonNextPage();
-            }
             if (event.data == "_open_preview_") {
                 PageToPreview();
             }
@@ -603,20 +597,10 @@
             if (search.includes("?Documentation")) {
                 if (search.includes("::")) {
                     const local = search.split("::")[1];
-                    console.log(local);
                     if (local in documentation_bookmarks) {
                         const docpos = documentation_bookmarks[local];
-                        console.log(docpos);
-                        GoToDocumentationPage(docpos[0], docpos[1]);
-
-
-                        // SendCustomEventToIframe("pg2", "shown");
-                        // GoToPage(1, ANIM_OTHER);
-
-                        // GoToPage(1, ANIM_OTHER);
-                    }
-                    else { GoToPage(1, ANIM_OTHER); }
-                }
+                        GoToDocumentationPage(docpos[0], docpos[1]);}
+                    else { GoToPage(1, ANIM_OTHER); }}
                 else { GoToPage(1, ANIM_OTHER); }
             }
 
@@ -633,26 +617,32 @@
             AddApplicationPage("Presentation.html", 1, "home", "Presentation");
             AddApplicationPage("Documentation.html", 2, "documentation48", "Documentation");
             AddApplicationPage("SearchText.html", 3, "searchtext", "Search by text");
-            AddApplicationPage("ErrorCode.html", 4, "errorcode", "Error code");
 
-            var start = 5;
-            for (var i = 0; i < productnames.length; i++) {
-                var src = "ElectricalDiagram" + "_" + productnames[i] + ".html"
-                AddApplicationPage(
-                    src, start + i, "electricaldiagram", "Electrical diagram " + productnames[i]);
+            if(HasErrorCode()){
+                AddApplicationPage("ErrorCode.html", 4, "errorcode", "Error code");
             }
-            start = start + productnames.length;
-            for (var i = 0; i < productnames.length; i++) {
-                var src = "eParts" + "_" + productnames[i] + ".html"
-                AddApplicationPage(
-                    src, start + i, "part", "eParts " + productnames[i]);
+
+            if(HasElectricalDiagram()){
+                var start = 5;
+                for (var i = 0; i < productnames.length; i++) {
+                    var src = "ElectricalDiagram" + "_" + productnames[i] + ".html"
+                    AddApplicationPage(
+                        src, start + i, "electricaldiagram", "Electrical diagram " + productnames[i]);
+                }
+            }
+            if(HasEparts()){
+                start = start + productnames.length;
+                for (var i = 0; i < productnames.length; i++) {
+                    var src = "eParts" + "_" + productnames[i] + ".html"
+                    AddApplicationPage(
+                        src, start + i, "part", "eParts " + productnames[i]);
+                }
             }
             PageTransitions.init();
 
             $('iframe').on('load', function () {
                 var src = $(this).attr('src');
                 console.log(src, 'loaded!');
-
             });
 
             StartFromURL();

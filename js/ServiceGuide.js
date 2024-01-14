@@ -168,22 +168,34 @@ function GetThumbDir(chapter){
     return chapter+"/Thumb/";
 }
 
+function HasElectricalDiagram(){
+    return diagram_content.includes(1);
+}
+
+function HasEparts(){
+    return epart_content.includes(1);
+}
+
+function HasErrorCode(){
+    return errcode_content != 0;
+}
+
 function DiagramsActivity(){
-    if(!diagram_content.includes(1)){
+    if(!HasElectricalDiagram()){
         $(".ELECDIAGRAM").css('opacity', '0.15');
         $(".ELECDIAGRAM").css('pointer-events', 'none');
     }
 }
 
 function EpartsActivity(){
-    if(!epart_content.includes(1)){
+    if(!HasEparts()){
         $(".EPARTS").css('opacity', '0.15');
         $(".EPARTS").css('pointer-events', 'none');
     }
 }
 
 function ErrCodeActivity(){
-    if(errcode_content == 0){
+    if(HasErrorCode()){
         $(".ERRORCODE").css('opacity', '0.15');
         $(".ERRORCODE").css('pointer-events', 'none');
     }
