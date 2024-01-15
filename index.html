@@ -281,8 +281,7 @@
             margin-top: 3%;
         }
 
-        @media screen and (max-width: 1400px),
-        (max-height: 800px) {
+        @media screen and (max-width: 1400px), (max-height: 800px) {
 
             .thumbnail-container {
                 width: calc(1440px * 0.4);
@@ -322,8 +321,7 @@
 
         }
 
-        @media screen and (max-width: 850px),
-        (max-height: 600px) {
+        @media screen and (max-width: 850px),(max-height: 600px) {
             .thumbnail-container {
                 width: calc(1440px * 0.3);
                 height: calc(900px * 0.3);
@@ -610,6 +608,7 @@
             }
             if(HasEparts()){
                 start = PAGE_EPARTS;
+                console.log(start);
                 for (var i = 0; i < productnames.length; i++) {
                     var src = "eParts" + "_" + productnames[i] + ".html"
                     AddApplicationPage(
