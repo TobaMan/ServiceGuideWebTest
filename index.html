@@ -356,8 +356,11 @@
         const PAGE_DOCUMENTATION = 1;
         const PAGE_SEARCHTEXT = 2;
         const PAGE_ERRORCODE = 3;
+        // const PAGE_ELECDIAGRAM = 4 ;
+        // const PAGE_EPARTS = PAGE_ELECDIAGRAM + productnames.length;
+
         const PAGE_ELECDIAGRAM = 4 ;
-        const PAGE_EPARTS = PAGE_ELECDIAGRAM + productnames.length;
+        const PAGE_EPARTS = 4;
 
         const ANIM_PRESENTATION = 40;
         const ANIM_EDIAG_EPARTS = 4;
@@ -608,7 +611,6 @@
             }
             if(HasEparts()){
                 start = PAGE_EPARTS;
-                console.log(start);
                 for (var i = 0; i < productnames.length; i++) {
                     var src = "eParts" + "_" + productnames[i] + ".html"
                     AddApplicationPage(
