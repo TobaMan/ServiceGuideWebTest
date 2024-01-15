@@ -648,16 +648,21 @@
                 }
             }
             if (search.includes("?ElectricalDiagram")) {
-                // if(HasElectricalDiagram()){
-                //     if (search.includes("::")) {
-                //     const local = search.split("::")[1];
-                //     if(productnames.includes(local)){
-                //         const index = productnames.indexOf(local);
-                //     }
-                //     GoToPage(3, ANIM_OTHER);
-                //     }
-                // }
-            }
+                if(HasElectricalDiagram()){
+                    if (search.includes("::")) {
+                        const machine = search.split("::")[1];
+                        if(productnames.includes(machine)){
+                            var index = productnames.indexOf(machine);
+                            index = index + PAGE_ELECDIAGRAM;
+                            GoToPage(index, ANIM_OTHER);}}}}
+            if (search.includes("?eParts")) {
+                if(HasEparts()){
+                    if (search.includes("::")) {
+                        const machine = search.split("::")[1];
+                        if(productnames.includes(machine)){
+                            var index = productnames.indexOf(machine);
+                            index = index + PAGE_EPARTS;
+                            GoToPage(index, ANIM_OTHER);}}}}
 
 
 

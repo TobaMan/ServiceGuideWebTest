@@ -16,10 +16,10 @@ var selectable_color = "rgba(33, 183, 255, 0.1)";
 var selected_color = "rgba(33, 183, 255, 0.25)";
 
 //EDIAGRAM CONTENT HERE ...
-var diagram_content = [0];
+var diagram_content = [0, 0];
 
 //EPARTS CONTENT HERE ...
-var epart_content = [];
+var epart_content = [1, 1];
 
 //ERROR CODE CONTENT HERE ...
 var errcode_content = 1;
@@ -31,7 +31,7 @@ var chapters_names = ['ch1', 'ch2', 'ch3'];
 
 
 //PRODUCT NAME LIST HERE ...
-var productnames = ['8100'];
+var productnames = ['8100', '8200'];
 
 
 //ERRORCODE LINK DATA HERE ...
