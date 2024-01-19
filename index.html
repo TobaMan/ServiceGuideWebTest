@@ -355,32 +355,11 @@
         const PAGE_PRESENTATION = 0;
         const PAGE_DOCUMENTATION = 1;
         const PAGE_SEARCHTEXT = 2;
-        var PAGE_ERRORCODE = PAGE_SEARCHTEXT + 1;
+        const PAGE_ERRORCODE = 3;
         var PAGE_ELECDIAGRAM = PAGE_ERRORCODE + HasErrorCode();
         var PAGE_EPARTS = PAGE_ELECDIAGRAM + diagram_content.reduce((a, b) => a + b, 0);
 
-        // function ComputePageIndex(){
-        //     if(HasErrorCode()){
-        //         PAGE_ERRORCODE = PAGE_SEARCHTEXT + 1;}
-        //     else{PAGE_ERRORCODE = PAGE_SEARCHTEXT;}
-        //     if(HasElectricalDiagram()){
-        //         PAGE_ELECDIAGRAM = PAGE_ERRORCODE + 1 ;
-        //         var ediagsum = diagram_content.reduce(
-        //             (a, b) => a + b, 0);
-        //         PAGE_EPARTS = PAGE_ELECDIAGRAM + ediagsum;}
-        //     else{
-        //         PAGE_ELECDIAGRAM = PAGE_ERRORCODE;
-        //         PAGE_EPARTS = PAGE_ELECDIAGRAM;}
-
-            
-        //     PAGE_ERRORCODE = PAGE_SEARCHTEXT + 1;
-        //     PAGE_ELECDIAGRAM = PAGE_ERRORCODE + HasErrorCode();
-        //     PAGE_EPARTS = PAGE_ELECDIAGRAM + diagram_content.reduce((a, b) => a + b, 0);
-
-        // }
-
-
-
+        
         const ANIM_PRESENTATION = 40;
         const ANIM_EDIAG_EPARTS = 4;
         // var ANIM_OTHER = 1;//67;//54;//36;//51;//36;//16;    
