@@ -565,13 +565,13 @@
             $("#pt-main .grid-item").removeClass("pt-page");
             $(".off-pt-title").addClass("pt-title");
             $(".pt-title").removeClass("off-pt-title");
-            var id = ".pt-page-" + currentpage.toString();
-            $(id + " .thumbnail-container").addClass("thumbnail-container-selected");
             $(".grid-item").on("click", function () {
                 var id = $(this).find("iframe").attr('id');
                 id = parseInt(id.split("pg")[1]);
                 PageFromPreview(id);
             });
+            var id = ".pt-page-" + currentpage.toString();
+            $(id + " .thumbnail-container").addClass("thumbnail-container-selected");
         }
 
         window.onmessage = function (event) {
