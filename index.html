@@ -26,7 +26,8 @@
         }
 
         body {
-            background: #eee;
+            /* background: #eee; */
+            background: conic-gradient(from -90deg at top left, #a7a7a7, #ECECEC);
             font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
             font-size: 14px;
             color: #000;
@@ -360,25 +361,29 @@
         var PAGE_EPARTS = PAGE_ELECDIAGRAM + diagram_content.reduce((a, b) => a + b, 0);
 
         
-        const ANIM_PRESENTATION = 40;
-        const ANIM_EDIAG_EPARTS = 4;  
-        const ANIM_LAST = 1;//67;//54;//36;//51;//36;//16;  
-        const ANIM_NEXT = 2;//67;//54;//36;//51;//36;//16;
-
+        const ANIM_NONE = 0;
         const ANIM_FADE = 68;
         const ANIM_SLIDE = 67;
-        const ANIM_FLIP_RIGHT = 32;
+        const ANIM_SLIDE2 = 66;
         const ANIM_FLIP_LEFT = 33;
+        const ANIM_FLIP_RIGHT = 32;
         const ANIM_FLIP_TOP = 34;
         const ANIM_FLIP_BOTTOM = 35;
-        const ANIM_CUBE_RIGHT = 59;
         const ANIM_CUBE_LEFT = 58;
+        const ANIM_CUBE_RIGHT = 59;
         const ANIM_CUBE_TOP = 60;
         const ANIM_CUBE_BOTTOM = 61;
         const ANIM_NEWSPAPER = 37;
+        const EASING_LEFT = 14;
+        const EASING_RIGHT = 13;
+        const EASING_TOP = 16;
+        const EASING_BOTTOM = 15;
+        const SCALE_DOWN = 21;
+        const SCALE_UP = 22;
 
+        const ANIM_PRESENTATION = EASING_BOTTOM;
         const ANIM_NORMAL = ANIM_FADE;
-        const ANIM_URL = ANIM_SLIDE;
+        const ANIM_URL = ANIM_FADE;
 
 
         const MEDIABOX_MINIMIZED = 0;
