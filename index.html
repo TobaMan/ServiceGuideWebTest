@@ -697,7 +697,10 @@
             // });
 
             LoadPages();
-            DelayStartFromURL(1000);
+            DelayStartFromURL(2000);
+            Pace.on('done', function() {
+  alert("loaded!");
+});
         })
 
     </script>
