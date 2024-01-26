@@ -126,12 +126,15 @@ function OpenMedia(data,newtab){
     var urldest = "media/"+data;
     OpenURL(urldest, newtab);}
 
-function GoToDocumentationPage(chapter, page) {
+function SaveDocChapterPage(chapter, page){
     var chapter = JSON.stringify(chapter);
-    //integer as page number of the doc
     var page = JSON.stringify(page);
     sessionStorage.setItem("_doc_chapter_", chapter);
     sessionStorage.setItem("_doc_page_", page);
+}
+
+function GoToDocumentationPage(chapter, page) {
+    SaveDocChapterPage(chapter, page);
     OpenHtmlPage("Documentation.html");
 }
 

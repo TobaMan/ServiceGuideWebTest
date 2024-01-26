@@ -361,12 +361,24 @@
 
         
         const ANIM_PRESENTATION = 40;
-        const ANIM_EDIAG_EPARTS = 4;
-        // var ANIM_OTHER = 1;//67;//54;//36;//51;//36;//16;    
-        const ANIM_OTHER = 68;//67;//54;//36;//51;//36;//16;  
+        const ANIM_EDIAG_EPARTS = 4;  
         const ANIM_LAST = 1;//67;//54;//36;//51;//36;//16;  
         const ANIM_NEXT = 2;//67;//54;//36;//51;//36;//16;
+
+        const ANIM_FADE = 68;
         const ANIM_SLIDE = 67;
+        const ANIM_FLIP_RIGHT = 32;
+        const ANIM_FLIP_LEFT = 33;
+        const ANIM_FLIP_TOP = 34;
+        const ANIM_FLIP_BOTTOM = 35;
+        const ANIM_CUBE_RIGHT = 59;
+        const ANIM_CUBE_LEFT = 58;
+        const ANIM_CUBE_TOP = 60;
+        const ANIM_CUBE_BOTTOM = 61;
+        const ANIM_NEWSPAPER = 37;
+
+        const ANIM_NORMAL = ANIM_FADE;
+        const ANIM_URL = ANIM_SLIDE;
 
 
         const MEDIABOX_MINIMIZED = 0;
@@ -573,17 +585,17 @@
                 if(url){ShowMedia(url);}
                 else{var id = "pg" + PAGE_DOCUMENTATION.toString();
                     SendCustomEventToIframe(id, "shown");
-                    GoToPage(PAGE_DOCUMENTATION, ANIM_OTHER);}
+                    GoToPage(PAGE_DOCUMENTATION, ANIM_NORMAL);}
             }
             if (event.data == 'mframe_goto_SearchText.html') {
                 var url = page_urls["search"];
                 if(url){ShowMedia(url);}
-                else{GoToPage(PAGE_SEARCHTEXT, ANIM_OTHER);}
+                else{GoToPage(PAGE_SEARCHTEXT, ANIM_NORMAL);}
             }
             if (event.data == 'mframe_goto_ErrorCode.html') {
                 var url = page_urls["ecode"];
                 if(url){ShowMedia(url);}
-                else{GoToPage(PAGE_ERRORCODE, ANIM_OTHER);}
+                else{GoToPage(PAGE_ERRORCODE, ANIM_NORMAL);}
             }
             if(event.data.includes('mframe_goto_ElectricalDiagram_')) {
                 if(HasElectricalDiagram()){
@@ -591,7 +603,7 @@
                         start = PAGE_ELECDIAGRAM;
                         for (var i = 0; i < productnames.length; i++) {
                             if (event.data == 'mframe_goto_ElectricalDiagram_' + productnames[i] + '.html') {
-                                GoToPage(start + i, ANIM_OTHER);}}}}}
+                                GoToPage(start + i, ANIM_NORMAL);}}}}}
 
             if(event.data.includes('mframe_goto_eParts_')) {
                 if(HasEparts()){
@@ -599,7 +611,7 @@
                         var start = PAGE_EPARTS;
                         for (var i = 0; i < productnames.length; i++) {
                             if (event.data == 'mframe_goto_eParts_' + productnames[i] + '.html') {
-                                GoToPage(start + i, ANIM_OTHER);}}}}}
+                                GoToPage(start + i, ANIM_NORMAL);}}}}}
             
         };
 
@@ -658,17 +670,17 @@
                     const local = search.split("::")[1];
                     if (local in documentation_bookmarks) {
                         const docpos = documentation_bookmarks[local];
-                        GoToDocumentationPage(docpos[0], docpos[1]);}
-                    else { GoToPage(PAGE_DOCUMENTATION, ANIM_SLIDE); }}
-                else { GoToPage(PAGE_DOCUMENTATION, ANIM_SLIDE); }
+                        SaveDocChapterPage(docpos[0], docpos[1]);
+                        GoToPage(PAGE_DOCUMENTATION, ANIM_URL);}
+                    else { GoToPage(PAGE_DOCUMENTATION, ANIM_URL); }}
+                else { GoToPage(PAGE_DOCUMENTATION, ANIM_URL); }
             }
-
             if (search.includes("?SearchText")) {
-                GoToPage(PAGE_SEARCHTEXT, ANIM_SLIDE);
+                GoToPage(PAGE_SEARCHTEXT, ANIM_URL);
             }
             if (search.includes("?ErrorCode")) {
                 if(HasErrorCode()){
-                    GoToPage(PAGE_ERRORCODE, ANIM_SLIDE);}
+                    GoToPage(PAGE_ERRORCODE, ANIM_URL);}
             }
             if (search.includes("?ElectricalDiagram")) {
                 if(HasElectricalDiagram()){
@@ -677,7 +689,7 @@
                         if(productnames.includes(machine)){
                             var index = productnames.indexOf(machine);
                             index = index + PAGE_ELECDIAGRAM;
-                            GoToPage(index, ANIM_SLIDE);}}}}
+                            GoToPage(index, ANIM_URL);}}}}
             if (search.includes("?eParts")) {
                 if(HasEparts()){
                     if (search.includes("::")) {
@@ -685,7 +697,7 @@
                         if(productnames.includes(machine)){
                             var index = productnames.indexOf(machine);
                             index = index + PAGE_EPARTS;
-                            GoToPage(index, ANIM_SLIDE);}}}}
+                            GoToPage(index, ANIM_URL);}}}}
 
         }
 
