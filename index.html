@@ -351,6 +351,7 @@
         var currentpage = 1;
         var visitedpage = [0];
         var curvisited = -1;
+        var urlstart = 0;
 
         const PAGE_PRESENTATION = 0;
         const PAGE_DOCUMENTATION = 1;
@@ -650,7 +651,7 @@
         function StartFromURL() {
             //http://localhost:5000/?SearchText
             // console.log(window.location.search);
-            var search = window.location.search;
+            var search = urlstart;//window.location.search;
 
             if (search.includes("?Documentation")) {
                 if (search.includes("::")) {
@@ -667,8 +668,7 @@
             }
             if (search.includes("?ErrorCode")) {
                 if(HasErrorCode()){
-                    GoToPage(PAGE_ERRORCODE, ANIM_OTHER);
-                }
+                    GoToPage(PAGE_ERRORCODE, ANIM_OTHER);}
             }
             if (search.includes("?ElectricalDiagram")) {
                 if(HasElectricalDiagram()){
@@ -692,6 +692,7 @@
             setTimeout(function() { StartFromURL(); }, delay);}
 
         $(document).ready(function () {
+            urlstart = window.location.search;
             LoadPages(function () {
                 StartFromURL();
                 // DelayStartFromURL(1000);
