@@ -670,11 +670,11 @@
                     const local = search.split("::")[1];
                     if (local in documentation_bookmarks) {
                         const docpos = documentation_bookmarks[local];
-                        SaveDocChapterPage(docpos[0], docpos[1]);
-                        GoToPage(PAGE_DOCUMENTATION, ANIM_URL);}
+                        GoToDocumentationPage(docpos[0], docpos[1]);}
                     else { GoToPage(PAGE_DOCUMENTATION, ANIM_URL); }}
                 else { GoToPage(PAGE_DOCUMENTATION, ANIM_URL); }
             }
+
             if (search.includes("?SearchText")) {
                 GoToPage(PAGE_SEARCHTEXT, ANIM_URL);
             }
