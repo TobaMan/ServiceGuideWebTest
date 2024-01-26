@@ -523,7 +523,7 @@
             if (n !== oldpage) {
                 currentpage = n;
                 if(animation == 0){
-                    PageTransitions.setPageNoAnimation(id);}
+                    PageTransitions.setPageNoAnimation(currentpage);}
                 else{PageTransitions.setPage(
                     currentpage, animation);}
                 oldpage = currentpage;
