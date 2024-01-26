@@ -323,17 +323,17 @@
 
         @media screen and (max-width: 850px),(max-height: 600px) {
             .thumbnail-container {
-                width: calc(1440px * 0.3);
-                height: calc(900px * 0.3);
+                width: calc(1440px * 0.2);
+                height: calc(900px * 0.2);
             }
 
             .thumbnail {
-                -ms-zoom: 0.3;
-                -moz-transform: scale(0.3);
+                -ms-zoom: 0.2;
+                -moz-transform: scale(0.2);
                 -moz-transform-origin: 0 0;
-                -o-transform: scale(0.3);
+                -o-transform: scale(0.2);
                 -o-transform-origin: 0 0;
-                -webkit-transform: scale(0.3);
+                -webkit-transform: scale(0.2);
                 -webkit-transform-origin: 0 0;
             }
 
@@ -378,6 +378,12 @@
         const MEDIABOX_MEDIUM = "40%";
         const MEDIABOX_LARGE = "55%";
         const MEDIABOX_XL = "65%";
+        const MEDIABOX_SIZE_LIST = [
+            MEDIABOX_SMALL, 
+            MEDIABOX_MEDIUM, 
+            MEDIABOX_LARGE, 
+            MEDIABOX_XL
+        ];
 
         const MEDIABOX_TOP_LEFT = {
             POS_X: "2%",
@@ -399,12 +405,17 @@
             POS_X: "center",
             POS_Y: "center"
         };
+        const MEDIABOX_POSITION_LIST = [
+            MEDIABOX_TOP_LEFT, 
+            MEDIABOX_TOP_RIGHT, 
+            MEDIABOX_BOTTOM_LEFT, 
+            MEDIABOX_BOTTOM_RIGHT, 
+            MEDIABOX_CENTER
+        ];
 
-
-        const MEDIABOX_OPTIONS_VIEW = MEDIABOX_WINDOW;
-        const MEDIABOX_OPTIONS_POSITION = MEDIABOX_BOTTOM_RIGHT;
-        const MEDIABOX_OPTIONS_SIZE = MEDIABOX_MEDIUM;
-
+        const MEDIABOX_OPTIONS_VIEW = mediabox_settings["behaviour"];
+        const MEDIABOX_OPTIONS_POSITION = MEDIABOX_POSITION_LIST[mediabox_settings["position"]];
+        const MEDIABOX_OPTIONS_SIZE = MEDIABOX_SIZE_LIST[mediabox_settings["size"]];
 
         const MEDIABOX_OPTIONS = {
             POS_X: MEDIABOX_OPTIONS_POSITION["POS_X"],
@@ -557,28 +568,37 @@
                 GoToPage(PAGE_PRESENTATION, ANIM_PRESENTATION);
             }
             if (event.data == 'mframe_goto_Documentation.html') {
-                var id = "pg" + PAGE_DOCUMENTATION.toString();
-                SendCustomEventToIframe(id, "shown");
-                GoToPage(PAGE_DOCUMENTATION, ANIM_OTHER);
+                var url = page_urls["doc"];
+                if(url){ShowMedia(url);}
+                else{var id = "pg" + PAGE_DOCUMENTATION.toString();
+                    SendCustomEventToIframe(id, "shown");
+                    GoToPage(PAGE_DOCUMENTATION, ANIM_OTHER);}
             }
             if (event.data == 'mframe_goto_SearchText.html') {
-                GoToPage(PAGE_SEARCHTEXT, ANIM_OTHER);
+                var url = page_urls["search"];
+                if(url){ShowMedia(url);}
+                else{GoToPage(PAGE_SEARCHTEXT, ANIM_OTHER);}
             }
             if (event.data == 'mframe_goto_ErrorCode.html') {
-                GoToPage(PAGE_ERRORCODE, ANIM_OTHER);
+                var url = page_urls["ecode"];
+                if(url){ShowMedia(url);}
+                else{GoToPage(PAGE_ERRORCODE, ANIM_OTHER);}
             }
-            if(HasElectricalDiagram()){
-                start = PAGE_ELECDIAGRAM;
-                for (var i = 0; i < productnames.length; i++) {
-                    if (event.data == 'mframe_goto_ElectricalDiagram_' + productnames[i] + '.html') {
-                        GoToPage(start + i, ANIM_OTHER);}}
-            }
-            if(HasEparts()){
-                var start = PAGE_EPARTS;
-                for (var i = 0; i < productnames.length; i++) {
-                    if (event.data == 'mframe_goto_eParts_' + productnames[i] + '.html') {
-                        GoToPage(start + i, ANIM_OTHER);}}
-            }
+            if(event.data.includes('mframe_goto_ElectricalDiagram_')) {
+                if(HasElectricalDiagram()){
+                    if(!page_urls["ediag"]){
+                        start = PAGE_ELECDIAGRAM;
+                        for (var i = 0; i < productnames.length; i++) {
+                            if (event.data == 'mframe_goto_ElectricalDiagram_' + productnames[i] + '.html') {
+                                GoToPage(start + i, ANIM_OTHER);}}}}}
+
+            if(event.data.includes('mframe_goto_eParts_')) {
+                if(HasEparts()){
+                    if(!page_urls["epart"]){
+                        var start = PAGE_EPARTS;
+                        for (var i = 0; i < productnames.length; i++) {
+                            if (event.data == 'mframe_goto_eParts_' + productnames[i] + '.html') {
+                                GoToPage(start + i, ANIM_OTHER);}}}}}
             
         };
 
@@ -600,19 +620,23 @@
                 AddApplicationPage("ErrorCode.html", PAGE_ERRORCODE, "errorcode", "Error code");
             }
             if(HasElectricalDiagram()){
-                var start = PAGE_ELECDIAGRAM;
-                for (var i = 0; i < productnames.length; i++) {
-                    var src = "ElectricalDiagram" + "_" + productnames[i] + ".html"
-                    AddApplicationPage(
-                        src, start + i, "electricaldiagram", "Electrical diagram " + productnames[i]);
+                if(!page_urls["ediag"]){
+                    var start = PAGE_ELECDIAGRAM;
+                    for (var i = 0; i < productnames.length; i++) {
+                        var src = "ElectricalDiagram" + "_" + productnames[i] + ".html"
+                        AddApplicationPage(
+                            src, start + i, "electricaldiagram", "Electrical diagram " + productnames[i]);
+                    }
                 }
             }
             if(HasEparts()){
-                start = PAGE_EPARTS;
-                for (var i = 0; i < productnames.length; i++) {
-                    var src = "eParts" + "_" + productnames[i] + ".html"
-                    AddApplicationPage(
-                        src, start + i, "part", "eParts " + productnames[i]);
+                if(!page_urls["epart"]){
+                    start = PAGE_EPARTS;
+                    for (var i = 0; i < productnames.length; i++) {
+                        var src = "eParts" + "_" + productnames[i] + ".html"
+                        AddApplicationPage(
+                            src, start + i, "part", "eParts " + productnames[i]);
+                    }
                 }
             }
             PageTransitions.init();
@@ -663,17 +687,14 @@
                             index = index + PAGE_EPARTS;
                             GoToPage(index, ANIM_OTHER);}}}}
 
-
-
-            // ElectricalDiagram_CS 8100 3D
         }
+        function DelayStartFromURL(delay){
+            setTimeout(function() { StartFromURL(); }, delay);}
 
         $(document).ready(function () {
-
-            LoadPages();
-
-            StartFromURL();
-
+            LoadPages(function () {
+                DelayStartFromURL(1000);
+            });
         })
 
     </script>

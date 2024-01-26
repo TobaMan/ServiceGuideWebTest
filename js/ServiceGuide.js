@@ -19,7 +19,7 @@ var selected_color = "rgba(33, 183, 255, 0.25)";
 var diagram_content = [0, 0];
 
 //EPARTS CONTENT HERE ...
-var epart_content = [1, 1];
+var epart_content = [];
 
 //ERROR CODE CONTENT HERE ...
 var errcode_content = 1;
@@ -56,6 +56,23 @@ var documentation_bookmarks = {
 	'MyLink' : [2, 1]
 };
 
+
+//MEDIABOX SETTINGS HERE ...
+var mediabox_settings = {
+	'size' : 1,
+	'position' : 3,
+	'behaviour' : 1
+};
+
+
+//PAGE URLS HERE ...
+var page_urls = {
+	'doc' : '',
+	'search' : 'https://nextapps-de.github.io/winbox/',
+	'ediag' : 'media/GRN-0142_SPCGH13_Temple_support_motor_assembly_Rev_1.pdf',
+	'epart' : '',
+	'ecode' : ''
+};
 
 
 
@@ -169,15 +186,15 @@ function GetThumbDir(chapter){
 }
 
 function HasElectricalDiagram(){
-    return diagram_content.includes(1);
+    return diagram_content.includes(1) || page_urls['ediag'];
 }
 
 function HasEparts(){
-    return epart_content.includes(1);
+    return epart_content.includes(1) || page_urls['epart'];
 }
 
 function HasErrorCode(){
-    return errcode_content == 1;
+    return (errcode_content == 1) || page_urls['ecode'];
 }
 
 function DiagramsActivity(){
@@ -230,23 +247,31 @@ function BuildDiagramProductChoice(product) {
 }
 
 function ShowEpartsProductChoice() {
-    $(".SEARCH_FORM").hide();
-    $(".DIAGRAM_PRODUCT_LIST").hide();
-    $(".submenu_responsivethumb").remove();
-    for (var i = 0; i < productnames.length; i++) {
-        if(epart_content[i]){
-            BuildEpartsProductChoice(productnames[i]);}}
-    $(".EPARTS_PRODUCT_LIST").slideToggle("fast");
+    var url = page_urls["epart"];
+    if(url){OpenURL(url, false);}
+    else{
+        $(".SEARCH_FORM").hide();
+        $(".DIAGRAM_PRODUCT_LIST").hide();
+        $(".submenu_responsivethumb").remove();
+        for (var i = 0; i < productnames.length; i++) {
+            if(epart_content[i]){
+                BuildEpartsProductChoice(productnames[i]);}}
+        $(".EPARTS_PRODUCT_LIST").slideToggle("fast");
+    }
 }
 
 function ShowDiagramProductChoice() {
-    $(".SEARCH_FORM").hide();
-    $(".EPARTS_PRODUCT_LIST").hide();
-    $(".submenu_responsivethumb").remove();
-    for (var i = 0; i < productnames.length; i++) {
-        if(diagram_content[i]){
-            BuildDiagramProductChoice(productnames[i]);}}
-    $(".DIAGRAM_PRODUCT_LIST").slideToggle("fast");
+    var url = page_urls["ediag"];
+    if(url){OpenURL(url, false);}
+    else{
+        $(".SEARCH_FORM").hide();
+        $(".EPARTS_PRODUCT_LIST").hide();
+        $(".submenu_responsivethumb").remove();
+        for (var i = 0; i < productnames.length; i++) {
+            if(diagram_content[i]){
+                BuildDiagramProductChoice(productnames[i]);}}
+        $(".DIAGRAM_PRODUCT_LIST").slideToggle("fast");
+    }
 }
 
 function ShowSearchForm() {
