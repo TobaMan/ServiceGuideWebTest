@@ -687,17 +687,9 @@
                             GoToPage(index, ANIM_OTHER);}}}}
 
         }
-        function DelayStartFromURL(delay){
-            setTimeout(function() { StartFromURL(); }, delay);}
 
         $(document).ready(function () {
-            // LoadPages(function () {
-            //     StartFromURL();
-            //     // DelayStartFromURL(1000);
-            // });
-
             LoadPages();
-            // DelayStartFromURL(2000);
             Pace.on('done', function () {
                 StartFromURL();
             });
