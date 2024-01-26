@@ -366,6 +366,7 @@
         const ANIM_OTHER = 68;//67;//54;//36;//51;//36;//16;  
         const ANIM_LAST = 1;//67;//54;//36;//51;//36;//16;  
         const ANIM_NEXT = 2;//67;//54;//36;//51;//36;//16;
+        const ANIM_SLIDE = 67;
 
 
         const MEDIABOX_MINIMIZED = 0;
@@ -658,16 +659,16 @@
                     if (local in documentation_bookmarks) {
                         const docpos = documentation_bookmarks[local];
                         GoToDocumentationPage(docpos[0], docpos[1]);}
-                    else { GoToPage(PAGE_DOCUMENTATION, ANIM_OTHER); }}
-                else { GoToPage(PAGE_DOCUMENTATION, ANIM_OTHER); }
+                    else { GoToPage(PAGE_DOCUMENTATION, ANIM_SLIDE); }}
+                else { GoToPage(PAGE_DOCUMENTATION, ANIM_SLIDE); }
             }
 
             if (search.includes("?SearchText")) {
-                GoToPage(PAGE_SEARCHTEXT, ANIM_OTHER);
+                GoToPage(PAGE_SEARCHTEXT, ANIM_SLIDE);
             }
             if (search.includes("?ErrorCode")) {
                 if(HasErrorCode()){
-                    GoToPage(PAGE_ERRORCODE, ANIM_OTHER);}
+                    GoToPage(PAGE_ERRORCODE, ANIM_SLIDE);}
             }
             if (search.includes("?ElectricalDiagram")) {
                 if(HasElectricalDiagram()){
@@ -676,7 +677,7 @@
                         if(productnames.includes(machine)){
                             var index = productnames.indexOf(machine);
                             index = index + PAGE_ELECDIAGRAM;
-                            GoToPage(index, ANIM_OTHER);}}}}
+                            GoToPage(index, ANIM_SLIDE);}}}}
             if (search.includes("?eParts")) {
                 if(HasEparts()){
                     if (search.includes("::")) {
@@ -684,7 +685,7 @@
                         if(productnames.includes(machine)){
                             var index = productnames.indexOf(machine);
                             index = index + PAGE_EPARTS;
-                            GoToPage(index, ANIM_OTHER);}}}}
+                            GoToPage(index, ANIM_SLIDE);}}}}
 
         }
 
