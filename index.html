@@ -522,8 +522,10 @@
         function GoToPage(n, animation) {
             if (n !== oldpage) {
                 currentpage = n;
-                PageTransitions.setPage(
-                    currentpage, animation);
+                if(animation == 0){
+                    PageTransitions.setPageNoAnimation(id);}
+                else{PageTransitions.setPage(
+                    currentpage, animation);}
                 oldpage = currentpage;
             }
             // else { ReloadPage(n); }
@@ -547,7 +549,7 @@
             $("#pt-main .pt-page .thumbnail-container .off-thumbnail").removeClass("thumbnail");
             $("#pt-main .pt-page .thumbnail-container").addClass("off-thumbnail-container");
             $("#pt-main .pt-page .off-thumbnail-container").removeClass("thumbnail-container");
-            PageTransitions.setPageNoAnimation(id);
+            GoToPage(id, ANIM_NONE);
         }
 
         function PageToPreview() {
