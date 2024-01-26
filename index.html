@@ -545,6 +545,8 @@
             $(".grid-cover-text").addClass("pt-title");
             $(".pt-title").addClass("off-pt-title");
             $(".off-pt-title").removeClass("pt-title");
+            var id = ".pt-page-" + currentpage.toString();
+            $(id + " .thumbnail-container").removeClass("thumbnail-container-selected");
             $("#pt-main .pt-page .thumbnail-container .thumbnail").addClass("off-thumbnail");
             $("#pt-main .pt-page .thumbnail-container .off-thumbnail").removeClass("thumbnail");
             $("#pt-main .pt-page .thumbnail-container").addClass("off-thumbnail-container");
@@ -563,16 +565,13 @@
             $("#pt-main .grid-item").removeClass("pt-page");
             $(".off-pt-title").addClass("pt-title");
             $(".pt-title").removeClass("off-pt-title");
+            var id = ".pt-page-" + currentpage.toString();
+            $(id + " .thumbnail-container").addClass("thumbnail-container-selected");
             $(".grid-item").on("click", function () {
                 var id = $(this).find("iframe").attr('id');
                 id = parseInt(id.split("pg")[1]);
                 PageFromPreview(id);
             });
-
-
-            var id = ".pt-page-" + currentpage.toString();
-            $(id + " .thumbnail-container").addClass("thumbnail-container-selected");
-
         }
 
         window.onmessage = function (event) {
