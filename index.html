@@ -228,9 +228,6 @@
             position: relative;
             margin: 2%;
             border: 6px solid #fff;
-
-            border: inset;
-
             -webkit-box-shadow: 0px 0px 16px -7px rgba(0, 0, 0, 1);
             -moz-box-shadow: 0px 0px 16px -7px rgba(0, 0, 0, 1);
             box-shadow: 0px 0px 16px -7px rgba(0, 0, 0, 1);
@@ -541,6 +538,8 @@
         }
 
         function PageFromPreview(id) {
+            var id = ".pt-page-" + currentpage.toString();
+            $(id + " .thumbnail-container").removeClass("thumbnail-container-selected");
             $("#pt-main").addClass("pt-perspective");
             $("#pt-main").removeClass("grid-container");
             $("#pt-main .pt-page").removeClass("grid-item");
@@ -548,8 +547,6 @@
             $(".grid-cover-text").addClass("pt-title");
             $(".pt-title").addClass("off-pt-title");
             $(".off-pt-title").removeClass("pt-title");
-            var id = ".pt-page-" + currentpage.toString();
-            $(id + " .thumbnail-container").removeClass("thumbnail-container-selected");
             $("#pt-main .pt-page .thumbnail-container .thumbnail").addClass("off-thumbnail");
             $("#pt-main .pt-page .thumbnail-container .off-thumbnail").removeClass("thumbnail");
             $("#pt-main .pt-page .thumbnail-container").addClass("off-thumbnail-container");
