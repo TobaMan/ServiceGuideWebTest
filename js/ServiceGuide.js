@@ -67,7 +67,7 @@ var mediabox_settings = {
 
 //PAGE URLS HERE ...
 var page_urls = {
-	'ediag' : 'GRN-0142_SPCGH13_Temple_support_motor_assembly_Rev_1.pdf',
+	'ediag' : 'media/GRN-0142_SPCGH13_Temple_support_motor_assembly_Rev_1.pdf',
 	'epart' : 'https://remixicon.com/',
 	'ecode' : 'https://github.com/TobaMan/ServiceGuideWebTest.github.io'
 };
