@@ -382,7 +382,7 @@
         const SCALE_UP = 22;
 
         const ANIM_PRESENTATION = EASING_BOTTOM;
-        const ANIM_NORMAL = ANIM_FADE;
+        const ANIM_NORMAL = EASING_TOP;
         const ANIM_URL = EASING_RIGHT;
 
 
@@ -636,7 +636,9 @@
             AddApplicationPage("Documentation.html", PAGE_DOCUMENTATION, "documentation48", "Documentation");
             AddApplicationPage("SearchText.html", PAGE_SEARCHTEXT, "searchtext", "Search by text");
             if(HasErrorCode()){
-                AddApplicationPage("ErrorCode.html", PAGE_ERRORCODE, "errorcode", "Error code");
+                if(!page_urls["ecode"]){
+                    AddApplicationPage("ErrorCode.html", PAGE_ERRORCODE, "errorcode", "Error code");
+                }
             }
             if(HasElectricalDiagram()){
                 if(!page_urls["ediag"]){
