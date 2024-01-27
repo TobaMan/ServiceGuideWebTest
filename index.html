@@ -688,7 +688,9 @@
             }
             if (search.includes("?ErrorCode")) {
                 if(HasErrorCode()){
-                    GoToPage(PAGE_ERRORCODE, ANIM_URL);}
+                    var url = page_urls["ecode"];
+                    if(url){ShowMedia(url);}
+                    else{GoToPage(PAGE_ERRORCODE, ANIM_URL);}}    
             }
             if (search.includes("?ElectricalDiagram")) {
                 if(HasElectricalDiagram()){
