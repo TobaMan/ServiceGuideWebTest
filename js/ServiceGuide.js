@@ -219,6 +219,15 @@ function ErrCodeActivity(){
     }
 }
 
+function SetTabButtonURLStatus(){
+    var url = page_urls["ecode"];
+    if(url){$(".ERRORCODE").css("background", "#b8b6b6");}
+    var url = page_urls["ediag"];
+    if(url){$(".ELECDIAGRAM").css("background", "#b8b6b6");}
+    var url = page_urls["epart"];
+    if(url){$(".EPARTS").css("background", "#b8b6b6");}
+}
+
 function BuildEpartsProductChoice(product) {
     var link = 'OpenHtmlPage("eParts_' + product + '.html")';
     var thumb = "<div class='submenu_responsivethumb'>";
@@ -552,6 +561,7 @@ function IsIOS() {
 }
 
 $(document).ready(function () {
-    var url = page_urls["ecode"];
-    if(url){$(".ERRORCODE").css("background", "red");}
+
+    SetTabButtonURLStatus();
+
 })
