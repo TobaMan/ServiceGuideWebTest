@@ -220,12 +220,13 @@ function ErrCodeActivity(){
 }
 
 function SetTabButtonURLStatus(){
+    const color = "#d8d8d8";
     var url = page_urls["ecode"];
-    if(url){$(".ERRORCODE").css("background", "#b8b6b6");}
+    if(url){$(".ERRORCODE").css("background", color);}
     var url = page_urls["ediag"];
-    if(url){$(".ELECDIAGRAM").css("background", "#b8b6b6");}
+    if(url){$(".ELECDIAGRAM").css("background", color);}
     var url = page_urls["epart"];
-    if(url){$(".EPARTS").css("background", "#b8b6b6");}
+    if(url){$(".EPARTS").css("background", color);}
 }
 
 function BuildEpartsProductChoice(product) {
