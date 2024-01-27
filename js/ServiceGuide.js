@@ -550,3 +550,8 @@ function IsIOS() {
       if (navigator.platform === iDevices.pop()){ return true; }}}
   return false;
 }
+
+$(document).ready(function () {
+    var url = page_urls["ecode"];
+    if(url){$(".ERRORCODE").css("background", "red");}
+})
