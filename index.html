@@ -234,8 +234,7 @@
 
         }
         .thumbnail-container-selected {
-            border: 6px solid #fff;
-            border: 6px dashed rgba(33, 185, 255, 0.45);
+            border: 6px solid rgba(33, 185, 255, 0.6);
         }
 
         /* --This is a masking container for the zoomed iframe element */
@@ -592,16 +591,12 @@
                 GoToPage(PAGE_PRESENTATION, ANIM_PRESENTATION);
             }
             if (event.data == 'mframe_goto_Documentation.html') {
-                var url = page_urls["doc"];
-                if(url){ShowMedia(url);}
-                else{var id = "pg" + PAGE_DOCUMENTATION.toString();
-                    SendCustomEventToIframe(id, "shown");
-                    GoToPage(PAGE_DOCUMENTATION, ANIM_NORMAL);}
+                var id = "pg" + PAGE_DOCUMENTATION.toString();
+                SendCustomEventToIframe(id, "shown");
+                GoToPage(PAGE_DOCUMENTATION, ANIM_NORMAL);
             }
             if (event.data == 'mframe_goto_SearchText.html') {
-                var url = page_urls["search"];
-                if(url){ShowMedia(url);}
-                else{GoToPage(PAGE_SEARCHTEXT, ANIM_NORMAL);}
+                GoToPage(PAGE_SEARCHTEXT, ANIM_NORMAL);
             }
             if (event.data == 'mframe_goto_ErrorCode.html') {
                 var url = page_urls["ecode"];
