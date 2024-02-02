@@ -532,7 +532,7 @@
         }
 
         function ReloadPage(n) {
-            var id = 'pg' + (n + 1).toString();
+            var id = 'pg' + n.toString();
             // document.getElementById(id).contentWindow.location.reload();
             document.getElementById(id).src = document.getElementById(id).src
         }
