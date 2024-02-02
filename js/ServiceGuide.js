@@ -59,9 +59,9 @@ var documentation_bookmarks = {
 
 //MEDIABOX SETTINGS HERE ...
 var mediabox_settings = {
-	'size' : 1,
-	'position' : 3,
-	'behaviour' : 1
+	'size' : 3,
+	'position' : 4,
+	'behaviour' : 2
 };
 
 
@@ -222,7 +222,8 @@ function ErrCodeActivity(){
 function SetTabButtonURLStatus(){
     const color = "#d8d8d8";
     var url = page_urls["ecode"];
-    if(url){$(".ERRORCODE").css("background", color);}
+    // if(url){$(".ERRORCODE").css("background", color);}
+    if(url){$(".ERRORCODE .icon").attr("src", "media/errorcode_link.png");}
     var url = page_urls["ediag"];
     if(url){$(".ELECDIAGRAM").css("background", color);}
     var url = page_urls["epart"];
