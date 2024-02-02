@@ -220,14 +220,15 @@ function ErrCodeActivity(){
 }
 
 function SetTabButtonURLStatus(){
-    const color = "#d8d8d8";
     var url = page_urls["ecode"];
-    // if(url){$(".ERRORCODE").css("background", color);}
-    if(url){$(".ERRORCODE .icon").attr("src", "media/errorcode_link.png");}
+    if(url){$(".ERRORCODE .icon").attr(
+        "src", "media/errorcode_link.png");}
     var url = page_urls["ediag"];
-    if(url){$(".ELECDIAGRAM").css("background", color);}
+    if(url){$(".ELECDIAGRAM .icon").attr(
+        "src", "media/electricaldiagram_link.png");}
     var url = page_urls["epart"];
-    if(url){$(".EPARTS").css("background", color);}
+    if(url){$(".EPARTS .icon").attr(
+        "src", "media/part_link.png");}
 }
 
 function BuildEpartsProductChoice(product) {
