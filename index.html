@@ -15,7 +15,6 @@
     <script type="text/javascript" src='js/ServiceGuide.js'></script>
     <script src="js/modernizr.custom.js"></script>
     <script src="js/winbox.min.js"></script>
-    <script src="https://unpkg.com/hotkeys-js/dist/hotkeys.min.js"></script>
 
 
     <style>
@@ -344,22 +343,6 @@
             }
         }
     </style>
-
-<script type="text/javascript">
-    hotkeys('ctrl+a,ctrl+b,r,f', function (event, handler){
-      switch (handler.key) {
-        case 'ctrl+a': alert('you pressed ctrl+a!');
-          break;
-        case 'ctrl+b': alert('you pressed ctrl+b!');
-          break;
-        case 'r': alert('you pressed r!');
-          break;
-        case 'f': alert('you pressed f!');
-          break;
-        default: alert(event);
-      }
-    });
-    </script>
 
     <script>
 
@@ -769,9 +752,9 @@
 
         }
 
-        function Keyboard() {
+        function Keyboard(e) {
             //https://www.toptal.com/developers/keycode/table
-            $(window).keyup(function (e) {
+            // $(window).keyup(function (e) {
                 e.preventDefault();
                 if (e.key === "Escape") { 
                     closeFullscreen();}
@@ -789,15 +772,16 @@
                     ShowLastMediaInNavigator(false);} 
                 if (e.key === "F7") { 
                     ShowLastMediaInNavigator(true);} 
-                alert(e.key);
-            });
+                // alert(e.key);
+            // });
         }
 
         $(document).ready(function () {
             LoadPages();
             Pace.on('done', function () {
                 StartFromURL();
-                Keyboard();
+                window.addEventListener("keydown", Keyboard);
+                //Keyboard();
             });
         })
 
