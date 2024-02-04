@@ -61,15 +61,27 @@ var documentation_bookmarks = {
 var mediabox_settings = {
 	'size' : 3,
 	'position' : 4,
-	'behaviour' : 2
+	'behaviour' : 1
 };
 
 
 //PAGE URLS HERE ...
 var page_urls = {
 	'ediag' : 'media/GRN-0142_SPCGH13_Temple_support_motor_assembly_Rev_1.pdf',
-	'epart' : 'https://eparts.carestreamdental.com/eParts/app?__bk_&__windowid=TIP416619623&__rid=OJL1706907063725#2VF2D59BB6A19D241BF39AB8ED9782EC2676FB7D71DEA3F1B037E8A2D71F8FA91E9E70B726A9C8E312AFE49D7762A6E60476BEBC713FA7FB2B155EB5CCD51A90D291C6798FCFE55699A76410CDE3B0446A5B504D3A8DCABCDD013D9914710A3BBCEC16B9477F538F011A91C9AA4E9AFEE346D2AB2727781C74481117D634D964C54A6F846E70DF1AB3A834077668352970B6355BE0B60D9EEDCBA72043D96AEA4FEC16B9477F538F011A91C9AA4E9AFEE3ED6C4064E85EE100C6ADCC59C9A025FDA834077668352970B6355BE0B60D9EED39CCEDC3EBAD804540FD0D31E517DED42703170CB95ABF211BD54D639AEA00B88BC802E2D3052B71156597039B4BD0DB1542FBA8BB471B582ECDA541E3E5513E33C3E3A1ED6B37C4CF4D68FE111B8393DBED54543E0F3DE13347F25646983F569ED4AAB8CED539D2BF045C62DC34A601013D9914710A3BBCF40817032D7C182BB980299C679222919493D0E05AB33A20FCBC6827F28BBE2FD0CA41A556AA8F9FBFB36F4A657F20A0ADC947249EC0430DF47FA1D0F67C5F4740FD0D31E517DED4D161239C4F766D2711E3BB35041F1DDA7CF0863DB9386F60C63C3CE8C0286522903EE875B85E9EB6AA4F1B4F6B97B93DC5E6E02C088D0027AFC26BF389B92A96',
-	'ecode' : 'https://infotec.carestreamdental.com/pub/knowledgedatabase.php'
+	'epart' : 'https://remixicon.com/',
+	'ecode' : 'https://github.com/TobaMan/ServiceGuideWebTest.github.io'
+};
+
+
+//PAGE ANIMATION HERE ...
+var page_animation = {
+	'home' : 11,
+	'doc' : 15,
+	'stext' : 15,
+	'ediag' : 10,
+	'epart' : 10,
+	'ecode' : 15,
+	'url' : 14
 };
 
 
@@ -77,12 +89,9 @@ var page_urls = {
 var winRef;
 var opentab = false;
 var iframe = true;
-function OpenHtmlPage(page) {
-    if(iframe == true){
-        SendCustomEventFromIframe('mframe_goto_'+page);
-        return false;
-    }
-    if (opentab == false) {
+
+function OpenNavigatorHtmlPage(page, tab){
+    if (tab == false) {
         window.open(page, "_self");}
     else {
         var params = [
@@ -94,9 +103,14 @@ function OpenHtmlPage(page) {
             if (winRef == null) {
                 var win = window.open(page, page, params);}}
         else {winRef.focus();}}
+}
+
+function OpenHtmlPage(page) {
+    if(iframe == true){
+        SendCustomEventFromIframe('mframe_goto_'+page);}
+    else{OpenNavigatorHtmlPage(page, opentab);}
     return false;}
 
-    
 function SendCustomEventToIframe(id, msgevent){
     document.getElementById(id).contentWindow.postMessage(msgevent);
 }
@@ -196,6 +210,34 @@ function HasEparts(){
 
 function HasErrorCode(){
     return (errcode_content == 1) || page_urls['ecode'];
+}
+
+function HasElectricalDiagramPage(){
+    return diagram_content.includes(1) && !page_urls['ediag'];
+}
+
+function HasEpartsPage(){
+    return epart_content.includes(1) && !page_urls['epart'];
+}
+
+function HasErrorCodePage(){
+    return (errcode_content == 1) && !page_urls['ecode'];
+}
+
+function ePartsProductList(){
+    var prodlist = [];
+    for (var i = 0; i < productnames.length; i++) {
+        if(epart_content[i]){
+            prodlist.push(productnames[i]);}}
+    return prodlist;
+}
+
+function ElectricalDiagramProductList(){
+    var prodlist = [];
+    for (var i = 0; i < productnames.length; i++) {
+        if(diagram_content[i]){
+            prodlist.push(productnames[i]);}}
+    return prodlist;
 }
 
 function DiagramsActivity(){

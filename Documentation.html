@@ -280,6 +280,7 @@
 
         //VIDEO NAVIGATION HERE ...
 		var video_navigation = {
+			'6' : ['tv003-01-cs8100-resistive-track-y-4.1vdc-test.mp4', 'tv003-01-cs8100-resistive-track-y-4.1vdc-test']
 		};
 
 
@@ -653,7 +654,7 @@
         function ShowVideo(){
             if(vididx > -1){
                 var video = video_navigation[vididx][0];
-                OpenMediaFile(video,true);}}
+                OpenURL("media/"+video, false);}}
 
         function PrintDoc() {
             var chid = 0;

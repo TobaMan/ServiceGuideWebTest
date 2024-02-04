@@ -266,7 +266,7 @@
             width: 30%;
             margin-top: 14%;
             z-index: 500;
-            font-size: 32px;
+            font-size: 24px;
             text-align: center;
             justify-content: center;
         }
@@ -357,8 +357,9 @@
         const PAGE_DOCUMENTATION = 1;
         const PAGE_SEARCHTEXT = 2;
         const PAGE_ERRORCODE = 3;
-        var PAGE_ELECDIAGRAM = PAGE_ERRORCODE + HasErrorCode();
-        var PAGE_EPARTS = PAGE_ELECDIAGRAM + diagram_content.reduce((a, b) => a + b, 0);
+        var PAGE_ELECDIAGRAM = PAGE_ERRORCODE + HasErrorCodePage();
+        var PAGE_EPARTS = PAGE_ELECDIAGRAM +
+            (diagram_content.reduce((a, b) => a + b, 0) * HasElectricalDiagramPage());
 
         
         const ANIM_NONE = 0;
@@ -381,9 +382,35 @@
         const SCALE_DOWN = 21;
         const SCALE_UP = 22;
 
-        const ANIM_PRESENTATION = EASING_BOTTOM;
-        const ANIM_NORMAL = EASING_TOP;
-        const ANIM_URL = EASING_RIGHT;
+        const animlist = [
+            ANIM_NONE, 
+            ANIM_FADE, 
+            ANIM_SLIDE, 
+            ANIM_SLIDE2, 
+            ANIM_FLIP_LEFT, 
+            ANIM_FLIP_RIGHT, 
+            ANIM_FLIP_TOP, 
+            ANIM_FLIP_BOTTOM, 
+            ANIM_CUBE_LEFT, 
+            ANIM_CUBE_RIGHT, 
+            ANIM_CUBE_TOP, 
+            ANIM_CUBE_BOTTOM, 
+            ANIM_NEWSPAPER,
+            EASING_LEFT,
+            EASING_RIGHT, 
+            EASING_TOP, 
+            EASING_BOTTOM, 
+            SCALE_DOWN, 
+            SCALE_UP
+        ];
+
+        const ANIM_PRESENTATION = animlist[page_animation["home"]];
+        const ANIM_DOCUMENTATION = animlist[page_animation["doc"]];
+        const ANIM_SEARCHTEXT = animlist[page_animation["stext"]];
+        const ANIM_ELECDIAGRAM = animlist[page_animation["ediag"]];
+        const ANIM_EPARTS = animlist[page_animation["epart"]];
+        const ANIM_ERRORCODE = animlist[page_animation["ecode"]];
+        const ANIM_URL = animlist[page_animation["url"]];
 
 
         const MEDIABOX_MINIMIZED = 0;
@@ -518,6 +545,16 @@
             document.getElementById("myNav").style.width = "0%";
         }
 
+        function ShowLastMedia(){
+            if (sessionStorage.length) {
+                let src = sessionStorage.getItem('_media_src_');
+                ShowMedia(src);}
+        }
+        function ShowLastMediaInNavigator(tab){
+            if (sessionStorage.length) {
+                let src = sessionStorage.getItem('_media_src_');
+                OpenNavigatorHtmlPage(src, tab);}
+        }
 
         function GoToPage(n, animation) {
             if (n !== oldpage) {
@@ -528,13 +565,13 @@
                     currentpage, animation);}
                 oldpage = currentpage;
             }
-            else { ReloadPage(n); }
+            // else { ReloadPage(n); }
         }
 
         function ReloadPage(n) {
             var id = 'pg' + n.toString();
-            // document.getElementById(id).contentWindow.location.reload();
-            document.getElementById(id).src = document.getElementById(id).src
+            document.getElementById(id).src = 
+                document.getElementById(id).src
         }
 
         function PageFromPreview(id) {
@@ -580,9 +617,7 @@
                 FullScreen();
             }
             if (event.data == 'media_src') {
-                if (sessionStorage.length) {
-                    let src = sessionStorage.getItem('_media_src_');
-                    ShowMedia(src);}
+                ShowLastMedia();
             }
             if (event.data == "_open_preview_") {
                 PageToPreview();
@@ -593,31 +628,35 @@
             if (event.data == 'mframe_goto_Documentation.html') {
                 var id = "pg" + PAGE_DOCUMENTATION.toString();
                 SendCustomEventToIframe(id, "shown");
-                GoToPage(PAGE_DOCUMENTATION, ANIM_NORMAL);
+                GoToPage(PAGE_DOCUMENTATION, ANIM_DOCUMENTATION);
             }
             if (event.data == 'mframe_goto_SearchText.html') {
-                GoToPage(PAGE_SEARCHTEXT, ANIM_NORMAL);
+                GoToPage(PAGE_SEARCHTEXT, ANIM_SEARCHTEXT);
             }
             if (event.data == 'mframe_goto_ErrorCode.html') {
                 var url = page_urls["ecode"];
                 if(url){ShowMedia(url);}
-                else{GoToPage(PAGE_ERRORCODE, ANIM_NORMAL);}
+                else{GoToPage(PAGE_ERRORCODE, ANIM_ERRORCODE);}
             }
             if(event.data.includes('mframe_goto_ElectricalDiagram_')) {
-                if(HasElectricalDiagram()){
-                    if(!page_urls["ediag"]){
-                        start = PAGE_ELECDIAGRAM;
-                        for (var i = 0; i < productnames.length; i++) {
-                            if (event.data == 'mframe_goto_ElectricalDiagram_' + productnames[i] + '.html') {
-                                GoToPage(start + i, ANIM_NORMAL);}}}}}
+                if(HasElectricalDiagramPage()){
+                    var start = PAGE_ELECDIAGRAM;
+                    const prodlist = ElectricalDiagramProductList();
+                    for (var i = 0; i < prodlist.length; i++) {
+                        const html = 'mframe_goto_ElectricalDiagram_' + prodlist[i] + '.html';
+                        if (event.data == html) {
+                            GoToPage(start + i, ANIM_ELECDIAGRAM);
+                            break;}}}}
 
             if(event.data.includes('mframe_goto_eParts_')) {
-                if(HasEparts()){
-                    if(!page_urls["epart"]){
-                        var start = PAGE_EPARTS;
-                        for (var i = 0; i < productnames.length; i++) {
-                            if (event.data == 'mframe_goto_eParts_' + productnames[i] + '.html') {
-                                GoToPage(start + i, ANIM_NORMAL);}}}}}
+                if(HasEpartsPage()){
+                    var start = PAGE_EPARTS;
+                    const prodlist = ePartsProductList();
+                    for (var i = 0; i < prodlist.length; i++) {
+                        const html = 'mframe_goto_eParts_' + prodlist[i] + '.html';
+                        if (event.data == html) {
+                            GoToPage(start + i, ANIM_EPARTS);
+                            break;}}}}
             
         };
 
@@ -632,34 +671,30 @@
         }
 
         function LoadPages(){
+            
             AddApplicationPage("Presentation.html", PAGE_PRESENTATION, "home", "Presentation");
             AddApplicationPage("Documentation.html", PAGE_DOCUMENTATION, "documentation48", "Documentation");
             AddApplicationPage("SearchText.html", PAGE_SEARCHTEXT, "searchtext", "Search by text");
-            if(HasErrorCode()){
-                if(!page_urls["ecode"]){
-                    AddApplicationPage("ErrorCode.html", PAGE_ERRORCODE, "errorcode", "Error code");
-                }
-            }
-            if(HasElectricalDiagram()){
-                if(!page_urls["ediag"]){
-                    var start = PAGE_ELECDIAGRAM;
-                    for (var i = 0; i < productnames.length; i++) {
-                        var src = "ElectricalDiagram" + "_" + productnames[i] + ".html"
+            if(HasErrorCodePage()){AddApplicationPage("ErrorCode.html", PAGE_ERRORCODE, "errorcode", "Error code");}
+
+            if(HasElectricalDiagramPage()){
+                var start = PAGE_ELECDIAGRAM;
+                const prodlist = ElectricalDiagramProductList();
+                for (var i = 0; i < prodlist.length; i++) {
+                    var src = "ElectricalDiagram_" + prodlist[i] + ".html"
                         AddApplicationPage(
-                            src, start + i, "electricaldiagram", "Electrical diagram " + productnames[i]);
-                    }
-                }
-            }
-            if(HasEparts()){
-                if(!page_urls["epart"]){
-                    start = PAGE_EPARTS;
-                    for (var i = 0; i < productnames.length; i++) {
-                        var src = "eParts" + "_" + productnames[i] + ".html"
+                            src, start + i, "electricaldiagram", 
+                            "Electrical diagram " + prodlist[i]);}}
+
+            if(HasEpartsPage()){
+                var start = PAGE_EPARTS;
+                const prodlist = ePartsProductList();
+                for (var i = 0; i < prodlist.length; i++) {
+                    var src = "eParts_" + prodlist[i] + ".html"
                         AddApplicationPage(
-                            src, start + i, "part", "eParts " + productnames[i]);
-                    }
-                }
-            }
+                            src, start + i, "part", 
+                            "eParts " + prodlist[i]);}}
+
             PageTransitions.init();
 
             // $('iframe').on('load', function () {
@@ -698,8 +733,9 @@
                     if(url){ShowMedia(url);}
                     else{if (search.includes("::")) {
                             const machine = search.split("::")[1];
-                            if(productnames.includes(machine)){
-                                var index = productnames.indexOf(machine);
+                            const prodlist = ElectricalDiagramProductList();
+                            if(prodlist.includes(machine)){
+                                var index = prodlist.indexOf(machine);
                                 index = index + PAGE_ELECDIAGRAM;
                                 GoToPage(index, ANIM_URL);}}}}}
             if (search.includes("?eParts")) {
@@ -708,14 +744,38 @@
                     if(url){ShowMedia(url);}
                     else{if (search.includes("::")) {
                             const machine = search.split("::")[1];
-                            if(productnames.includes(machine)){
-                                var index = productnames.indexOf(machine);
+                            const prodlist = ePartsProductList();
+                            if(prodlist.includes(machine)){
+                                var index = prodlist.indexOf(machine);
                                 index = index + PAGE_EPARTS;
                                 GoToPage(index, ANIM_URL);}}}}}
 
         }
 
+        function Keyboard() {
+            //https://www.toptal.com/developers/keycode/table
+            $(document).keyup(function (e) {
+                if (e.key === "Escape") { 
+                    closeFullscreen();}
+                if (e.key === "F1") {
+                    FullScreen();}
+                if (e.key === "F2") { 
+                    window.location.reload();}
+                if (e.key === "F3") { 
+                    ReloadPage(PAGE_DOCUMENTATION);}
+                if (e.key === "F4") {
+                    PageToPreview();}
+                if (e.key === "F5") { 
+                    ShowLastMedia();}
+                if (e.key === "F6") { 
+                    ShowLastMediaInNavigator(false);} 
+                if (e.key === "F7") { 
+                    ShowLastMediaInNavigator(true);} 
+            });
+        }
+
         $(document).ready(function () {
+            Keyboard();
             LoadPages();
             Pace.on('done', function () {
                 StartFromURL();
