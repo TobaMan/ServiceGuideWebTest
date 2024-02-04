@@ -754,34 +754,34 @@
 
         function Keyboard(e) {
             //https://www.toptal.com/developers/keycode/table
-            // $(window).keyup(function (e) {
-                e.preventDefault();
-                if (e.key === "Escape") { 
-                    closeFullscreen();}
-                if (e.key === "F1") {
-                    FullScreen();}
-                if (e.key === "F2") { 
-                    window.location.reload();}
-                if (e.key === "F3") { 
-                    ReloadPage(PAGE_DOCUMENTATION);}
-                if (e.key === "F4") {
-                    PageToPreview();}
-                if (e.key === "F5") { 
-                    ShowLastMedia();}
-                if (e.key === "F6") { 
-                    ShowLastMediaInNavigator(false);} 
-                if (e.key === "F7") { 
-                    ShowLastMediaInNavigator(true);} 
-                // alert(e.key);
-            // });
+            e.preventDefault();
+            if (e.key === "Escape") { 
+                closeFullscreen();}
+            if (e.key === "F1") {
+                FullScreen();}
+            if (e.key === "F2") { 
+                window.location.reload();}
+            if (e.key === "F3") { 
+                ReloadPage(PAGE_DOCUMENTATION);}
+            if (e.key === "F4") {
+                PageToPreview();}
+            if (e.key === "F5") { 
+                ShowLastMedia();}
+            if (e.key === "F6") { 
+                ShowLastMediaInNavigator(false);} 
+            if (e.key === "F7") { 
+                ShowLastMediaInNavigator(true);} 
+            // alert(e.key);
+        }
+        function InstallKeyboardEvent(){
+            window.addEventListener("keydown", Keyboard);
         }
 
         $(document).ready(function () {
             LoadPages();
+            InstallKeyboardEvent();
             Pace.on('done', function () {
                 StartFromURL();
-                window.addEventListener("keydown", Keyboard);
-                //Keyboard();
             });
         })
 
