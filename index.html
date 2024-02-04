@@ -755,6 +755,7 @@
         function Keyboard() {
             //https://www.toptal.com/developers/keycode/table
             $(document).keyup(function (e) {
+                e.preventDefault();
                 if (e.key === "Escape") { 
                     closeFullscreen();}
                 if (e.key === "F1") {
