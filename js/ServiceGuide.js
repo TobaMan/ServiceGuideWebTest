@@ -136,7 +136,7 @@ function ReceiveCustomEvent(msgevent, runfunc){
 
 function OpenURL(data,newtab){
     sessionStorage.setItem("_media_src_", data);
-    SendCustomEventFromIframe("media_src");
+    SendCustomEventFromIframe("media_src");}
 
 function OpenMedia(data,newtab){
     var urldest = "media/"+data;
