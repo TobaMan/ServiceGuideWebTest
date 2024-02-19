@@ -547,7 +547,8 @@
 
         function ShowLastMedia(){
             if (sessionStorage.length) {
-                let src = sessionStorage.getItem('_media_src_');
+                // let src = sessionStorage.getItem('_media_src_');
+                let src = page_urls['ecode'];
                 console.log(src, src.startsWith("media/"));
                 if(src.startsWith("media/")){
                     ShowMedia(src);}
