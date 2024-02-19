@@ -545,14 +545,25 @@
             document.getElementById("myNav").style.width = "0%";
         }
 
+        function ShowURL(src){
+            if(src.startsWith("media/")){
+                ShowMedia(src);}
+            else{window.open(src);}}
+
+        function ShowSessionURL(){
+            let src = sessionStorage.getItem('_media_src_');
+            ShowURL(src);}
+
+        // function ShowLastMedia(){
+        //     if (sessionStorage.length) {
+        //         let src = sessionStorage.getItem('_media_src_');
+        //             ShowMedia(src);}
+        // }
         function ShowLastMedia(){
             if (sessionStorage.length) {
-                // let src = sessionStorage.getItem('_media_src_');
-                let src = page_urls['ecode'];
+                let src = sessionStorage.getItem('_media_src_');
                 console.log(src, src.startsWith("media/"));
-                if(src.startsWith("media/")){
-                    ShowMedia(src);}
-                else{window.open(src);}
+                ShowURL(src);
             }
         }
         function ShowLastMediaInNavigator(tab){
@@ -622,7 +633,7 @@
                 FullScreen();
             }
             if (event.data == 'media_src') {
-                ShowLastMedia();
+                ShowSessionURL();
             }
             if (event.data == "_open_preview_") {
                 PageToPreview();
@@ -640,7 +651,7 @@
             }
             if (event.data == 'mframe_goto_ErrorCode.html') {
                 var url = page_urls["ecode"];
-                if(url){ShowMedia(url);}
+                if(url){ShowURL(url);}
                 else{GoToPage(PAGE_ERRORCODE, ANIM_ERRORCODE);}
             }
             if(event.data.includes('mframe_goto_ElectricalDiagram_')) {

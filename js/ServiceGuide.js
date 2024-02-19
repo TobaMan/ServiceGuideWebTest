@@ -125,18 +125,32 @@ function ReceiveCustomEvent(msgevent, runfunc){
             runfunc();}  };
 }
 
+// function OpenURL(data,newtab){
+//     var urldest = data;
+//     if(iframe == true){
+//         sessionStorage.setItem("_media_src_", urldest);
+//         SendCustomEventFromIframe("media_src");
+//         return false;}
+//     if(newtab == true){window.open(urldest);}
+//     else{window.open(urldest,"_self");}}
+
 function OpenURL(data,newtab){
-    var urldest = data;
-    if(iframe == true){
-        sessionStorage.setItem("_media_src_", urldest);
-        SendCustomEventFromIframe("media_src");
-        return false;}
-    if(newtab == true){window.open(urldest);}
-    else{window.open(urldest,"_self");}}
+    sessionStorage.setItem("_media_src_", data);
+    SendCustomEventFromIframe("media_src");
 
 function OpenMedia(data,newtab){
     var urldest = "media/"+data;
     OpenURL(urldest, newtab);}
+
+
+// function ShowURL(src){
+//     sessionStorage.setItem("_media_src_", src);
+//     SendCustomEventFromIframe("media_src");
+// }
+// function ShowMediaFile(data){
+//     var src = "media/"+src;
+//     ShowURL(src);}
+
 
 function SaveDocChapterPage(chapter, page){
     var chapter = JSON.stringify(chapter);
@@ -303,7 +317,7 @@ function BuildDiagramProductChoice(product) {
 
 function ShowEpartsProductChoice() {
     var url = page_urls["epart"];
-    if(url){OpenURL(url, false);}
+    if(url){OpenURL(url, true);}
     else{
         $(".SEARCH_FORM").hide();
         $(".DIAGRAM_PRODUCT_LIST").hide();
@@ -317,7 +331,7 @@ function ShowEpartsProductChoice() {
 
 function ShowDiagramProductChoice() {
     var url = page_urls["ediag"];
-    if(url){OpenURL(url, false);}
+    if(url){OpenURL(url, true);}
     else{
         $(".SEARCH_FORM").hide();
         $(".EPARTS_PRODUCT_LIST").hide();
