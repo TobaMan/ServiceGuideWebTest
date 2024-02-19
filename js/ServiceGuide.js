@@ -127,7 +127,7 @@ function ReceiveCustomEvent(msgevent, runfunc){
 
 function OpenURL(data,newtab){
     var urldest = data;
-    if(iframe == true && urldest.includes("media/")){
+    if(iframe == true){
         sessionStorage.setItem("_media_src_", urldest);
         SendCustomEventFromIframe("media_src");
         return false;}

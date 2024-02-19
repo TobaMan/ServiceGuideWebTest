@@ -548,7 +548,10 @@
         function ShowLastMedia(){
             if (sessionStorage.length) {
                 let src = sessionStorage.getItem('_media_src_');
-                ShowMedia(src);}
+                if(src.startsWith("media/")){
+                    ShowMedia(src);}
+                else{window.open(src);}
+            }
         }
         function ShowLastMediaInNavigator(tab){
             if (sessionStorage.length) {
@@ -614,9 +617,6 @@
         window.onmessage = function (event) {
 
             if (event.data == '_fullscreen_') {
-
-                window.open('https://testinfotec.carestreamdental.com/pub/ressourcestesting.php',"_self");
-
                 FullScreen();
             }
             if (event.data == 'media_src') {
