@@ -548,6 +548,7 @@
         function ShowLastMedia(){
             if (sessionStorage.length) {
                 let src = sessionStorage.getItem('_media_src_');
+                console.log(src, src.startsWith("media/"));
                 if(src.startsWith("media/")){
                     ShowMedia(src);}
                 else{window.open(src);}
