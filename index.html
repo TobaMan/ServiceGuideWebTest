@@ -710,6 +710,15 @@
             if (search.includes("?Documentation")) {
                 if (search.includes("::")) {
                     const local = search.split("::")[1];
+                    //::chpg_val_val
+                    if(local.includes("chpg_")){
+                        const chpg = search.split("_");
+                        const chapter = parseInt(chpg[1]);
+                        const page = parseInt(chpg[2]);
+                        console.log(chapter, page);
+                        if(Number.isInteger(chapter) && Number.isInteger(page)){
+                            GoToDocumentationPage(chapter, page);}}
+                    //::bookmarks name in documentation page
                     if (local in documentation_bookmarks) {
                         const docpos = documentation_bookmarks[local];
                         GoToDocumentationPage(docpos[0], docpos[1]);}
