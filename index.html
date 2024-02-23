@@ -553,8 +553,7 @@
         function ShowSessionURL(){
             if (sessionStorage.length) {
                 let src = sessionStorage.getItem('_url_src_');
-                ShowURL(src);
-            }
+                ShowURL(src);}}
 
         function GoToPage(n, animation) {
             if (n !== oldpage) {
@@ -616,7 +615,7 @@
             if (event.data == '_fullscreen_') {
                 FullScreen();
             }
-            if (event.data == 'media_src') {
+            if (event.data == 'url_src') {
                 ShowSessionURL();
             }
             if (event.data == "_open_preview_") {
