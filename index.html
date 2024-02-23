@@ -551,26 +551,10 @@
             else{window.open(src);}}
 
         function ShowSessionURL(){
-            let src = sessionStorage.getItem('_media_src_');
-            ShowURL(src);}
-
-        // function ShowLastMedia(){
-        //     if (sessionStorage.length) {
-        //         let src = sessionStorage.getItem('_media_src_');
-        //             ShowMedia(src);}
-        // }
-        function ShowLastMedia(){
             if (sessionStorage.length) {
-                let src = sessionStorage.getItem('_media_src_');
-                console.log(src, src.startsWith("media/"));
+                let src = sessionStorage.getItem('_url_src_');
                 ShowURL(src);
             }
-        }
-        function ShowLastMediaInNavigator(tab){
-            if (sessionStorage.length) {
-                let src = sessionStorage.getItem('_media_src_');
-                OpenNavigatorHtmlPage(src, tab);}
-        }
 
         function GoToPage(n, animation) {
             if (n !== oldpage) {
@@ -740,13 +724,13 @@
             if (search.includes("?ErrorCode")) {
                 if(HasErrorCode()){
                     var url = page_urls["ecode"];
-                    if(url){ShowMedia(url);}
+                    if(url){ShowURL(url);}
                     else{GoToPage(PAGE_ERRORCODE, ANIM_URL);}}    
             }
             if (search.includes("?ElectricalDiagram")) {
                 if(HasElectricalDiagram()){
                     var url = page_urls["ediag"];
-                    if(url){ShowMedia(url);}
+                    if(url){ShowURL(url);}
                     else{if (search.includes("::")) {
                             const machine = search.split("::")[1];
                             const prodlist = ElectricalDiagramProductList();
@@ -757,7 +741,7 @@
             if (search.includes("?eParts")) {
                 if(HasEparts()){
                     var url = page_urls["epart"];
-                    if(url){ShowMedia(url);}
+                    if(url){ShowURL(url);}
                     else{if (search.includes("::")) {
                             const machine = search.split("::")[1];
                             const prodlist = ePartsProductList();
@@ -782,9 +766,8 @@
             if (e.key === "F4") {
                 PageToPreview();}
             if (e.key === "F5") { 
-                ShowLastMedia();}
-            if (e.key === "F6") { 
-                ShowLastMediaInNavigator(false);} 
+                ShowSessionURL();}
+            if (e.key === "F6") { } 
             if (e.key === "F7") { 
                 ShowLastMediaInNavigator(true);} 
             // alert(e.key);

@@ -15,6 +15,9 @@ LinkType = {
 var selectable_color = "rgba(33, 183, 255, 0.1)";
 var selected_color = "rgba(33, 183, 255, 0.25)";
 
+//LOGOLINK HERE ...
+var logolink = "https://infotec.carestreamdental.com/";
+
 //EDIAGRAM CONTENT HERE ...
 var diagram_content = [0, 0];
 
@@ -125,32 +128,13 @@ function ReceiveCustomEvent(msgevent, runfunc){
             runfunc();}  };
 }
 
-// function OpenURL(data,newtab){
-//     var urldest = data;
-//     if(iframe == true){
-//         sessionStorage.setItem("_media_src_", urldest);
-//         SendCustomEventFromIframe("media_src");
-//         return false;}
-//     if(newtab == true){window.open(urldest);}
-//     else{window.open(urldest,"_self");}}
-
 function OpenURL(data,newtab){
-    sessionStorage.setItem("_media_src_", data);
-    SendCustomEventFromIframe("media_src");}
+    sessionStorage.setItem("_url_src_", data);
+    SendCustomEventFromIframe("url_src");}
 
 function OpenMedia(data,newtab){
     var urldest = "media/"+data;
     OpenURL(urldest, newtab);}
-
-
-// function ShowURL(src){
-//     sessionStorage.setItem("_media_src_", src);
-//     SendCustomEventFromIframe("media_src");
-// }
-// function ShowMediaFile(data){
-//     var src = "media/"+src;
-//     ShowURL(src);}
-
 
 function SaveDocChapterPage(chapter, page){
     var chapter = JSON.stringify(chapter);
@@ -170,9 +154,6 @@ function LinkManager(data,attr,newtab){
     }
     if(attr == LinkType.URL){//URL destination
         //string for url
-        // var urldest = data;
-        // if(newtab == true){window.open(urldest);}
-        // else{window.open(urldest,"_self");}
         OpenURL(data,newtab);
     }
     if(attr == LinkType.MEDIA){//Media file
