@@ -630,6 +630,9 @@
                 SendCustomEventToIframe(id, "shown");
                 GoToPage(PAGE_DOCUMENTATION, ANIM_DOCUMENTATION);
             }
+            if (event.data == 'mframe_refresh_Documentation.html') {
+                ReloadPage(PAGE_DOCUMENTATION);
+            }
             if (event.data == 'mframe_goto_SearchText.html') {
                 GoToPage(PAGE_SEARCHTEXT, ANIM_SEARCHTEXT);
             }

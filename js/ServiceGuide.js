@@ -115,6 +115,12 @@ function OpenHtmlPage(page) {
     else{OpenNavigatorHtmlPage(page, opentab);}
     return false;}
 
+function RefreshHtmlPage(page) {
+    if(iframe == true){
+        SendCustomEventFromIframe('mframe_refresh_'+page);}
+    else{OpenNavigatorHtmlPage(page, opentab);}
+    return false;}
+
 function SendCustomEventToIframe(id, msgevent){
     document.getElementById(id).contentWindow.postMessage(msgevent);
 }
