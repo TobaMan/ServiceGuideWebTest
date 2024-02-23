@@ -373,12 +373,12 @@
 <div class="dropdown_menu">
     <div class="dropbtn_menu uistyle2"><img class="icomenu_menu" src="media/menu.png"/></div>
     <div class="dropdown-content_menu uistyle2" style="top:44px;left:4px;">
-        <a href="https://infotec.carestreamdental.com/" style="border-bottom: 1px solid #a7a7a7;" align="left">
+        <a onclick="OpenURL(logolink, true);" style="border-bottom: 1px solid #a7a7a7;" align="left">
             <img style="width:130px" src="media/carestream-dental3.png"/>
         </a>
         <img class="icolabel_menu" src="media/search.png"/><a href="#" onclick="ShowSearchForm()">Search</a>
         <img class="icolabel_menu" src="media/print.png"/><a href="#" onclick="PrintErrorCode()">Print</a>
-        <img class="icolabel_menu" src="media/email.png"/><a href="mailto:damien.culot@hotmail.fr" onclick="">Feedback</a>
+        <img class="icolabel_menu" src="media/email.png"/><a href="mailto:damien.culot@hotmail.fr?subject=Test1&body=Test2 (écris avec des accents)" onclick="">Feedback</a>
         <img class="icolabel_menu" src="media/fullscreen.png"/><a href="#" onclick="SendFullScreen()">Fullscreen</a>
     </div>
 </div>
@@ -976,7 +976,7 @@
         <a href="#" class="PRINT tabuttonsmall uistyle2" onclick="PrintErrorCode()">
             <img class="icon" src="media/print.png"/>
         </a>
-        <a href="mailto:damien.culot@hotmail.fr" class="FEEDBACK tabuttonsmall uistyle2">
+        <a href="mailto:damien.culot@hotmail.fr?subject=Test1&body=Test2 (écris avec des accents)" class="FEEDBACK tabuttonsmall uistyle2">
             <img class="icon" src="media/email.png"/>
         </a>
         <a href="#" class="FULLSCREEN tabuttonsmall tabuttonright uistyle2" onclick="SendFullScreen()">
@@ -984,7 +984,7 @@
         </a>
     </div>
 
-    <a href="https://infotec.carestreamdental.com/" align="left">
+    <a onclick="OpenURL(logolink, true);" align="left">
         <img class="companylogo" src="media/carestream-dental3.png"/>
     </a>
 </div>
