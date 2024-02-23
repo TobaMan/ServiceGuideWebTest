@@ -711,12 +711,12 @@
                 if (search.includes("::")) {
                     const local = search.split("::")[1];
                     //::chpg_val_val
+                    //?Documentation::chpg_1_2
                     if(local.includes("chpg_")){
                         const chpg = search.split("_");
                         const chapter = parseInt(chpg[1]);
                         const page = parseInt(chpg[2]);
                         if(Number.isInteger(chapter) && Number.isInteger(page)){
-                            console.log(chapter, page);
                             GoToDocumentationPage(chapter-1, page-1);}}
                     //::bookmarks name in documentation page
                     if (local in documentation_bookmarks) {
