@@ -711,17 +711,20 @@
                 if (search.includes("::")) {
                     const local = search.split("::")[1];
                     //::chpg_val_val
-                    //?Documentation::chpg_1_2
+                    //[URL]?Documentation::chpg_1_2
                     if(local.includes("chpg_")){
                         const chpg = search.split("_");
                         const chapter = parseInt(chpg[1]);
                         const page = parseInt(chpg[2]);
                         if(Number.isInteger(chapter) && Number.isInteger(page)){
-                            GoToDocumentationPage(chapter-1, page-1);}}
+                            GoToDocumentationPage(chapter-1, page-1);
+                            return;}}
                     //::bookmarks name in documentation page
+                    //[URL]?Documentation::bkname
                     if (local in documentation_bookmarks) {
                         const docpos = documentation_bookmarks[local];
-                        GoToDocumentationPage(docpos[0], docpos[1]);}
+                        GoToDocumentationPage(docpos[0], docpos[1]);
+                        return;}
                     else { GoToPage(PAGE_DOCUMENTATION, ANIM_URL); }}
                 else { GoToPage(PAGE_DOCUMENTATION, ANIM_URL); }
             }
