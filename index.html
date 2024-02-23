@@ -717,7 +717,7 @@
                         const page = parseInt(chpg[2]);
                         if(Number.isInteger(chapter) && Number.isInteger(page)){
                             console.log(chapter, page);
-                            GoToDocumentationPage(chapter, page);}}
+                            GoToDocumentationPage(chapter-1, page-1);}}
                     //::bookmarks name in documentation page
                     if (local in documentation_bookmarks) {
                         const docpos = documentation_bookmarks[local];
